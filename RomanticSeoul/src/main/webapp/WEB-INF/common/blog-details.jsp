@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -102,16 +104,16 @@
                         </div>
                         <p>You have finished building your own website. You have introduced your company and presented
                             your products and services. You have added propositions and promos to catch your target
-                            audience’s attention. You think you are doing everything “right”, but all your promotions
+                            audienceâs attention. You think you are doing everything ârightâ, but all your promotions
                             have failed to produce growth in your new internet business. There are many ways for your
-                            web site to be promoted, but maybe you’re missing the “key” to the “best” promotion. Here
-                            are some things to consider: – If you have started to promote your web site, keep it
-                            constant. If you promote your site with persistence, it will catch your audience’s
-                            attention. – Be patient. Try each different promotion until you find the best.</p>
-                        <h5>Cattle She’d Days Lights Light Saw Spirit Shall</h5>
+                            web site to be promoted, but maybe youâre missing the âkeyâ to the âbestâ promotion. Here
+                            are some things to consider: â If you have started to promote your web site, keep it
+                            constant. If you promote your site with persistence, it will catch your audienceâs
+                            attention. â Be patient. Try each different promotion until you find the best.</p>
+                        <h5>Cattle Sheâd Days Lights Light Saw Spirit Shall</h5>
                         <p>Free promotions such as search engines and directories would give your web site the deserved
-                            traffic you always wanted. Make sure to check your web site’s ranking to know whether or not
-                            this type of free promotion is right for you. – Make a deal with other web sites on trading
+                            traffic you always wanted. Make sure to check your web siteâs ranking to know whether or not
+                            this type of free promotion is right for you. â Make a deal with other web sites on trading
                             links which could help both web sites. Make sure to use words that could easily interest the
                             audience.</p>
                         <img src="img/blog/details/blog-item.jpg" alt="">
@@ -172,7 +174,7 @@
                                         <ul class="blog__item__tags">
                                             <li><i class="fa fa-tags"></i> Travel</li>
                                         </ul>
-                                        <h5><a href="#">Homeless woman’s viral subway opera performance</a></h5>
+                                        <h5><a href="#">Homeless womanâs viral subway opera performance</a></h5>
                                         <ul class="blog__item__widget">
                                             <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
                                             <li><i class="fa fa-user"></i> John Smith</li>
@@ -307,7 +309,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="newslatter__text">
                         <h3>Subscribe Newsletter</h3>
-                        <p>Subscribe to our newsletter and don’t miss anything</p>
+                        <p>Subscribe to our newsletter and donât miss anything</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
