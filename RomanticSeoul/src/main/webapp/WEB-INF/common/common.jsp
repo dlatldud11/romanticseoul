@@ -59,7 +59,7 @@ String mappingName = "/main";
 				<div class="col-lg-9 col-md-9">
 					<div class="header__nav">
 						<nav class="header__menu mobile-menu">
-							<ul>
+							<ul> 
 								<li class="active"><a href="./main.co">Home</a></li>
 								<li><a href="#">Listing</a></li>
 								<li><a href="#">Categories</a></li>
