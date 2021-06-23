@@ -9,7 +9,8 @@
 <body>
 <%
 	String imsi = request.getContextPath() + "/main.co" ;
-	response.sendRedirect(imsi) ;
+	/* response.sendRedirect(imsi) ; */
 %>
+랄랄랄ㄹ랄랄랄
 </body>
 </html>
