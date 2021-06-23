@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -106,7 +108,7 @@
                             grids.</h5>
                         <p>You have finished building your own website. You have introduced your company and presented
                             your products and services. You have added propositions and promos to catch your target
-                            audience’s attention. You think you are doing everything “right”, but all your promotions
+                            audienceâs attention. You think you are doing everything ârightâ, but all your promotions
                             have failed to produce growth in your new internet business.</p>
                     </div>
                 </div>
@@ -325,7 +327,7 @@
                 <div class="col-lg-6">
                     <div class="newslatter__text">
                         <h3>Subscribe Newsletter</h3>
-                        <p>Subscribe to our newsletter and don’t miss anything</p>
+                        <p>Subscribe to our newsletter and donât miss anything</p>
                     </div>
                 </div>
                 <div class="col-lg-6">

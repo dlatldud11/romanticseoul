@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -202,7 +204,7 @@
                                     <ul class="blog__item__tags">
                                         <li><i class="fa fa-tags"></i> Travel</li>
                                     </ul>
-                                    <h5><a href="#">Homeless woman’s viral subway opera performance</a></h5>
+                                    <h5><a href="#">Homeless womanâs viral subway opera performance</a></h5>
                                     <ul class="blog__item__widget">
                                         <li><i class="fa fa-clock-o"></i> 19th March, 2019</li>
                                         <li><i class="fa fa-user"></i> John Smith</li>
@@ -317,7 +319,7 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="newslatter__text">
                         <h3>Subscribe Newsletter</h3>
-                        <p>Subscribe to our newsletter and don’t miss anything</p>
+                        <p>Subscribe to our newsletter and donât miss anything</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
