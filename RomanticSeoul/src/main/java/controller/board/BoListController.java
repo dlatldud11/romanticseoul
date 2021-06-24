@@ -11,7 +11,7 @@ import controller.common.SuperClass;
 //import dao.BoardDao;
 
 @Controller
-public class BoListController extends SuperClass{
+public class BoListController extends SuperClass{ 
 	private final String command = "/boList.bo" ; 
 	private ModelAndView mav = null ;
 	private String redirect = "./main.co" ;
