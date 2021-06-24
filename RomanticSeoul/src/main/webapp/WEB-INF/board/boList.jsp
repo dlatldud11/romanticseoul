@@ -7,9 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	String imsi = request.getContextPath() + "/main.co";
-	response.sendRedirect(imsi) ;
-%>
+자유게시판
 </body>
 </html>
