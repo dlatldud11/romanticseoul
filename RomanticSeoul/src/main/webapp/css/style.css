@@ -30,7 +30,21 @@
 
 /* Template default CSS
 /*----------------------------------------*/
-
+.location,
+.temperature {
+	margin-top: 20px;
+  height: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: #fff;
+}
+.temperature-degree{
+	margin-left:20px;
+	color: #fff;
+	cursor: pointer;
+}
 html,
 body {
 	height: 100%;

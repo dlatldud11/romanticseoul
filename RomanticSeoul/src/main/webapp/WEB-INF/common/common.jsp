@@ -24,8 +24,10 @@ String mappingName = "/main";
 <link
 	href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap"
 	rel="stylesheet">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap"
+	rel="stylesheet">
 
 <!-- Css Styles -->
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -52,14 +54,21 @@ String mappingName = "/main";
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-3 col-md-3">
-					<div class="header__logo">
-						<a href="./index.html"><img src="img/logo.png" alt=""></a>
+					<div class="location">
+						<!-- <h2 class="location-timezone">Timezone</h2> -->
+						<canvas class="icon" width="80" height="80"></canvas>
+						<div class="temperature">
+							<div class="degree-section">
+								<h2 class="temperature-degree"><span></span></h2>
+							</div>
+							<!-- <div class="temperature-description">Its friggin cold</div> -->
+						</div>
 					</div>
 				</div>
 				<div class="col-lg-9 col-md-9">
 					<div class="header__nav">
 						<nav class="header__menu mobile-menu">
-							<ul> 
+							<ul>
 								<li class="active"><a href="./main.co">Home</a></li>
 								<li><a href="#">Listing</a></li>
 								<li><a href="#">Categories</a></li>
