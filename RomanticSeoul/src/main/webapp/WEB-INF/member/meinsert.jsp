@@ -11,22 +11,33 @@
 <html>
 <head>   
    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+<meta name="description" content="Directing Template">
+<meta name="keywords" content="Directing, unica, creative, html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Romantic Seoul</title>
 
-    <title>유치원 회원가입</title>
+<!-- Google Font -->
+<link
+	href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap"
+	rel="stylesheet">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@700&display=swap" rel="stylesheet">
 
-   <link href="<%=request.getContextPath() %>/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="<%=request.getContextPath() %>/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
-   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-   <script type="text/javascript">
+<!-- Css Styles -->
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
+<link rel="stylesheet" href="css/flaticon.css" type="text/css">
+<link rel="stylesheet" href="css/nice-select.css" type="text/css">
+<link rel="stylesheet" href="css/barfiller.css" type="text/css">
+<link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
+<link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css">
+<link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
+<link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
+<link rel="stylesheet" href="css/style.css" type="text/css">
+</head>   
+<script type="text/javascript">
    
     function checkPost() {
       var width = 500; //팝업의 너비
@@ -147,11 +158,12 @@
    
 </head>
 <body>
-   <br>
+   <!-- <br>
    <div class="container" align="center">
       <img alt="로고" src="./../images/logo.png" width="100" height="100">
    </div>
-   <br>
+   <br> -->
+   <!-- 아이디, 비번, 이름, 성별, 휴대전화, 주소, 이미지, 닉네임, 취 -->
    <div class="card card-primary offset-sm-3 col-sm-6" id="paInsert">
       <div class="card-body">
          <div class="card-title">
@@ -195,12 +207,16 @@
             </div>
              <div class="form-group" id="namediv"></div>
             <div class="form-group">
-               <label for="birth" class="form-control-label col-sm-0">생년월일</label>
-               <div class="col-6">
-                  <input type="date" class="form-control" id="birth" name="birth">
+               <label for="birth" class="form-control-label col-sm-0">닉네임</label>
+            <div class="form-row">
+                  <div class="col-">
+                     <input type="text" class="form-control" id="pid" name="pid" onkeyup="idcheckFalse();">
+                  </div>
+                  <div class="col-">
+                     <input type="button" class="form-control btn btn-primary" value="중복체크" onclick="checkPid();">
+                  </div>
                </div>
-            </div>
-             <div class="form-group" id="birthdiv"></div>
+               </div>
             <div class="form-group">
                <label for="gender" class="form-control-label col-sm-0">성별</label>
                   <div class="form-row">
@@ -272,23 +288,6 @@
                </div>
             </div>
              <div class="form-group" id="addressdiv"></div>
-            <div class="form-group" id="childadd">
-               <label for="sid" class="form-control-label col-sm-0">원생등록</label>
-               <div class="form-row">
-                  <div class="col-">
-                  <input type="hidden" name="first" value="first" id="first">
-                  <input type="hidden" name="second" id="second">
-                  <input type="hidden" name="third" id="third">
-                     <input type="text" class="form-control" id="sid" name="sid" readonly>
-                  </div>
-                  <div class="col-">
-                     <input type="button" class="form-control btn btn-primary" id="searchfirst" value="원생 찾기" onclick="stSearch();">
-                  </div>
-                  <div class="col-">
-                     <input type="button" class="btn btn-secondary" id ="btnfirst" onclick="add_input();" value="추가">
-                  </div>
-               </div>
-             </div>
              <div id="childsecond" class="form-group">
              </div>
              <div id="childthird" class="form-group">
