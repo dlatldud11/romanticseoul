@@ -17,13 +17,14 @@
       <typeAlias alias="MyCombo5" type="bean.Combo05" />
       <typeAlias alias="MyOrder" type="bean.Order" />
       <typeAlias alias="MyOrderDetail" type="bean.OrderDetail" />
-      <typeAlias alias="MyShoppingInfo" type="shopping.ShoppingInfo" />
-      <typeAlias alias="MyCheckBean" type="bean.CheckBean" />  -->
+      <typeAlias alias="MyShoppingInfo" type="shopping.ShoppingInfo" /> -->
+      <typeAlias alias="MyType" type="bean.Type" />
 </typeAliases >
 
    <!-- mapper 태그 사용시 앞에 슬래시 붙이지 말고 패키지 경로 쭉~~~ 파일 이름 명시 -->
    <mappers>
       <mapper resource="mybatis/mapboard.xml" />
+      <mapper resource="mybatis/mapcommon.xml" />
       <!-- <mapper resource="mybatis/mapmember.xml" />
       <mapper resource="mybatis/mapproduct.xml" />
       <mapper resource="mybatis/mapcomposite.xml" />

@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <%
 	String contextPath = request.getContextPath() ;
-	String mappingName = "/Kids" ;
-	
-	String YesForm = contextPath + mappingName ;
-	String NoForm = contextPath + mappingName + "?command=" ;
 %>
 <!DOCTYPE html>
 <html>
@@ -38,8 +37,7 @@
 <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>   
 <script type="text/javascript">
-   
-    function checkPost() {
+   /* function checkPost() {
       var width = 500; //팝업의 너비
       var height = 500; //팝업의 높이
          
@@ -81,7 +79,7 @@
          left: (window.screen.width / 2) - (width / 2),
          top: (window.screen.height / 2) - (height / 2)
    });  
- }
+ }*/
 //    function add_input(){
 //       var writeForm = document.writeForm.getElementById("box");
 //       // create element(input)
@@ -100,7 +98,7 @@
 //    }    
 
 
-   function add_input(){
+<%--   function add_input(){
 		document.getElementById('second').value='second';
 		document.getElementById('btnfirst').onclick = null;
 		document.getElementById('searchfirst').onclick = null;
@@ -144,7 +142,7 @@
    function stSearch(){
       var url = '<%=NoForm%>paStSearch';
       window.open(url, 'stsearch', 'height=200, width=330, menubar=no, location=no, left=400, top=200');
-	}
+	} --%>
    
    </script>
    <style type="text/css">
@@ -167,29 +165,28 @@
    <div class="card card-primary offset-sm-3 col-sm-6" id="paInsert">
       <div class="card-body">
          <div class="card-title">
-            <h1 align="center" align="center">회원가입</h1>
+            <h3 align="center" align="center">회원가입</h3>
          </div>
-         <form action="<%=YesForm %>" name="writeForm" method="post" enctype="multipart/form-data">
+		<c:set var="apppath" value="<%=request.getContextPath()%>" />
+         <form:form modelAttribute="member" id="myform" name="myform" method="post" enctype="multipart/form-data"
+         action="${apppath}/insert.me">
          	<input type="hidden" name="idcheck" value="false">
-            <input type="hidden" name="command" value="paInsert">
                 <div class="form-group">
-               <label for="pid" class="form-control-label col-sm-0">아이디</label>
+               <label for="id" class="form-control-label col-sm-0">아이디</label>
                <div class="form-row">
                   <div class="col-">
-                     <input type="text" class="form-control" id="pid" name="pid" onkeyup="idcheckFalse();">
+                     <input type="text" class="form-control" id="id" name="id" onkeyup="idcheckFalse();">
                   </div>
                   <div class="col-">
                      <input type="button" class="form-control btn btn-primary" value="중복체크" onclick="checkPid();">
                   </div>
                </div>
             </div>
-            <div class="form-group" id="piddiv"></div>
             <div class="form-group">
                <label for="password" class="form-control-label col-sm-0">비밀번호</label>
                <div class="col-">
                   <input type="password" class="form-control" id="password" name="password">
                </div>
-            <div class="form-group" id="pwddiv"></div>
             </div>
             <div class="form-group">
                <label for="password" class="form-control-label col-sm-0">비밀번호 확인</label>
@@ -197,7 +194,6 @@
                   <input type="password" class="form-control" id="repassword" name="repassword">
                </div>
             </div>
-            <div class="form-group" id="repwddiv"></div>
             
             <div class="form-group">
                <label for="name" class="form-control-label col-sm-0">이름</label>
@@ -205,9 +201,8 @@
                   <input type="text" class="form-control" id="name" name="name">
                </div>
             </div>
-             <div class="form-group" id="namediv"></div>
             <div class="form-group">
-               <label for="birth" class="form-control-label col-sm-0">닉네임</label>
+               <label for="nickname" class="form-control-label col-sm-0">닉네임</label>
             <div class="form-row">
                   <div class="col-">
                      <input type="text" class="form-control" id="pid" name="pid" onkeyup="idcheckFalse();">
@@ -218,51 +213,44 @@
                </div>
                </div>
             <div class="form-group">
-               <label for="gender" class="form-control-label col-sm-0">성별</label>
-                  <div class="form-row">
-                     <div class="col-1">
-                        <input type="radio" class="form-control" id="gender" name="gender" value="남">
-                     </div>
-                     <label for="gender" class="form-control-label col-sm-0">&nbsp;남&nbsp;</label>
-                     <div class="col-1">
-                        <input type="radio" class="form-control" id="gender" name="gender" value="여">
-                     </div>
-                     <label for="gender" class="form-control-label col-sm-0">&nbsp;여&nbsp;</label>
-               	</div>
+            	<label for="gender" class="form-control-label col-sm-0">성별</label>
+            	<div class="form-row">
+               <label class="radio-inline"> 
+				<form:radiobuttons path="gender" items="${genderlist}"
+					itemLabel="mykey" itemValue="mykey"/>
+					&nbsp;&nbsp;
+				</label> 
+				<form:errors cssClass="err" path="gender" />
+				</div>
             </div>
-             <div class="form-group" id="genderdiv"></div>
             <div class="form-group">
                <label for="email" class="form-control-label col-sm-0">이메일</label>
                <div class="form-row">
                   <div class="col-5">
-                     <input type="text" class="form-control" id="email1" name="email1"> 
+                     <input type="text" class="form-control" id="email" name="email"> 
                   </div>
                   <label for="email" class="form-control-label col-sm-0">&nbsp;@&nbsp;</label>
                   <div class="col-5">
-                     <select class="form-control" name="email2" id="email2">
-                        <option value="-">---선택하세요
-                        <option value="naver.com">naver.com
-                        <option value="gmail.com">gmail.com
-                        <option value="daum.net">daum.net         
-                     </select>
+                     <form:select path="email" class="form-control" name="email" id="email">
+						<form:options items="${emaillist}" 
+							itemLabel="mykey" itemValue="mykey"/>
+						</form:select> 
+						<form:errors cssClass="err" path="email" />
                   </div>
                </div>
             </div>
-             <div class="form-group" id="emaildiv"></div>
             <div class="form-group">
                <label for="hp" class="form-control-label col-sm-0">휴대폰</label>
                <div class="col-">
-                  <input type="number" class="form-control" id="hp" name="hp" placeholder="ex)01012341234">
+                  <input type="text" class="form-control" id="hp" name="hp" placeholder="ex)01012341234">
                </div>
             </div>
-             <div class="form-group" id="hpdiv"></div>
             <div class="form-group">
                <label for="image" class="form-control-label col-sm-0">사진</label>
                <div class="col-">
                   <input type="file" class="form-control-file border" id="image" name="image">
                </div>
             </div>
-             <div class="form-group" id="imagediv"></div>
             <div class="form-group">
                <label for="zipcode" class="form-control-label col-sm-0">우편번호</label>
                <div class="form-row">
@@ -274,7 +262,6 @@
                   </div>
                </div>
             </div>
-			 <div class="form-group" id="zipcodediv"></div>
             <div class="form-group">
                <label for="address1" class="form-control-label col-sm-0">주소</label>
                <div class="col-">
@@ -287,35 +274,52 @@
                   <input type="text" class="form-control" id="address2" name="address2">
                </div>
             </div>
-             <div class="form-group" id="addressdiv"></div>
-             <div id="childsecond" class="form-group">
-             </div>
-             <div id="childthird" class="form-group">
-             </div>
-              <div class="form-group" id="studiv"></div>	
-            
+            <!-- 여기는 취향 설정하는 곳, 먹기,마시기,놀기,보기,걷기 -->
             <div class="form-group">
-               <label for="relationship" class="form-control-label col-sm-0">원생과의 관계</label>
+               <label for="relationship" class="form-control-label col-sm-0">취향설정</label>
+               <hr>
                <div class="form-row">
-                  <div class="col-1">
-                     <input type="radio" class="form-control" id="relationship" name="relationship" value="아버지">
-                  </div>
-                  <label for="relationship" class="form-control-label col-sm-0">&nbsp;아버지&nbsp;</label>
-                  <div class="col-1">
-                     <input type="radio" class="form-control" id="relationship" name="relationship" value="어머니">
-                  </div>
-                  <label for="relationship" class="form-control-label col-sm-0">&nbsp;어머니&nbsp;</label>
-                  <div class="col-1">
-                     <input type="radio" class="form-control" id="relationship" name="relationship" value="조부모님">
-                  </div>
-                  <label for="relationship" class="form-control-label col-sm-0">&nbsp;조부모&nbsp;</label>
-                  <div class="col-1">
-                     <input type="radio" class="form-control" id="relationship" name="relationship" value="보호자님">
-                  </div>
-                  <label for="relationship" class="form-control-label col-sm-0">&nbsp;기타&nbsp;</label>   
+               <label for="drink" class="form-control-label col-sm-0">마실것&nbsp;</label>
+               <label class="radio-inline"> 
+					<form:radiobuttons path="drink" items="${drinklist}"
+						itemLabel="mykey" itemValue="mykey"/>
+						&nbsp;&nbsp;
+					</label> 
+					<form:errors cssClass="err" path="drink" />
+               </div>
+               <div class="form-row">
+               <label for="eat" class="form-control-label col-sm-0">먹을것&nbsp;</label>                  <label class="radio-inline"> 
+					<form:radiobuttons path="eat" items="${eatlist}"
+						itemLabel="mykey" itemValue="mykey"/>
+						&nbsp;&nbsp;
+					</label> 
+					<form:errors cssClass="err" path="eat" />
+               </div>
+               <div class="form-row">
+               <label for="play" class="form-control-label col-sm-0">놀것&nbsp;</label> <label class="radio-inline"> 
+					<form:radiobuttons path="play" items="${playlist}"
+						itemLabel="mykey" itemValue="mykey"/>
+						&nbsp;&nbsp;
+					</label> 
+					<form:errors cssClass="err" path="play" />
+               </div>
+               <div class="form-row">
+               <label for="walk" class="form-control-label col-sm-0">걷기&nbsp;</label> <label class="radio-inline"> 
+					<form:radiobuttons path="walk" items="${walklist}"
+						itemLabel="mykey" itemValue="mykey"/>
+						&nbsp;&nbsp;
+					</label> 
+					<form:errors cssClass="err" path="walk" />
+               </div>
+               <div class="form-row">
+               <label for="look" class="form-control-label col-sm-0">보기&nbsp;</label> <label class="radio-inline"> <label class="radio-inline"> 
+					<form:radiobuttons path="look" items="${looklist}"
+						itemLabel="mykey" itemValue="mykey"/>
+						&nbsp;&nbsp;
+					</label> 
+					<form:errors cssClass="err" path="look" />
                </div>
             </div>
-             <div class="form-group" id="relationshipdiv"></div>
             <br>
                 <div class="form-group form-row">
             	<div class = "col-6">
@@ -325,7 +329,7 @@
                		<input type="reset" class="form-control btn btn-secondary" value="초기화">
                </div>
             </div>
-         </form>
+         </form:form>
       </div>   
    </div>
    <br>

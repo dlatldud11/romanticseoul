@@ -17,19 +17,27 @@ public class Member {
    private String image;
    private String nickname;
    private String remark;
-   
+   private String email;
    
    
    
    @Override
-   public String toString() {
-      return "Member [id=" + id + ", drink=" + drink + ", password=" + password + ", name=" + name + ", gender="
-            + gender + ", hp=" + hp + ", address1=" + address1 + ", address2=" + address2 + ", zipcode=" + zipcode
-            + ", eat=" + eat + ", play=" + play + ", walk=" + walk + ", look=" + look + ", image=" + image
-            + ", nickname=" + nickname + ", remark=" + remark + "]";
-   }
+public String toString() {
+	return "Member [id=" + id + ", drink=" + drink + ", password=" + password + ", name=" + name + ", gender=" + gender
+			+ ", hp=" + hp + ", address1=" + address1 + ", address2=" + address2 + ", zipcode=" + zipcode + ", eat="
+			+ eat + ", play=" + play + ", walk=" + walk + ", look=" + look + ", image=" + image + ", nickname="
+			+ nickname + ", remark=" + remark + ", email=" + email + "]";
+}
 
-   public String getId() {
+public String getEmail() {
+	return email;
+}
+
+public void setEmail(String email) {
+	this.email = email;
+}
+
+public String getId() {
       return id;
    }
  
