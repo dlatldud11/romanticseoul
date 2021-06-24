@@ -9,9 +9,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import bean.CheckBean;
+//import bean.CheckBean;
 import bean.Member;
-import shopping.ShoppingInfo;
+//import shopping.ShoppingInfo;
 
 @Component("mdao")
 public class MemberDao {
@@ -89,13 +89,13 @@ public class MemberDao {
 		// 회원 탈퇴하기			
 		return this.abcd.delete(namespace + "DeleteData", bean.getId());		
 	}
-	public void InsertCartData(Member mem, List<ShoppingInfo> lists) {
-		// 1. 장바구니 테이블에 혹시 남아 있을 수 있는 회원의 행을 모두 삭제합니다. 
-		this.abcd.delete(namespace + "DeleteShoppingInfo", mem.getId());
-		
-		// 2.반복문을 사용하여 테이블에 인서트 합니다.
-		for(ShoppingInfo shpInfo : lists){
-			this.abcd.insert(namespace + "InsertShoppingInfo", shpInfo);
-		}
-	}
+//	public void InsertCartData(Member mem, List<ShoppingInfo> lists) {
+//		// 1. 장바구니 테이블에 혹시 남아 있을 수 있는 회원의 행을 모두 삭제합니다. 
+//		this.abcd.delete(namespace + "DeleteShoppingInfo", mem.getId());
+//		
+//		// 2.반복문을 사용하여 테이블에 인서트 합니다.
+//		for(ShoppingInfo shpInfo : lists){
+//			this.abcd.insert(namespace + "InsertShoppingInfo", shpInfo);
+//		}
+//	}
 }
