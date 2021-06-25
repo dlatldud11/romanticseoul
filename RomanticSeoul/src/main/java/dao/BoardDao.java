@@ -53,11 +53,9 @@ public class BoardDao {
 		return this.abcd.update(namespace + "UpdateData", bean);
 	}	
 	
-
 	public int DeleteData(int no) {
 		return this.abcd.delete(namespace + "DeleteData", no);
 	}
-	
 	
 	public int InsertData(QnaBoard bean) {
 		// 넘겨진 Bean 데이터를 이용하여 추가합니다.
@@ -65,6 +63,7 @@ public class BoardDao {
 		System.out.println(bean.toString());
 		return this.abcd.insert(namespace + "InsertData", bean);
 	}
+	
 	public List<QnaBoard> ListData(QnaBoard bean) {
 		System.out.println(this.ListData(bean));
 		return this.abcd.selectList(namespace + "ListData", bean); 
@@ -90,7 +89,7 @@ public class BoardDao {
 //		return this.abcd.insert(namespace + "ReplyDataInsert", bean);
 //	}
 
-	public List<QnaBoard> SelectDataList2() {
-		return this.abcd.selectList(namespace + "SelectDataList2");
+	public List<QnaBoard> SelectDataList() {
+		return this.abcd.selectList(namespace + "SelectDataList");
 	}
 }

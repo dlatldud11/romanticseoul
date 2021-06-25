@@ -5,6 +5,7 @@ public class QnaBoard extends Board {
 	private String id;
 	private String title;
 	private String checks;
+	private String regdate;
 	private String recontent; //답변
 	private String reregdate; //답변작성일자
 	
@@ -52,6 +53,12 @@ public class QnaBoard extends Board {
 	}
 	public void setReregdate(String reregdate) {
 		this.reregdate = reregdate;
+	}
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
 	}
 	
 	
