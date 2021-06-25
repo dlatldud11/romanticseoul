@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="Mapboard">
-	<insert id="InsertData" parameterType="MyBoard">
-	</insert>
+<mapper namespace="MapBoard">
 	<sql id="myselect">
-		SELECT qnaseq, id, regdate, content, title, checks, 
-		recontent, reregdate, remark, image FROM qna
+		SELECT qnaseq, id, regdate, content, title, checks FROM qna
 	</sql>
-	<select id="SelectDataList2" resultType="MyBoard">
+	<select id="SelectDataList" resultType="MyBoard">
 		<include refid="myselect" />
 	</select>
+	<insert id="InsertDataQna" parameterType="MyBoard">
+		insert into 
+		qna(qna_seq, id, regdate, content, title, checks, recontent, reregdate, remark, image)		
+		values(qna_seq.nextval, #{id}, to_date(#{regdate}, 'yyyy/MM/dd'), #{content}, #{title}, #{checks}, #{recontent}, #{reregdate}, #{remark}, #{image})
+	</insert>
 </mapper>

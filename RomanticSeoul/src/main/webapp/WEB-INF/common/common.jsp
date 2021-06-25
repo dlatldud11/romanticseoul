@@ -79,7 +79,7 @@ String mappingName = "/main";
 								<li><a href="./boList.bo">자유게시판</a></li>
 								<li><a href="./coBoList.bo">코스후기</a></li>
 								<li><a href="./zzimList.ma">찜</a></li>
-								<li><a href="./qnaList.bo">문의하기</a></li>
+								<li><a href="../qnaBoList.bo">문의하기</a></li>
 								<li><a href="#">관리자</a></li>
 							</ul>
 						</nav>

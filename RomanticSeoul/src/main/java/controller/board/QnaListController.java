@@ -17,12 +17,6 @@ import dao.BoardDao;
 
 @Controller
 public class QnaListController extends SuperClass {
-//	@GetMapping("/qnaBoList.bo")
-//	public ModelAndView doGet(){
-//		ModelAndView mav = new ModelAndView();
-//		mav.setViewName("qnaBoList");
-//		return mav;
-//	}
 	private final String command = "/qnaBoList.bo" ; 
 	private ModelAndView mav = null ;
 	private String redirect = "redirect:/qnaBoList.bo" ;
@@ -51,8 +45,8 @@ public class QnaListController extends SuperClass {
 //		Paging pageInfo = new Paging(pageNumber, pageSize, totalCount, myrul, null, null)  ;
 //		
 //		List<QnaBoard> lists = dao.SelectDataList(pageInfo.getOffset(), pageInfo.getLimit()) ;
-		List<QnaBoard> lists = dao.SelectDataList2() ;
-		System.out.println("members size : " + lists.size());		
+		List<QnaBoard> lists = dao.SelectDataList() ;
+		System.out.println("boards size : " + lists.size());		
 		
 		this.mav.addObject("lists", lists);
 		
