@@ -1,27 +1,71 @@
 package bean;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Null;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 public class Member {
-   private String id;
-   private String password;
-   private String name;
-   private String nickname;
-   private String email;
-   private String gender;
-   private String hp;
-   private String address1;
-   private String address2;
-   private String zipcode;
-   private String drink;
-   private String eat;
-   private String play;
-   private String walk;
-   private String look;
-   private String image;
-   private String remark;
+	private final String MUST_INPUT = "필수 입력 사항입니다.";
+  
+	@Length(min=3, max=10, message="아이디는 최소 3자리 최대 10자리 입니다.")	
+	private String id;
+
+	@NotEmpty(message="비밀번호는 " + MUST_INPUT )
+	@Length(min=3, max=10, message="비밀번호는 최소 3자리 최대 10자리 입니다.")	
+    private String password;
+	
+	@NotEmpty(message="이름은 " + MUST_INPUT )
+    private String name;
+	
+	@NotEmpty(message="닉네임은 " + MUST_INPUT )
+    private String nickname;
+	
+	@NotEmpty(message="email은 " + MUST_INPUT )
+	@Email(message = "email 형식으로 작성해 주세요.")
+    private String email;
+	
+	@NotNull(message="성별은 반드시 선택해 주셔야 합니다.")
+	private String gender;
+	
+	@NotEmpty(message="휴대전화 번호는 " + MUST_INPUT )
+	@Length(min=10, max=11, message="번호를 정확히 입력해 주세요.")	
+	@Pattern(regexp = "^\\d{10,11}$", message = "휴대폰 번호는 숫자만 입력해 주세요.")
+	private String hp;
+	
+	@NotEmpty(message="주소는 " + MUST_INPUT )
+    private String address1;
+	 
+	@NotEmpty(message="주소는 " + MUST_INPUT )
+    private String address2;
+	 
+	@NotEmpty(message="우편번호는 " + MUST_INPUT )
+    private String zipcode;
+	 
+	@NotNull(message="마시기 취향은 반드시 선택해 주셔야 합니다.")
+    private String drink;
+	
+	@NotNull(message="먹기 취향은 반드시 선택해 주셔야 합니다.")
+    private String eat;
+	
+	@NotNull(message="놀기 취향은 반드시 선택해 주셔야 합니다.")
+    private String play;
+	 
+	@NotNull(message="걷기 취향은 반드시 선택해 주셔야 합니다.")
+    private String walk;
+	 
+	@NotNull(message="보기 취향은 반드시 선택해 주셔야 합니다.")
+    private String look;
+	 
+	@NotEmpty(message="프로필 사진은 " + MUST_INPUT )
+    private String image;
+    private String remark;
    
-   private MultipartFile file;
+    private MultipartFile file;
 
    public Member() {
    }
