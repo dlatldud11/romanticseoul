@@ -80,8 +80,10 @@ if (nicknamecheck == 'false') {
 	alert('닉네임 중복 체크를 해주세요.');
 	return false;
 }
-frm.email = frm.email1.value +frm.email2.value;
-
+if(document.myform.file.value == ""){
+	alert('파일 업로드를 해주세요.');
+	return false;
+}
 }
 
 
@@ -89,7 +91,7 @@ frm.email = frm.email1.value +frm.email2.value;
     function checkPost() {
       var width = 500; //팝업의 너비
       var height = 500; //팝업의 높이
-         
+      
        new daum.Postcode({
          width : width, //생성자에 크기 값을 명시적으로 지정해야 합니다.
            height : height,
@@ -129,23 +131,6 @@ frm.email = frm.email1.value +frm.email2.value;
          top: (window.screen.height / 2) - (height / 2)
    });  
  }
-//    function add_input(){
-//       var writeForm = document.writeForm.getElementById("box");
-//       // create element(input)
-//       var input1 = document.createElement('input');
-//       var input2 = document.createElement('input');
-//       // set attribute(input)
-//       input1.setAttribute("type", "number");
-//       input1.setAttribute("name", "childid");
-//       input2.setAttribute("type", "number");
-//       input2.setAttribute("name", "childid2");
-//       
-//       writeForm.appendChild(input1);
-//       writeForm.appendChild(input2);
-//       
-//       writeForm.submit;
-//    }    
-
    </script>
    <style type="text/css">
       div#piddiv,div#pwddiv,div#repwddiv,div#imagediv,div#hpdiv,div#emaildiv,div#namediv,div#birthdiv,div#genderdiv,div#addressdiv,div#zipcodediv,div#studiv,div#relationshipdiv{
@@ -155,7 +140,13 @@ frm.email = frm.email1.value +frm.email2.value;
          padding-left:5px;
       }
    </style>
-   
+    <style type="text/css">
+      .err{
+         font-weight: bolder;
+         font-size: 9pt;
+         color: red;
+      }
+   </style>
 </head>
 <body>
    <!-- <br>
@@ -183,6 +174,7 @@ frm.email = frm.email1.value +frm.email2.value;
                   <div class="col-">
                      <input type="button" class="form-control btn btn-primary" value="중복체크" onclick="checkDuplicateId();">
                   </div>
+				<form:errors cssClass="err" path="id"/>
                </div>
             </div>
             <div class="form-group">
@@ -190,6 +182,7 @@ frm.email = frm.email1.value +frm.email2.value;
                <div class="col-">
                   <input type="password" class="form-control" id="password" name="password">
                </div>
+				<form:errors cssClass="err" path="password"/>
             </div>
             <!-- <div class="form-group">
                <label for="password" class="form-control-label col-sm-0">비밀번호 확인</label>
@@ -203,10 +196,12 @@ frm.email = frm.email1.value +frm.email2.value;
                <div class="col-">
                   <input type="text" class="form-control" id="name" name="name">
                </div>
+				<form:errors cssClass="err" path="name"/>
             </div>
             <div class="form-group">
                <label for="nickname" class="form-control-label col-sm-0">닉네임</label>
             <div class="form-row">
+				<form:errors cssClass="err" path="nickname"/>
                   <div class="col-">
                      <input type="text" class="form-control" id="nickname" name="nickname" onkeyup="nicknameCheckFalse();">
                   </div>
@@ -223,22 +218,16 @@ frm.email = frm.email1.value +frm.email2.value;
 					itemLabel="mykey" itemValue="mykey"/>
 					&nbsp;&nbsp;
 				</label> 
-				<form:errors cssClass="err" path="gender" />
+				<form:errors cssClass="err" path="gender"/>
 				</div>
             </div>
             <div class="form-group">
                <label for="email" class="form-control-label col-sm-0">이메일</label>
                <div class="form-row">
                   <div class="col-5">
-                     <input type="text" class="form-control" id="email1" name="email1"> 
+                     <input type="text" class="form-control" id="email" name="email"> 
                   </div>
-                  <div class="col-5">
-                     <form:select path="email" class="form-control" name="email2" id="email2">
-						<form:options items="${emaillist}" 
-							itemLabel="mykey" itemValue="mykey"/>
-						</form:select> 
-						<form:errors cssClass="err" path="email" />
-                  </div>
+					<form:errors cssClass="err" path="email" />
                </div>
             </div>
             <div class="form-group">
@@ -246,11 +235,13 @@ frm.email = frm.email1.value +frm.email2.value;
                <div class="col-">
                   <input type="text" class="form-control" id="hp" name="hp" placeholder="ex)01012341234">
                </div>
+				<form:errors cssClass="err" path="hp" />
             </div>
             <div class="form-group">
                <label for="image" class="form-control-label col-sm-0">사진</label>
                <div class="col-">
-                  <input type="file" class="form-control-file border" id="file" name="file">
+                <input type="file" class="form-control-file border" id="file" name="file">
+				<form:errors cssClass="err" path="file" />
                </div>
             </div>
             <div class="form-group">
@@ -273,7 +264,8 @@ frm.email = frm.email1.value +frm.email2.value;
             <div class="form-group">
                <label for="address2" class="form-control-label col-sm-0">상세주소</label>
                <div class="col-">
-                  <input type="text" class="form-control" id="address2" name="address2">
+                <input type="text" class="form-control" id="address2" name="address2">
+				<form:errors cssClass="err" path="address2" />
                </div>
             </div>
             <!-- 여기는 취향 설정하는 곳, 먹기,마시기,놀기,보기,걷기 -->

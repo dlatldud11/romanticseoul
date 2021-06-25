@@ -34,7 +34,7 @@
 		<div class="panel panel-default panel-warning">
 			<div class="panel-heading">로그인 하기</div>
 			<div class="panel-body">
-				<form class="form-horizontal" role="form" action="/meLogin.me" method="post">
+				<form class="form-horizontal" role="form" action="<%=contextPath%>/meLoginForm.me" method="post">
 					<div class="form-group">
 						<label class="control-label col-sm-<%=formleft%>" for="id">아이디</label>
 						<div class="col-sm-<%=formright%>">
