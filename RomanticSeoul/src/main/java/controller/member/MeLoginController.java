@@ -1,7 +1,6 @@
 package controller.member;
 
 
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -72,7 +71,7 @@ public class MeLoginController extends SuperClass{
 			} else { // success
 				// 세션 영역에 로그인 정보를 바인딩합니다.
 				session.setAttribute("loginfo", bean); 
-				
+				System.out.println("로그인 성공");
 				// 장바구니 테이블에서 이전 나의 쇼핑 정보 가져 오기
 //				List<ShoppingInfo> lists = this.malldao.GetShoppingInfo(bean.getId()) ;
 //				
