@@ -35,9 +35,58 @@
 <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
 <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
 <link rel="stylesheet" href="css/style.css" type="text/css">
-</head>   
+</head>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>   
 <script type="text/javascript">
-   /* function checkPost() {
+function checkDuplicateId(  ){
+	var id = document.myform.id.value ;
+	if( id.length == 0 ){
+		alert('아이디를 입력해 주세요') ;
+		document.myform.id.focus() ; 
+		return false ;
+	}
+	var url='<%=contextPath%>/idcheck.me?id=' + id ; 
+	window.open(url, 'mywin', 'height=150,width=300') ;
+}
+function checkDuplicateNickname(  ){
+	var nickname = document.myform.nickname.value ;
+	if( nickname.length == 0 ){
+		alert('닉네임을 입력해 주세요') ;
+		document.myform.nickname.focus() ; 
+		return false ;
+	}
+	var url='<%=contextPath%>/nicknamecheck.me?nickname=' + nickname ; 
+	window.open(url, 'mywin', 'height=150,width=300') ;
+}
+
+function idCheckFalse() {
+document.myform.idcheck.value = false;
+}
+
+function nicknameCheckFalse() {
+	document.myform.nicknamecheck.value = false;
+	}
+
+function checkForm() {
+var idcheck = document.myform.idcheck.value;
+var nicknamecheck = document.myform.nicknamecheck.value;
+var frm = document.myform;
+//alert( isCheck ) ;
+if (idcheck == 'false') {
+	alert('아이디 중복 체크를 해주세요.');
+	return false;
+}
+if (nicknamecheck == 'false') {
+	alert('닉네임 중복 체크를 해주세요.');
+	return false;
+}
+frm.email = frm.email1.value +frm.email2.value;
+
+}
+
+
+/* 다음주소검색 api */
+    function checkPost() {
       var width = 500; //팝업의 너비
       var height = 500; //팝업의 높이
          
@@ -79,7 +128,7 @@
          left: (window.screen.width / 2) - (width / 2),
          top: (window.screen.height / 2) - (height / 2)
    });  
- }*/
+ }
 //    function add_input(){
 //       var writeForm = document.writeForm.getElementById("box");
 //       // create element(input)
@@ -97,53 +146,6 @@
 //       writeForm.submit;
 //    }    
 
-
-<%--   function add_input(){
-		document.getElementById('second').value='second';
-		document.getElementById('btnfirst').onclick = null;
-		document.getElementById('searchfirst').onclick = null;
-	
-     	 document.getElementById('childsecond').innerHTML ="<div class='form-row' id='deleteid'><div class='col-'>"
-      	+"<input type='text' name='childid' class='form-control' readonly></div><div class='col-'>"
-         +"<input type='button' class='form-control btn btn-primary' id=searchsecond value='원생 찾기' onclick='stSearch();'>"
-         +"</div><div class='col-'>"
-         +"<input type='button' class='btn btn-secondary' onclick='add_input2();' id='btnsecondadd' value='추가'> </div> <div class='col-'>"
-         +"<input type='button' class='btn btn-danger' onclick='delete_input();' id='btnsecond' value='삭제'> </div> </div>";
-   }
-   
-   function add_input2(){
-	  	 document.getElementById('third').value='third';
-	 	 document.getElementById('btnsecond').onclick = null;
-	 	 document.getElementById('btnsecondadd').onclick = null;
-	 	 document.getElementById('searchsecond').onclick = null;
-	 	 
-     	 document.getElementById('childthird').innerHTML ="<div class='form-row' id='deleteid2'><div class='col-'>"
-         +"<input type='text' name='childid2' class='form-control' readonly></div><div class='col-'>"
-         +"<input type='button' class='form-control btn btn-primary' value='원생 찾기' onclick='stSearch();'>"
-         +"</div><div class='col-'>"
-         +"<input type='button' class='btn btn-danger' onclick='delete_input2();' value='삭제'></div> </div>";
-   }
-   
-   function delete_input(){
-	   	document.getElementById('second').value="";
-      	document.getElementById('deleteid').outerHTML = "";
-      	document.getElementById('btnfirst').onclick = add_input;
-      	document.getElementById('searchfirst').onclick = stSearch;
-   }
-   
-   function delete_input2(){
-	   	document.getElementById('third').value="";
-      	document.getElementById('deleteid2').outerHTML = "";
-      	document.getElementById('btnsecond').onclick = delete_input;
-      	document.getElementById('btnsecondadd').onclick = add_input2;
-      	document.getElementById('searchsecond').onclick = stSearch;
-   }
-   
-   function stSearch(){
-      var url = '<%=NoForm%>paStSearch';
-      window.open(url, 'stsearch', 'height=200, width=330, menubar=no, location=no, left=400, top=200');
-	} --%>
-   
    </script>
    <style type="text/css">
       div#piddiv,div#pwddiv,div#repwddiv,div#imagediv,div#hpdiv,div#emaildiv,div#namediv,div#birthdiv,div#genderdiv,div#addressdiv,div#zipcodediv,div#studiv,div#relationshipdiv{
@@ -171,14 +173,15 @@
          <form:form modelAttribute="member" id="myform" name="myform" method="post" enctype="multipart/form-data"
          action="${apppath}/insert.me">
          	<input type="hidden" name="idcheck" value="false">
+         	<input type="hidden" name="nicknamecheck" value="false">
                 <div class="form-group">
                <label for="id" class="form-control-label col-sm-0">아이디</label>
                <div class="form-row">
                   <div class="col-">
-                     <input type="text" class="form-control" id="id" name="id" onkeyup="idcheckFalse();">
+                     <input type="text" class="form-control" id="id" name="id" onkeyup="idCheckFalse();">
                   </div>
                   <div class="col-">
-                     <input type="button" class="form-control btn btn-primary" value="중복체크" onclick="checkPid();">
+                     <input type="button" class="form-control btn btn-primary" value="중복체크" onclick="checkDuplicateId();">
                   </div>
                </div>
             </div>
@@ -188,12 +191,12 @@
                   <input type="password" class="form-control" id="password" name="password">
                </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                <label for="password" class="form-control-label col-sm-0">비밀번호 확인</label>
                <div class="col-">
                   <input type="password" class="form-control" id="repassword" name="repassword">
                </div>
-            </div>
+            </div> -->
             
             <div class="form-group">
                <label for="name" class="form-control-label col-sm-0">이름</label>
@@ -205,10 +208,10 @@
                <label for="nickname" class="form-control-label col-sm-0">닉네임</label>
             <div class="form-row">
                   <div class="col-">
-                     <input type="text" class="form-control" id="pid" name="pid" onkeyup="idcheckFalse();">
+                     <input type="text" class="form-control" id="nickname" name="nickname" onkeyup="nicknameCheckFalse();">
                   </div>
                   <div class="col-">
-                     <input type="button" class="form-control btn btn-primary" value="중복체크" onclick="checkPid();">
+                     <input type="button" class="form-control btn btn-primary" value="중복체크" onclick="checkDuplicateNickname();">
                   </div>
                </div>
                </div>
@@ -227,11 +230,10 @@
                <label for="email" class="form-control-label col-sm-0">이메일</label>
                <div class="form-row">
                   <div class="col-5">
-                     <input type="text" class="form-control" id="email" name="email"> 
+                     <input type="text" class="form-control" id="email1" name="email1"> 
                   </div>
-                  <label for="email" class="form-control-label col-sm-0">&nbsp;@&nbsp;</label>
                   <div class="col-5">
-                     <form:select path="email" class="form-control" name="email" id="email">
+                     <form:select path="email" class="form-control" name="email2" id="email2">
 						<form:options items="${emaillist}" 
 							itemLabel="mykey" itemValue="mykey"/>
 						</form:select> 
@@ -248,7 +250,7 @@
             <div class="form-group">
                <label for="image" class="form-control-label col-sm-0">사진</label>
                <div class="col-">
-                  <input type="file" class="form-control-file border" id="image" name="image">
+                  <input type="file" class="form-control-file border" id="file" name="file">
                </div>
             </div>
             <div class="form-group">
@@ -288,7 +290,7 @@
 					<form:errors cssClass="err" path="drink" />
                </div>
                <div class="form-row">
-               <label for="eat" class="form-control-label col-sm-0">먹을것&nbsp;</label>                  <label class="radio-inline"> 
+               <label for="eat" class="form-control-label col-sm-0">먹을것&nbsp;</label><label class="radio-inline"> 
 					<form:radiobuttons path="eat" items="${eatlist}"
 						itemLabel="mykey" itemValue="mykey"/>
 						&nbsp;&nbsp;
@@ -312,7 +314,7 @@
 					<form:errors cssClass="err" path="walk" />
                </div>
                <div class="form-row">
-               <label for="look" class="form-control-label col-sm-0">보기&nbsp;</label> <label class="radio-inline"> <label class="radio-inline"> 
+               <label for="look" class="form-control-label col-sm-0">보기&nbsp;</label> <label class="radio-inline">
 					<form:radiobuttons path="look" items="${looklist}"
 						itemLabel="mykey" itemValue="mykey"/>
 						&nbsp;&nbsp;
@@ -323,7 +325,7 @@
             <br>
                 <div class="form-group form-row">
             	<div class = "col-6">
-               		<input type="button" class="form-control btn btn-primary" onclick="javascript:checkWrite();" value="회원가입">
+               		<input type="submit" class="form-control btn btn-primary" onclick="return checkForm();" value="회원가입">
                </div>
                <div class = "col-6">
                		<input type="reset" class="form-control btn btn-secondary" value="초기화">
