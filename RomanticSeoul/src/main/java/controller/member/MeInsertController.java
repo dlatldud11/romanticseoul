@@ -84,7 +84,7 @@ public class MeInsertController extends SuperClass {
 	}
 	
 	public MeInsertController() {
-		super("meinsert", "main");
+		super("meinsert", "meLoginForm");
 		this.mav = new ModelAndView();
 	}
 	
@@ -96,44 +96,52 @@ public class MeInsertController extends SuperClass {
 	
 	@PostMapping(command)
 	public ModelAndView doPost(
-			@ModelAttribute("member") Member xxx,
+			@ModelAttribute("member") @Valid Member xxx,
 			BindingResult asdf,
 			HttpServletRequest request) {
 		
+		if ( asdf.hasErrors() ) {
+			System.out.println("유효성 검사에 문제 있슴");
+			System.out.println( asdf );
+			mav.setViewName(super.getpage) ;
+			
+		} else {
+			System.out.println("유효성 검사에 문제 없슴");
 		MultipartFile multi = xxx.getFile() ;
 		String uploadPath = "/WEB-INF/upload" ;
 		
 		//realPath :  
 		String realPath = request.getRealPath( uploadPath) ;
-		System.out.println(realPath);			
-		
-		try {
-			// 업로드 폴더에 파일을 업로드합니다.
-			File destination = utility.Utility.getUploadedFileInfo(multi, realPath)  ;
-			
-			multi.transferTo(destination);
-			
-			// response.sendRedirect("list.al")와 등가의 개념
-			mav.setViewName("redirect:/list.al") ;				
-			
-			System.out.println(this.getClass() + " 앨범 추가하기 command 객체 정보");
-			System.out.println(xxx.toString());				
-			
-			// 원래 이미지에 날짜를 붙인 새 이미지 이름
-			xxx.setImage(destination.getName());
-			
-			// dao를 이용하여 데이터 베이스에 행을 추가합니다.
-			this.mdao.InsertData(xxx);
-			
-		} catch (IllegalStateException e) {				
-			e.printStackTrace();
-			mav.setViewName(super.getpage) ;
-			
-		} catch (Exception e) {				
-			e.printStackTrace();
-			mav.setViewName(redirect) ;
+		System.out.println("realPath"+realPath);
+		System.out.println("멀티"+multi.toString());
+			try {
+				// 업로드 폴더에 파일을 업로드합니다.
+				File destination = utility.Utility.getUploadedFileInfo(multi, realPath)  ;
+				
+				multi.transferTo(destination);
+				
+				// response.sendRedirect("list.al")와 등가의 개념
+				mav.setViewName(super.postpage) ;				
+				
+				System.out.println(this.getClass() + " 회원 추가하기 command 객체 정보");
+				System.out.println(xxx.toString());				
+				
+				// 원래 이미지에 날짜를 붙인 새 이미지 이름
+				xxx.setImage(destination.getName());
+				
+				// dao를 이용하여 데이터 베이스에 행을 추가합니다.
+				this.mdao.InsertData(xxx);
+				
+			} catch (IllegalStateException e) {				
+				e.printStackTrace();
+				mav.setViewName(super.getpage) ;
+				
+			} catch (Exception e) {				
+				e.printStackTrace();
+				mav.setViewName(super.getpage) ;
+			}
 		}
-	return mav;
+		return this.mav;
 	}
 
 		
