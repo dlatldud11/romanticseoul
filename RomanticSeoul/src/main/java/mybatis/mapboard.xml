@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Mapboard">
-   <insert id="InsertData" parameterType="MyBoard">
-   </insert>
+	<insert id="InsertData" parameterType="MyBoard">
+	</insert>
+	<sql id="myselect">
+		SELECT qnaseq, id, regdate, content, title, checks, 
+		recontent, reregdate, remark, image FROM qna
+	</sql>
+	<select id="SelectDataList2" resultType="MyBoard">
+		<include refid="myselect" />
+	</select>
 </mapper>
