@@ -6,6 +6,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+
+<%!
+	String YesForm = null ;
+	String NoForm = null ;
+%>
 <%
 String contextPath = request.getContextPath();
 String mappingName = "/main";
@@ -69,16 +75,17 @@ String mappingName = "/main";
 					<div class="header__nav">
 						<nav class="header__menu mobile-menu">
 							<ul>
-								<li class="active"><a href="./main.co">Home</a></li>
-								<li><a href="#">Listing</a></li>
-								<li><a href="#">Categories</a></li>
-								<li><a href="#">Blog</a>
-								<li><a href="#">About</a></li>
+								<li class="active"><a href="./main.co">홈</a></li>
+								<li><a href="./boList.bo">자유게시판</a></li>
+								<li><a href="./coBoList.bo">코스후기</a></li>
+								<li><a href="./zzimList.ma">찜</a></li>
+								<li><a href="./qnaList.bo">문의하기</a></li>
+								<li><a href="#">관리자</a></li>
 							</ul>
 						</nav>
 						<div class="header__menu__right">
-							<a href="#" class="primary-btn"><i class="fa fa-plus"></i>Add
-								Listing</a> <a href="#" class="login-btn"><i class="fa fa-user"></i></a>
+							<a href="./meLoginForm.me" class="primary-btn"><i class="fa fa-plus"></i> 로그인</a> 
+							<a href="./meInfo.me" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
 				</div>
