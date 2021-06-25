@@ -3,8 +3,11 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MapperMember">
    <insert id="InsertData" parameterType="MyMember">
-      insert into members(id, name, password, salary, hiredate, gender, hobby, job, zipcode, address1, address2, mpoint) 
-      values(#{id}, #{name}, #{password}, #{salary}, to_date(#{hiredate}, 'yyyy/MM/dd'), #{gender}, #{hobby}, #{job}, #{zipcode}, #{address1}, #{address2},#{mpoint})
+		insert into members(id,password,name,nickname,email,gender,hp,address1,address2,zipcode,drink
+		eat,play,walk,look,image) 
+		values(#{id}, #{password}, #{name}, #{nickname},#{email},#{gender},#{hp},
+		#{address1},#{address2},#{zipcode},#{drink},#{eat},#{play},
+		#{walk},#{look},#{image,jdbcType=VARCHAR})
    </insert>
    <sql id="myselect">
       select *

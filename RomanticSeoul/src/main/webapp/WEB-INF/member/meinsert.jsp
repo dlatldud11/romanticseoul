@@ -70,6 +70,7 @@ function nicknameCheckFalse() {
 function checkForm() {
 var idcheck = document.myform.idcheck.value;
 var nicknamecheck = document.myform.nicknamecheck.value;
+var frm = document.myform;
 //alert( isCheck ) ;
 if (idcheck == 'false') {
 	alert('아이디 중복 체크를 해주세요.');
@@ -79,6 +80,8 @@ if (nicknamecheck == 'false') {
 	alert('닉네임 중복 체크를 해주세요.');
 	return false;
 }
+frm.email = frm.email1.value +frm.email2.value;
+
 }
 
 
@@ -188,12 +191,12 @@ if (nicknamecheck == 'false') {
                   <input type="password" class="form-control" id="password" name="password">
                </div>
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
                <label for="password" class="form-control-label col-sm-0">비밀번호 확인</label>
                <div class="col-">
                   <input type="password" class="form-control" id="repassword" name="repassword">
                </div>
-            </div>
+            </div> -->
             
             <div class="form-group">
                <label for="name" class="form-control-label col-sm-0">이름</label>
@@ -227,11 +230,10 @@ if (nicknamecheck == 'false') {
                <label for="email" class="form-control-label col-sm-0">이메일</label>
                <div class="form-row">
                   <div class="col-5">
-                     <input type="text" class="form-control" id="email" name="email"> 
+                     <input type="text" class="form-control" id="email1" name="email1"> 
                   </div>
-                  <label for="email" class="form-control-label col-sm-0">&nbsp;@&nbsp;</label>
                   <div class="col-5">
-                     <form:select path="email" class="form-control" name="email" id="email">
+                     <form:select path="email" class="form-control" name="email2" id="email2">
 						<form:options items="${emaillist}" 
 							itemLabel="mykey" itemValue="mykey"/>
 						</form:select> 
@@ -248,7 +250,7 @@ if (nicknamecheck == 'false') {
             <div class="form-group">
                <label for="image" class="form-control-label col-sm-0">사진</label>
                <div class="col-">
-                  <input type="file" class="form-control-file border" id="image" name="image">
+                  <input type="file" class="form-control-file border" id="file" name="file">
                </div>
             </div>
             <div class="form-group">
@@ -288,7 +290,7 @@ if (nicknamecheck == 'false') {
 					<form:errors cssClass="err" path="drink" />
                </div>
                <div class="form-row">
-               <label for="eat" class="form-control-label col-sm-0">먹을것&nbsp;</label>                  <label class="radio-inline"> 
+               <label for="eat" class="form-control-label col-sm-0">먹을것&nbsp;</label><label class="radio-inline"> 
 					<form:radiobuttons path="eat" items="${eatlist}"
 						itemLabel="mykey" itemValue="mykey"/>
 						&nbsp;&nbsp;
@@ -312,7 +314,7 @@ if (nicknamecheck == 'false') {
 					<form:errors cssClass="err" path="walk" />
                </div>
                <div class="form-row">
-               <label for="look" class="form-control-label col-sm-0">보기&nbsp;</label> <label class="radio-inline"> <label class="radio-inline"> 
+               <label for="look" class="form-control-label col-sm-0">보기&nbsp;</label> <label class="radio-inline">
 					<form:radiobuttons path="look" items="${looklist}"
 						itemLabel="mykey" itemValue="mykey"/>
 						&nbsp;&nbsp;
@@ -323,7 +325,7 @@ if (nicknamecheck == 'false') {
             <br>
                 <div class="form-group form-row">
             	<div class = "col-6">
-               		<input type="button" class="form-control btn btn-primary" onclick="javascript:checkWrite();" value="회원가입">
+               		<input type="submit" class="form-control btn btn-primary" onclick="return checkForm();" value="회원가입">
                </div>
                <div class = "col-6">
                		<input type="reset" class="form-control btn btn-secondary" value="초기화">

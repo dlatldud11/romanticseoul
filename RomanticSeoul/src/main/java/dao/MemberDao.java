@@ -41,6 +41,7 @@ public class MemberDao {
 	}
 	
 	public int InsertData(Member bean) {
+		System.out.println(bean.toString());
 		return this.abcd.insert(namespace + "InsertData", bean);
 	}	
 

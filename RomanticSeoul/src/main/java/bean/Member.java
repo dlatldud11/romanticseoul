@@ -1,32 +1,50 @@
 package bean;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Member {
    private String id;
-   private String drink;
    private String password;
    private String name;
+   private String nickname;
+   private String email;
    private String gender;
    private String hp;
    private String address1;
    private String address2;
    private String zipcode;
+   private String drink;
    private String eat;
    private String play;
    private String walk;
    private String look;
    private String image;
-   private String nickname;
    private String remark;
-   private String email;
    
+   private MultipartFile file;
+
+   public Member() {
+   }
    
-   
-   @Override
+
+@Override
 public String toString() {
-	return "Member [id=" + id + ", drink=" + drink + ", password=" + password + ", name=" + name + ", gender=" + gender
-			+ ", hp=" + hp + ", address1=" + address1 + ", address2=" + address2 + ", zipcode=" + zipcode + ", eat="
-			+ eat + ", play=" + play + ", walk=" + walk + ", look=" + look + ", image=" + image + ", nickname="
-			+ nickname + ", remark=" + remark + ", email=" + email + "]";
+	return "Member [id=" + id + ", password=" + password + ", name=" + name + ", nickname=" + nickname + ", email="
+			+ email + ", gender=" + gender + ", hp=" + hp + ", address1=" + address1 + ", address2=" + address2
+			+ ", zipcode=" + zipcode + ", drink=" + drink + ", eat=" + eat + ", play=" + play + ", walk=" + walk
+			+ ", look=" + look + ", image=" + image + ", remark=" + remark + ", file=" + file + "]";
+}
+
+public MultipartFile getFile() {
+	return file;
+}
+
+public void setFile(MultipartFile file) {
+	this.file = file;
+	
+	if( this.file != null){ 
+		this.image = this.file.getOriginalFilename();
+	}
 }
 
 public String getEmail() {
