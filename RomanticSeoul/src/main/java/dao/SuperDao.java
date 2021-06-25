@@ -9,7 +9,7 @@ public class SuperDao {
 	
 	private String driver = "oracle.jdbc.driver.OracleDriver";
 	private String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private String id = "proman";
+	private String id = "seoul";
 	private String password = "oracle";
 	
 	public SuperDao() {

@@ -6,7 +6,7 @@
 <configuration>
    <!-- 마이바티스의 작동 규칙 정의 -->
 <typeAliases>
-      <typeAlias alias="MyBoard" type="bean.Board" />      
+      <typeAlias alias="MyBoard" type="bean.QnaBoard" />      
       <!-- <typeAlias alias="MyMember" type="bean.Member" />      
       <typeAlias alias="MyProduct" type="bean.Product" />
       <typeAlias alias="MyCombo1" type="bean.Combo01" />

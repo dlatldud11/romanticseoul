@@ -73,7 +73,7 @@ String mappingName = "/main";
 								<li><a href="#">Listing</a></li>
 								<li><a href="#">Categories</a></li>
 								<li><a href="#">Blog</a>
-								<li><a href="#">About</a></li>
+								<li><a href="./qnaBoList.bo">Q&A</a></li>
 							</ul>
 						</nav>
 						<div class="header__menu__right">
