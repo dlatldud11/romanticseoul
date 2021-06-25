@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import bean.CheckBean;
 import bean.Member;
-import shopping.ShoppingInfo;
+//import shopping.ShoppingInfo;
 
 @Component("mdao")
 public class MemberDao {
