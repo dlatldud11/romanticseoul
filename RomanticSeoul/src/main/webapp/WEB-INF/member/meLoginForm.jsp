@@ -4,22 +4,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!-- whologin 변수는 로그인 상태를 저장하고 있는 변수입니다. -->
-<c:set var="whologin" value="0" />
-<c:if test="${empty sessionScope.loginfo}">
-	<!-- 로그인 하지 않은 경우 -->
-	<c:set var="whologin" value="0" />
-</c:if>
-<c:if test="${not empty sessionScope.loginfo}">
-	<c:if test="${sessionScope.loginfo.id == 'admin'}">\
-		<!-- 관리자로 로그인한 경우 -->
-		<c:set var="whologin" value="2" />
-	</c:if>
-	<c:if test="${sessionScope.loginfo.id != 'admin'}">
-		<!-- 일반 사용자로 로그인한 경우 -->
-		<c:set var="whologin" value="1" />
-	</c:if>
-</c:if>
 
 <!-- 부트 스트랩 -->
 <% int twelve = 12 ; %>
@@ -59,7 +43,7 @@
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<button class="btn btn-default" type="reset">취소</button>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-							<a href="/meinsert.me">회원 가입</a>
+							<a href="./insert.me">회원 가입</a>
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 							<a href="">아이디 찾기</a>
 							/
