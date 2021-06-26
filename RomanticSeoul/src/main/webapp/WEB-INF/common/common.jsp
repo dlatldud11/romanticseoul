@@ -6,7 +6,22 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-
+<!-- whologin 변수는 로그인 상태를 저장하고 있는 변수입니다. -->
+<c:set var="whologin" value="0" />
+<c:if test="${empty sessionScope.loginfo}">
+	<!-- 로그인 하지 않은 경우 -->
+	<c:set var="whologin" value="0" />
+</c:if>
+<c:if test="${not empty sessionScope.loginfo}">
+	<c:if test="${sessionScope.loginfo.id == 'admin'}">\
+		<!-- 관리자로 로그인한 경우 -->
+		<c:set var="whologin" value="2" />
+	</c:if>
+	<c:if test="${sessionScope.loginfo.id != 'admin'}">
+		<!-- 일반 사용자로 로그인한 경우 -->
+		<c:set var="whologin" value="1" />
+	</c:if>
+</c:if>
 
 <%!
 	String YesForm = null ;
@@ -80,11 +95,20 @@ String mappingName = "/main";
 								<li><a href="./coBoList.bo">코스후기</a></li>
 								<li><a href="./zzimList.ma">찜</a></li>
 								<li><a href="../qnaBoList.bo">문의하기</a></li>
-								<li><a href="#">관리자</a></li>
+								<c:if test="${whologin == 2}">
+									<li><a href="#">관리자</a></li>
+								</c:if>
 							</ul>
 						</nav>
 						<div class="header__menu__right">
+						<c:choose>
+							<c:when test="${whologin == 0 }">
 							<a href="./meLoginForm.me" class="primary-btn"><i class="fa fa-plus"></i> 로그인</a> 
+							</c:when>
+							<c:when test="${whologin != 0 }">
+							<a href="./meLogout.me" class="primary-btn"><i class="fa fa-plus"></i> 로그아웃</a> 
+							</c:when>
+						</c:choose>
 							<a href="./meInfo.me" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import bean.CheckBean;
 import bean.Member;
-//import shopping.ShoppingInfo;
+//import shopping.ShoppingInfo 
 
 @Component("mdao")
 public class MemberDao {
@@ -59,6 +59,7 @@ public class MemberDao {
 	public int SelectTotalCount() {
 		return this.abcd.selectOne(namespace + "SelectTotalCount");
 	}
+	
 
 	public int DeleteData(Member bean) {
 		// boards.remark 수정, orders.remark 수정
