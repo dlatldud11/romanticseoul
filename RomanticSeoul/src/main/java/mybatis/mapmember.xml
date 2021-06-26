@@ -61,7 +61,7 @@
    </update>   
    <delete id="DeleteData" parameterType="String">
       delete from members
-       where id = #{id}
+       where id = #{id} and password = #{password}
    </delete>   
    
    <!-- 회원 로그 아웃과 관련된 항목들 -->
