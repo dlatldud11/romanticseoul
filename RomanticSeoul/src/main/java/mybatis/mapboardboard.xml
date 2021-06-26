@@ -56,8 +56,8 @@
 	</delete>	
 	<insert id="InsertData" parameterType="MyBoardBoard">
 		insert into 
-		board(boseq,id,content,title,regdate,readhit,likes,image)		
-		values(board_seq.nextval, #{id}, #{content}, #{title}, #{content}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'),0,0,#{image,jdbcType=VARCHAR})
+		board(boseq,id,content,title,regdate,readhit,likes)		
+		values(board_seq.nextval, #{id}, #{content}, #{title,jdbcType=VARCHAR}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'),0,0)
 	</insert>
 <!-- 	<insert id="ReplyDataInsert" parameterType="MyBoard">
 		insert into 

@@ -71,7 +71,7 @@ public class BoListController extends SuperClass{
 					parameters.getMode(), 
 					parameters.getKeyword());
 		
-		List<BoardBoard> lists = dao.SelectDataList(
+		List<Board> lists = dao.SelectDataList(
 				pageInfo.getOffset(),
 				pageInfo.getLimit(),
 				parameters.getMode(), 

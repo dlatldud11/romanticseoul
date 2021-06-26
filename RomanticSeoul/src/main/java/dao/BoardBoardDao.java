@@ -31,7 +31,7 @@ public class BoardBoardDao {
 		return this.abcd.selectOne(namespace + "SelectTotalCount", map);		
 	} 	
 	
-	public List<BoardBoard> SelectDataList(int offset, int limit, String mode, String keyword) {
+	public List<Board> SelectDataList(int offset, int limit, String mode, String keyword) {
 		// 랭킹을 이용하여 해당 페이지의 데이터를 컬렉션으로 반환합니다.
 		RowBounds rowBounds = new RowBounds(offset, limit);
 		Map<String, String> map = new HashMap<String, String>() ;
@@ -40,7 +40,7 @@ public class BoardBoardDao {
 		return this.abcd.selectList(namespace + "SelectDataList", map, rowBounds);
 	}
 	
-	public BoardBoard SelectDataByPk(int no) {
+	public Board SelectDataByPk(int no) {
 		// 해당 게시물 번호의 Bean 객체를 구합니다.
 		return this.abcd.selectOne(namespace + "SelectDataByPk", no);
 	}
@@ -50,7 +50,7 @@ public class BoardBoardDao {
 		return this.abcd.insert(namespace + "UpdateReadhit", no);
 	}		
 	
-	public int UpdateData(BoardBoard bean) {
+	public int UpdateData(Board bean) {
 		// 해당 게시물을 수정합니다.   
 		System.out.println(bean.toString());
 		return this.abcd.update(namespace + "UpdateData", bean);
@@ -60,14 +60,14 @@ public class BoardBoardDao {
 		return this.abcd.delete(namespace + "DeleteData", no);
 	}
 	
-	public int InsertData(BoardBoard bean) {
+	public int InsertData(Board bean) {
 		// 넘겨진 Bean 데이터를 이용하여 추가합니다.
 		System.out.println(this.getClass() + " InsertData 메소드");
 		System.out.println(bean.toString());
 		return this.abcd.insert(namespace + "InsertData", bean);
 	}
 	
-	public List<BoardBoard> ListData(BoardBoard bean) {
+	public List<Board> ListData(Board bean) {
 		System.out.println(this.ListData(bean));
 		return this.abcd.selectList(namespace + "ListData", bean); 
 	}
