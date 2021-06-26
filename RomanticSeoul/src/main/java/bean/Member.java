@@ -61,7 +61,6 @@ public class Member {
 	@NotNull(message="보기 취향은 반드시 선택해 주셔야 합니다.")
     private String look;
 	 
-	@NotEmpty(message="프로필 사진은 " + MUST_INPUT )
     private String image;
     private String remark;
    
