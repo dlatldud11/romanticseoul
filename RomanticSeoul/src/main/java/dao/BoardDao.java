@@ -26,7 +26,7 @@ public class BoardDao {
 		Map<String, String> map = new HashMap<String, String>() ;
 		map.put("mode", mode) ;
 		map.put("keyword", "%" + keyword + "%") ;		
-		return this.abcd.selectOne(namespace + "SelectTotalCount", map);		
+		return this.abcd.selectOne(namespace + "SelectTotalCount", map);
 	} 	
 	
 	public List<QnaBoard> SelectDataList(int offset, int limit, String mode, String keyword) {
@@ -38,9 +38,9 @@ public class BoardDao {
 		return this.abcd.selectList(namespace + "SelectDataList", map, rowBounds);
 	}
 	
-	public QnaBoard SelectDataByPk(int no) {
+	public QnaBoard SelectDataByPk(int qnaseq) {
 		// 해당 게시물 번호의 Bean 객체를 구합니다.
-		return this.abcd.selectOne(namespace + "SelectDataByPk", no);
+		return this.abcd.selectOne(namespace + "SelectDataByPk", qnaseq);
 	}
 	
 	public int UpdateReadhit(int no) {
@@ -54,8 +54,8 @@ public class BoardDao {
 		return this.abcd.update(namespace + "UpdateData", bean);
 	}	
 	
-	public int DeleteData(int no) {
-		return this.abcd.delete(namespace + "DeleteData", no);
+	public int DeleteData(int qnaseq) {
+		return this.abcd.delete(namespace + "DeleteData", qnaseq);
 	}
 	
 	public int InsertData(QnaBoard bean) {
