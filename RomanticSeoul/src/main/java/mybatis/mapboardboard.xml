@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MapBoardBoard">
+	<select id="SelectTotalCount" resultType="int">
+		select count(*) as cnt from board a join members b
+		on (a.id = b.id)	
+		<if test="mode == 'title'">
+			where a.title like #{keyword}
+		</if>
+		<if test="mode == 'nickname'">
+			where b.nickname like #{keyword}
+		</if>
+	</select>
+	<sql id="myselect">
+		select a.boseq,a.id,a.content,a.title,a.regdate,a.readhit,a.likes,a.remark,a.image,b.nickname from
+		board a join members b on (a.id = b.id)
+
+	</sql> 	
+	<select id="SelectDataList" resultType="MyBoardBoard">
+		<include refid="myselect" />
+		<if test="mode == 'title'">
+			where a.title like #{keyword}
+		</if>
+		<if test="mode == 'nickname'">
+			where b.nickname like #{keyword}
+		</if>
+		order by boseq desc
+	</select>	
+	<!-- <select id="getTotalCount" resultType="int">
+		select count(*) from boards
+		<if test="what == 'albumname'">
+			where albumname like #{keyword}
+		</if>		
+		<if test="what == 'song'">
+			where song like #{keyword}
+		</if>	
+	</select> -->
+	<select id="SelectDataByPk" parameterType="Integer" resultType="MyBoardBoard">
+		<include refid="myselect" />
+		 where boseq = #{boseq}
+	</select>	
+	<update id="UpdateReadhit" parameterType="int">
+		update board set readhit = readhit + 1 
+		where boseq = #{boseq}
+	</update>	
+	<update id="UpdateData" parameterType="MyBoardBoard">
+		update board set 
+		content=#{content}, title=#{title}, 
+		regdate=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI')
+		where boseq = #{boseq} 
+	</update>	
+	<delete id="DeleteData" parameterType="int">
+		delete from board where boseq = #{boseq} 
+	</delete>	
+	<insert id="InsertData" parameterType="MyBoardBoard">
+		insert into 
+		board(boseq,id,content,title,regdate,readhit,likes,image)		
+		values(board_seq.nextval, #{id}, #{content}, #{title}, #{content}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'),0,0,#{image,jdbcType=VARCHAR})
+	</insert>
+<!-- 	<insert id="ReplyDataInsert" parameterType="MyBoard">
+		insert into 
+		boards(no, subject, writer, password, content, readhit, regdate, groupno, orderno, depth)
+		values(myboard.nextval, #{subject}, #{writer}, #{password}, #{content}, default, to_date(#{regdate}, 'yyyy/MM/dd'), #{groupno}, #{orderno}, #{depth}) 
+	</insert>
+	<update id="ReplyDataUpdate">
+		update boards set 
+		orderno = orderno + 1 
+		where groupno = #{groupno} and orderno > #{orderno}		
+	</update> -->	
+</mapper>

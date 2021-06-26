@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%
+	String contextPath = request.getContextPath() ;
+%>    
 <meta charset="UTF-8">
 <!DOCTYPE html>
 <html lang="zxx">
@@ -35,27 +41,29 @@
 <div class=row>
 <div class="listing__details__comment">
                 <h4>Comment</h4>
+                <c:forEach var="bean" items="${lists}">
                 <div class="listing__details__comment__item">
                     <div class="listing__details__comment__item__pic">
                         <img src="img/listing/details/comment.png" alt="">
                     </div>
                     <div class="listing__details__comment__item__text">
-                        <div class="listing__details__comment__item__rating">
+                        <!-- <div class="listing__details__comment__item__rating">
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
-                        </div>
-                        <span>작성일자</span>
-                        <h5>닉네임</h5>
-                        <p>내용</p>
+                        </div> -->
+                        <span>${bean.regdate}</span>
+                        <h5>${bean.nickname}</h5>
+                        <p>${bean.content}</p>
                         <ul>
                             <li><i class="fa fa-hand-o-right"></i> Like</li>
                             <li><i class="fa fa-share-square-o"></i> Reply</li>
                         </ul>
                     </div>
                 </div>
+            </c:forEach>
             <div class="listing__details__review">
                 <h4>Add Review</h4>
                 <form action="#">
