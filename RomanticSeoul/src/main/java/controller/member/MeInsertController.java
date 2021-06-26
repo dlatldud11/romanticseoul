@@ -111,7 +111,7 @@ public class MeInsertController extends SuperClass {
 		String uploadPath = "/WEB-INF/upload" ;
 		
 		//realPath :  
-		String realPath = request.getRealPath( uploadPath) ;
+		String realPath = request.getRealPath(uploadPath) ;
 		System.out.println("realPath"+realPath);
 		System.out.println("멀티"+multi.toString());
 			try {

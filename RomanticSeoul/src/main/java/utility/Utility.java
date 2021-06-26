@@ -44,4 +44,19 @@ public class Utility {
 		
 		return mav;
 	}
+//	public static File getUploadedFileInfo(MultipartFile multi, String realPath) {
+//		String pattern = "yyyyMMddhhmmss" ;
+//		SimpleDateFormat sdf = new SimpleDateFormat(pattern) ;
+//		String now = sdf.format( new Date() ) ;
+//		
+//		String somefile = multi.getOriginalFilename() ;
+//		int dot = somefile.indexOf(".") ;
+//		String filename = somefile.substring(0, dot) ;
+//		String fileext = somefile.substring(dot) ;
+//		String newfile = filename + now + fileext ; 
+//		
+//		String myfile = realPath + File.separator + newfile  ;
+//		
+//		return new File( myfile ); 
+//	}
 }

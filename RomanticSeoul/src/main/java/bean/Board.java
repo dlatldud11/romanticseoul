@@ -1,5 +1,6 @@
 package bean;
 
+
 public class Board {
 	private String content;
 	private String regdate;
@@ -7,15 +8,11 @@ public class Board {
 	private String remark;
 	private String meimage; //프로필사진
 	
+
 	public Board() {
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public String toString() {
-		return "Board [content=" + content + ", regdate=" + regdate + ", image=" + image + ", remark=" + remark
-				+ ", meimage=" + meimage + "]";
-	}
 
 	public String getContent() {
 		return content;
@@ -49,6 +46,14 @@ public class Board {
 	public void setMeimage(String meimage) {
 		this.meimage = meimage;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Board [content=" + content + ", regdate=" + regdate + ", image=" + image + ", remark=" + remark
+				+ ", meimage=" + meimage + "]";
+	}
+
 	
 	
 }
