@@ -80,10 +80,7 @@ if (nicknamecheck == 'false') {
 	alert('닉네임 중복 체크를 해주세요.');
 	return false;
 }
-if(document.myform.file.value == ""){
-	alert('파일 업로드를 해주세요.');
-	return false;
-}
+
 }
 
 

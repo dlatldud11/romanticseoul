@@ -86,6 +86,11 @@ public class MemberDao {
 		// 회원 탈퇴하기			
 		return this.abcd.delete(namespace + "DeleteData", bean.getId());		
 	}
+	
+	    // 아이디 찾기
+		public Member findId(String email){
+			return this.abcd.selectOne(namespace + "findId", email);
+		}
 //	public void InsertCartData(Member mem, List<ShoppingInfo> lists) {
 //		// 1. 장바구니 테이블에 혹시 남아 있을 수 있는 회원의 행을 모두 삭제합니다. 
 //		this.abcd.delete(namespace + "DeleteShoppingInfo", mem.getId());
