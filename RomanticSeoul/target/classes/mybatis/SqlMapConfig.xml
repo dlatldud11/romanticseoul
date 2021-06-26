@@ -8,6 +8,7 @@
    <!-- 마이바티스의 작동 규칙 정의 -->
 <typeAliases>
       <typeAlias alias="MyBoard" type="bean.QnaBoard" />      
+      <typeAlias alias="MyBoardBoard" type="bean.BoardBoard" />      
       <typeAlias alias="MyMember" type="bean.Member" />      
 <!--       <typeAlias alias="MyProduct" type="bean.Product" />
       <typeAlias alias="MyCombo1" type="bean.Combo01" />
@@ -27,6 +28,7 @@
       <mapper resource="mybatis/mapboard.xml" />
       <mapper resource="mybatis/mapcommon.xml" />
       <mapper resource="mybatis/mapmember.xml" />
+      <mapper resource="mybatis/mapboardboard.xml" />
       <!-- <mapper resource="mybatis/mapproduct.xml" />
       <mapper resource="mybatis/mapcomposite.xml" />
       <mapper resource="mybatis/mapmall.xml" /> -->

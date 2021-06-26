@@ -107,13 +107,20 @@ public class MeInsertController extends SuperClass {
 			
 		} else {
 			System.out.println("유효성 검사에 문제 없슴");
-		MultipartFile multi = xxx.getFile() ;
-		String uploadPath = "/WEB-INF/upload" ;
+		if (xxx.getImage().equals("") || xxx.getImage().equals(null) || xxx.getImage().equals("null"))  { // 파일 업로드 안했을 때
+			
+			mav.setViewName(super.postpage) ;				
+			this.mdao.InsertData(xxx);
 		
-		//realPath :  
-		String realPath = request.getRealPath(uploadPath) ;
-		System.out.println("realPath"+realPath);
-		System.out.println("멀티"+multi.toString());
+		} else {
+
+			MultipartFile multi = xxx.getFile() ;
+			String uploadPath = "/WEB-INF/upload" ;
+			
+			//realPath :  
+			String realPath = request.getRealPath(uploadPath) ;
+			System.out.println("realPath"+realPath);
+			System.out.println("멀티"+multi.toString());
 			try {
 				// 업로드 폴더에 파일을 업로드합니다.
 				File destination = utility.Utility.getUploadedFileInfo(multi, realPath)  ;
@@ -140,6 +147,8 @@ public class MeInsertController extends SuperClass {
 				e.printStackTrace();
 				mav.setViewName(super.getpage) ;
 			}
+		}// 파일 업로드 했을 때 끝
+			
 		}
 		return this.mav;
 	}
