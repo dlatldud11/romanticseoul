@@ -35,12 +35,13 @@ public class BoInsertController extends SuperClass{
 	private ModelAndView mav = null ;
 	private String redirect = "redirect:/main.co" ;
 	
+	private BoInsertController bolist;
 	@Autowired
 	@Qualifier("bbdao")
 	private BoardBoardDao dao ;
 	
 	public BoInsertController() {
-		super("blList", "boList");
+		super("boList", "boList");
 		this.mav = new ModelAndView();
 	}
 	@ResponseBody
