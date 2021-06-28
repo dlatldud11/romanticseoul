@@ -9,16 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Member;
-import bean.QnaBoard;
-import bean.S_reviewBoard;
 import controller.common.SuperClass;
 import dao.MemberDao;
-import dao.S_ReBoardDao;
 //import dao.BoardDao;
 import utility.FlowParameters;
 import utility.Paging;

@@ -28,10 +28,6 @@ public class MeLoginController extends SuperClass{
 	@Autowired
 	@Qualifier("mdao")
 	private MemberDao dao ;
-//	
-//	@Autowired
-//	@Qualifier("malldao")
-//	private MallDao malldao ;	
 	
 	public MeLoginController() {
 		super("meLoginForm", null) ;

@@ -97,7 +97,7 @@ String mappingName = "/main";
 								<li><a href="./zzimList.ma">찜</a></li>
 								<li><a href="./qnaBoList.bo">문의하기</a></li>
 								<c:if test="${whologin == 2}">
-									<li><a href="./adminPage.me">관리자</a></li>
+									<li><a href="#">관리자</a></li>
 								</c:if>
 							</ul>
 						</nav>
@@ -110,7 +110,7 @@ String mappingName = "/main";
 							<a href="./meLogout.me" class="primary-btn"><i class="fa fa-plus"></i> 로그아웃</a> 
 							</c:when>
 						</c:choose>
-							<a href="./meInfo.me" class="login-btn"><i class="fa fa-user"></i></a>
+							<a href="./meInfo.me?id=${sessionScope.loginfo.id}" class="login-btn"><i class="fa fa-user"></i></a>
 						</div>
 					</div>
 				</div>

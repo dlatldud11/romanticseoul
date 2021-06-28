@@ -13,7 +13,12 @@
 <!DOCTYPE html><html>
 <head>
 	<script>
-		
+	function gotoBack(){
+		location.href='<%=contextPath%>/main.co?${requestScope.parameters}';
+	}
+	function gotoUpdate(){
+		location.href='<%=contextPath%>/update.me?id=${sessionScope.loginfo.id}';
+	}
 	</script>
 </head>
 <body>
@@ -28,7 +33,7 @@
 						<tr>
 							<td>
 								<img src="${bean.image}" class="img-rounded" 
-									alt="${bean.id}" width="500" height="500">		
+									alt="${bean.id}" width="300" height="300">		
 							</td>
 						</tr>
 					</table>
@@ -67,18 +72,40 @@
 							<td width="25%" align="center">휴대전화</td>
 							<td width="75%" align="left">${bean.hp}</td>
 						</tr>
+						<tr>
+							<td width="25%" align="center">마시기</td>
+							<td width="75%" align="left">${bean.drink}</td>
+						</tr>
+						<tr>
+							<td width="25%" align="center">먹기</td>
+							<td width="75%" align="left">${bean.eat}</td>
+						</tr>
+						<tr>
+							<td width="25%" align="center">놀기</td>
+							<td width="75%" align="left">${bean.play}</td>
+						</tr>
+						<tr>
+							<td width="25%" align="center">걷기</td>
+							<td width="75%" align="left">${bean.walk}</td>
+						</tr>
+						<tr>
+							<td width="25%" align="center">보기</td>
+							<td width="75%" align="left">${bean.look}</td>
+						</tr>
 					</table>
 				</div>
 			</div>
 			<hr>
 			<div class="col-sm-7" style="float:right;">
-				<button class="btn btn-info" onclick="location.href='<%=NoForm%>memberUpdate&id=${bean.id}'">
+				<button class="btn btn-info" onclick="gotoUpdate();">
 					회원 수정
 				</button>
-				<button type="button" onclick="window.location.href='<%=NoForm%>memberDelete&id=${bean.id}'"  class="btn btn-danger">
+				<button class="btn btn-primary" onclick="gotoBack();">
+					돌아 가기
+				</button>
+				<button type="button" onclick=""  class="btn btn-danger">
 					회원 삭제
 				</button>
-				<button class="btn btn-primary" onclick="gotolist();">돌아 가기</button>
 			</div>
 		</div>
 	</div>
