@@ -48,7 +48,7 @@
                         <img src="img/listing/details/comment.png" alt="">
                     </div>
                     <div class="listing__details__comment__item__text">
-                        <div class="listing__details__comment__item__rating" id="myform" name="myform">
+                        <div class="listing__details__comment__item__rating">
                             <button>수정</button>
                             <c:if test="${bean.id eq sessionScope.loginfo.id}">
                             <input type="hidden" id="boseq" name="boseq" value="${bean.boseq}">
@@ -74,7 +74,7 @@
             <div class="listing__details__review">
                 <h4>자유게시판 글쓰기</h4>
                 <c:set var="apppath" value="<%=request.getContextPath()%>" />
-         		<form id="myform" name="myform">
+         		<form:form id="myform" name="myform" modelAttribute="boardBoard" >
          		<%-- <form:form modelAttribute="boardBoard" id="myform" name="myform" method="post"
          		action="${apppath}/boInsert.bo"> --%>
                     <input type="hidden" id="id" name="id" value="${sessionScope.loginfo.id}">
@@ -84,70 +84,17 @@
                     <textarea placeholder="글내용을 작성하세요" id="content" name="content"></textarea>
                     <button id="btn_register" name="btn_register" type="button" class="site-btn" onclick="submit1();">Submit Now</button>
                     <button id="btn_previous" name="btn_register" type="button" class="site-btn" onclick="redirect();">뒤로가기</button>
-                </form>
+                </form:form>
             </div>
         </div>
     </div>
   </div>
-  <%-- <form>
-		아이디:<input type="text" id="checkid"><br> <br>
-		<button type="button" id="_check" >id 체크</button>
-	</form>
 
-	<script>
-	
-		function idcheck() {
-			alert("idCheck");
-
-			$.ajax({
-				url : "./idCheck.do",
-				type : "get",
-				data : "id=" + $("#checkid").val(),
-				success : function(data) {
-					alert("되요ㅋ");
-					alert(data);
-				},
-				error : function() {
-					alert("에러나요");
-				}
-			})
-		}
-	</script> --%>
 <script>
-//글지우기
-function delete(){
-	alert('delete 실행');
-	var boseq = ${'#boseq'}
-	
-	$.ajax({
-		url : "<%=contextPath%>/bodelete.bo",
-		data : boseq,
-		type : "POST",
-		datatype : 'json',
-		success : function(data) {
-		alert('게시글 삭제 완료');
-		console.log(data);
-		location.href = "<%=contextPath%>/boList.bo";
-		},
-	eroor:function(request,status,error){
-		alert('error');
-	}
-	});
-}
-
 function submit1(){
-	if ($('#content') == null) {
-		alert('내용을 입력해주세요.');
-		return;
-	}
-
 	//ajax로 파일전송 폼데이터를 보내기위해
 	//enctype, processData, contentType 이 세가지를 반드시 세팅해야한다.
 	$.ajax({
-		/* enctype : 'multipart/form-data',
-		processData : false,
-		contentType : false, 
-		cache : false, */
 		url : "<%=contextPath%>/boInsert.bo",
 	data : $('#myform').serialize(),
 	type : "POST",
@@ -162,7 +109,8 @@ function submit1(){
 	}
 	});
 }
-
+</script>
+<script>
 //이전 클릭 시 testList로 이동
 function redirect() {
 	$(location).attr('href', '<%=contextPath%>/main.co');
