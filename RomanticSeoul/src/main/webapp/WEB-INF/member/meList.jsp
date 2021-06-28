@@ -35,9 +35,6 @@ td {
 </style>
 <script type="text/javascript">
 	function writeForm(){
-		location.href='<%=contextPath%>/qnaBoInsert.bo';
-	}
-	function writeForm2(){
 		location.href='<%=contextPath%>/meList.me';
 	}
 	function search(){
@@ -52,7 +49,7 @@ td {
 	function searchAll(){
 		//$('#mode').val('-');
 		//$('#keyword').val('');
-		location.href='<%=contextPath%>/qnaBoList.bo';
+		location.href='<%=contextPath%>/meList.me';
 	}
 </script>
 </head>
@@ -63,37 +60,31 @@ td {
 			<table>
 				<thead>
 					<tr>
-						<th>NO</th>
 						<th>ID</th>
-						<th>TITLE</th>
-						<th>WRITEDATE</th>
-						<th>CHECKS</th>
-						<th>UPDATE</th>
+						<th>NAME</th>
+						<th>NICKNAME</th>
+						<th>GENDER</th>
+						<th>HP</th>
+						<th>REMARK</th>
 						<th>DELETE</th>
 					</tr>
 				</thead>
 				<tbody>
 					<c:forEach var="bean" items="${requestScope.lists}">
 						<tr>
-							<td>${bean.qnaseq}</td>
 							<td>${bean.id}</td>
 							<td>
-							<a href="<%=contextPath%>/qnaDetailView.bo?qnaseq=${bean.qnaseq}&${requestScope.parameters}">
-								${bean.title}
+							<a href="<%=contextPath%>/meList.me?id=${bean.id}&${requestScope.parameters}">
+								${bean.name}
 							</a>
 							</td>
-							<td>${bean.regdate}</td>
-							<td>${bean.checks}</td>
+							<td>${bean.nickname}</td>
+							<td>${bean.gender}</td>
+							<td>${bean.hp}</td>
+							<td>${bean.remark}</td>
 							<td>
-							<c:if test="${sessionScope.loginfo.id == bean.id}">
-								<a href="<%=contextPath%>/qnaBoUpdate.bo?qnaseq=${bean.qnaseq}&${requestScope.parameters}">
-									UPDATE
-								</a>
-							</c:if>
-						</td>
-						<td>
-							<c:if test="${sessionScope.loginfo.id == bean.id}">
-								<a href="<%=contextPath%>/qnaBoDelete.bo?qnaseq=${bean.qnaseq}&${requestScope.parameters}">
+							<c:if test="${sessionScope.loginfo.id == 'admin'}">
+								<a href="<%=contextPath%>/delete.me?id=${bean.id}&${requestScope.parameters}">
 									DELETE
 								</a>
 							</c:if>
@@ -105,8 +96,7 @@ td {
 			<br>
 			<button class="btn btn-default btn-info" type="button"
 				onclick="writeForm();">글쓰기</button>
-			<button class="btn btn-default btn-info" type="button"
-				onclick="writeForm2();">회원목록보기</button>
+			
 			<br>
 			<div class="row mt-5" align="center">
 				<div class="col text-center">

@@ -1,23 +1,15 @@
 package bean;
 
 public class S_reviewBoard extends Board {
-	private int revseq; //리뷰 시퀀스
-	private int storeseq;//가게 시퀀스
+	private int revseq;
+	private int storeseq;
 	private String id;
-	private int grade; //점수
-	private int likes; //좋아요
-
-	
-	@Override
-	public String toString() {
-		return super.toString()+ "S_reviewsBoard [revseq=" + revseq + ", storeseq=" + storeseq + ", id=" + id + ", grade=" + grade
-				+ ", likes=" + likes + "]";
-	}
-
-	public S_reviewBoard() {
-		// TODO Auto-generated constructor stub
-	}
-	
+	private String regdate;
+	private String content;
+	private int grade;
+	private String remark;
+	private int likes;
+	private String image;
 	public int getRevseq() {
 		return revseq;
 	}
@@ -36,11 +28,29 @@ public class S_reviewBoard extends Board {
 	public void setId(String id) {
 		this.id = id;
 	}
+	public String getRegdate() {
+		return regdate;
+	}
+	public void setRegdate(String regdate) {
+		this.regdate = regdate;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
 	public int getGrade() {
 		return grade;
 	}
 	public void setGrade(int grade) {
 		this.grade = grade;
+	}
+	public String getRemark() {
+		return remark;
+	}
+	public void setRemark(String remark) {
+		this.remark = remark;
 	}
 	public int getLikes() {
 		return likes;
@@ -48,6 +58,19 @@ public class S_reviewBoard extends Board {
 	public void setLikes(int likes) {
 		this.likes = likes;
 	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
+	}
+	@Override
+	public String toString() {
+		return "S_reviewBoard [revseq=" + revseq + ", storeseq=" + storeseq + ", id=" + id + ", regdate=" + regdate
+				+ ", content=" + content + ", grade=" + grade + ", remark=" + remark + ", likes=" + likes + ", image="
+				+ image + "]";
+	}
+	
 	
 	
 }

@@ -13,7 +13,7 @@
 	<c:set var="whologin" value="0" />
 </c:if>
 <c:if test="${not empty sessionScope.loginfo}">
-	<c:if test="${sessionScope.loginfo.id == 'admin'}">\
+	<c:if test="${sessionScope.loginfo.id == 'admin'}">
 		<!-- 관리자로 로그인한 경우 -->
 		<c:set var="whologin" value="2" />
 	</c:if>
@@ -80,7 +80,7 @@ String mappingName = "/main";
 						<canvas class="icon" width="80" height="80"></canvas>
 						<div class="temperature">
 							<div class="degree-section">
-								<h2 class="temperature-degree"><span></span></h2>
+								<h2 class="temperature-degree"><span>CLICK</span></h2>
 							</div>
 							<!-- <div class="temperature-description">Its friggin cold</div> -->
 						</div>
