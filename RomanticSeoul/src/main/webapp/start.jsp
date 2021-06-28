@@ -10,6 +10,6 @@
 <%
 	String imsi = request.getContextPath() + "/main.co";
 	response.sendRedirect(imsi) ;
-%>
+%> 
 </body>
 </html>

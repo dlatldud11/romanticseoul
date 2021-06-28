@@ -37,9 +37,6 @@ td {
 	function writeForm(){
 		location.href='<%=contextPath%>/qnaBoInsert.bo';
 	}
-	function writeForm2(){
-		location.href='<%=contextPath%>/meList.me';
-	}
 	function search(){
 		if( $('#mode').val() == 'all' ){
 			alert('검색 목록을 선택해주세요') ;
@@ -92,7 +89,7 @@ td {
 							</c:if>
 						</td>
 						<td>
-							<c:if test="${sessionScope.loginfo.id == bean.id}">
+							<c:if test="${sessionScope.loginfo.id == bean.id or sessionScope.loginfo.id == 'admin'}">
 								<a href="<%=contextPath%>/qnaBoDelete.bo?qnaseq=${bean.qnaseq}&${requestScope.parameters}">
 									DELETE
 								</a>
@@ -105,8 +102,6 @@ td {
 			<br>
 			<button class="btn btn-default btn-info" type="button"
 				onclick="writeForm();">글쓰기</button>
-			<button class="btn btn-default btn-info" type="button"
-				onclick="writeForm2();">회원목록보기</button>
 			<br>
 			<div class="row mt-5" align="center">
 				<div class="col text-center">
