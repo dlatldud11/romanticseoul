@@ -34,6 +34,23 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    
+        <!-- Js Plugins -->
+    <script src="js/skycons.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.nice-select.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.nicescroll.min.js"></script>
+    <script src="js/jquery.barfiller.js"></script>
+    <script src="js/jquery.magnific-popup.min.js"></script>
+    <script src="js/jquery.slicknav.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
+    <script src="js/main.js"></script>
+    
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7da2934f8df298719b719361891e59fa"></script>
+    
 </head>
 <title>Insert title here</title>
 </head>
@@ -48,27 +65,97 @@
                         <img src="img/listing/details/comment.png" alt="">
                     </div>
                     <div class="listing__details__comment__item__text">
-                        <!-- <div class="listing__details__comment__item__rating">
+                        <div class="listing__details__comment__item__rating">
+                            <c:choose>
+                            	<c:when test="${bean.id eq sessionScope.loginfo.id}">
+		                            <button type="button" onclick="openUpdate(${bean.boseq},'${bean.content}' )">
+		                            수정
+		                            </button>
+                            	</c:when>
+                            	<c:when test="${bean.id eq sessionScope.loginfo.id || sessionScope.loginfo.id eq 'admin'}">
+		                            <button type=button onclick="location.href='<%=contextPath%>/bodelete.bo?boseq=${bean.boseq}'">삭제</button>
+                            	</c:when>
+                            </c:choose>
+                            <!-- <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div> -->
+                            <i class="fa fa-star"></i> -->
+                        </div>
                         <span>${bean.regdate}</span>
                         <h5>${bean.nickname}</h5>
+                        <p>${bean.id}</p>
+                        <div id="UpdateContent${bean.boseq}">
                         <p>${bean.content}</p>
-                        <ul>
-                            <li><i class="fa fa-hand-o-right"></i> Like</li>
-                            <li><i class="fa fa-share-square-o"></i> Reply</li>
+                        </div>
+                        <div id="insertReply">
+                        <ul> 
+                            <li>
+                            <i class="fa fa-hand-o-right"></i> Like
+                            </li>
+                            <li>
+                            <!-- <div data-toggle="collapse" data-target="#demo"> -->
+                            <i id="comment" name="comment" class="fa fa-share-square-o"data-toggle="collapse" data-target="#demo"></i> 
+                            Reply
+                            </li>
                         </ul>
+							  <div id="demo" class="collapse">
+							    <!-- 댓글부분 -->
+							    <div class="listing__details__comment__item">
+                    			<div class="listing__details__comment__item__pic">
+                        		<img src="img/listing/details/comment.png" alt="">
+                    			</div>
+                   				 <div class="listing__details__comment__item__text">
+                       			 <div class="listing__details__comment__item__rating">
+		                            <c:choose>
+		                            	<c:when test="${bean.id eq sessionScope.loginfo.id}">
+				                            <button type="button" onclick="openUpdate(${bean.boseq},'${bean.content}' )">
+				                            수정
+				                            </button>
+		                            	</c:when>
+		                            	<c:when test="${bean.id eq sessionScope.loginfo.id || sessionScope.loginfo.id eq 'admin'}">
+				                            <button type=button onclick="location.href='<%=contextPath%>/bodelete.bo?boseq=${bean.boseq}'">삭제</button>
+		                            	</c:when>
+		                            </c:choose>
+                            <!-- <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i> -->
+                       			</div>
+			                        <span>${bean.regdate}</span>
+			                        <h5>${bean.nickname}</h5>
+			                        <p>${bean.id}</p>
+			                        <div id="UpdateContent${bean.boseq}">
+			                        <p>${bean.content}</p>
+			                        </div>
+			                        <div id="insertReply">
+			                        <ul> 
+			                            <li>
+			                            <i class="fa fa-hand-o-right"></i> Like
+			                            </li>
+			                            <li>
+			                            <!-- <div data-toggle="collapse" data-target="#demo"> -->
+			                            <i id="comment" name="comment" class="fa fa-share-square-o"data-toggle="collapse" data-target="#demo"></i> 
+			                            Reply
+			                            </li>
+			                        	</ul>
+										  <div id="demo" class="collapse">
+										    
+										  </div>
+			                        </div>
+				                    </div>
+				                </div>
+							    <!-- 댓글부분 -->
+							  </div>
+                        </div>
                     </div>
                 </div>
             </c:forEach>
             <div class="listing__details__review">
                 <h4>자유게시판 글쓰기</h4>
                 <c:set var="apppath" value="<%=request.getContextPath()%>" />
-         		<form id="myform" name="myform">
+         		<form:form id="myform" name="myform" modelAttribute="boardBoard" >
          		<%-- <form:form modelAttribute="boardBoard" id="myform" name="myform" method="post"
          		action="${apppath}/boInsert.bo"> --%>
                     <input type="hidden" id="id" name="id" value="${sessionScope.loginfo.id}">
@@ -78,54 +165,81 @@
                     <textarea placeholder="글내용을 작성하세요" id="content" name="content"></textarea>
                     <button id="btn_register" name="btn_register" type="button" class="site-btn" onclick="submit1();">Submit Now</button>
                     <button id="btn_previous" name="btn_register" type="button" class="site-btn" onclick="redirect();">뒤로가기</button>
-                </form>
+                </form:form>
             </div>
         </div>
     </div>
   </div>
-  <form>
-		아이디:<input type="text" id="checkid"><br> <br>
-		<button type="button" id="_check" >id 체크</button>
-	</form>
+<script>  
+var mod_check = 'N';
+var reply_check = 'N';
+ 	
+ 	function openUpdate(boseq, content){
+ 		
+ 		if(mod_check == 'Y')
+			{
+				alert('수정 중입니다.');
+				return;
+			}
+ 		document.getElementById('UpdateContent'+boseq).innerHTML = "<form id='mynewform' name='mynewform'>"
+ 		+"<div class='form-row'>"
+ 		+"<textarea name='content' id='content'>"+ content +"</textarea></div>"
+ 		+"<input type='hidden' id='boseq' name='boseq' value='" + boseq +"'>"
+ 		+"<input style='float:right;' class='btn btn-default' type='button' onclick='location.reload()' value='취소'>"
+ 		+"<input style='float:right;' class='btn btn-default' type='button' value='수정완료' onclick='test()'>" 
+ 		+"</form>";
+ 		
+ 		mod_check = 'Y';
+ 	}
+ 	
+ 	
+ 	
+ 	function openUpdate(boseq, content){
+ 		
+ 		if(reply_check == 'Y')
+			{
+				alert('댓글 작성중입니다.');
+				return;
+			}
+ 		document.getElementById('UpdateContent'+boseq).innerHTML = "<form id='mynewform' name='mynewform'>"
+ 		+"<div class='form-row'>"
+ 		+"<textarea name='content' id='content'>"+ content +"</textarea></div>"
+ 		+"<input type='hidden' id='boseq' name='boseq' value='" + boseq +"'>"
+ 		+"<input style='float:right;' class='btn btn-default' type='button' onclick='location.reload()' value='취소'>"
+ 		+"<input style='float:right;' class='btn btn-default' type='button' value='수정완료' onclick='test()'>" 
+ 		+"</form>";
+ 		
+ 		mod_check = 'Y';
+ 	}	
 
-	<script>
-	
-		function idcheck() {
-			alert("idCheck");
-
-			$.ajax({
-				url : "./idCheck.do",
-				type : "get",
-				data : "id=" + $("#checkid").val(),
-				success : function(data) {
-					alert("되요ㅋ");
-					alert(data);
-				},
-				error : function() {
-					alert("에러나요");
-				}
-			})
-		}
-	</script>
+</script>
 <script>
-//글쓰기
-function submit2(){
-	alert('submit2 실행');
-}
-function submit1(){
-	alert('submit 실행');
-	if ($('#content') == null) {
-		alert('내용을 입력해주세요.');
-		return;
-	}
-
+function deleteone(){
 	//ajax로 파일전송 폼데이터를 보내기위해
 	//enctype, processData, contentType 이 세가지를 반드시 세팅해야한다.
 	$.ajax({
-		/* enctype : 'multipart/form-data',
-		processData : false,
-		contentType : false, 
-		cache : false, */
+		url : "<%=contextPath%>/bodelete.bo",
+	data : {
+		boseq : $('#boseq').val();
+	}
+	type : "POST",
+	datatype : 'json',
+	success : function(data) {
+		alert('게시글 삭제 완료');
+		console.log(data);
+		location.href = "<%=contextPath%>/boList.bo";
+		},
+	eroor:function(request,status,error){
+		alert('error');
+	}
+	});
+}
+</script>
+<script>
+function submit1(){
+	//ajax로 파일전송 폼데이터를 보내기위해
+	//enctype, processData, contentType 이 세가지를 반드시 세팅해야한다.
+	$.ajax({
 		url : "<%=contextPath%>/boInsert.bo",
 	data : $('#myform').serialize(),
 	type : "POST",
@@ -140,10 +254,31 @@ function submit1(){
 	}
 	});
 }
-
+</script>
+<script>
 //이전 클릭 시 testList로 이동
 function redirect() {
 	$(location).attr('href', '<%=contextPath%>/main.co');
+}
+function test(){
+	//ajax로 파일전송 폼데이터를 보내기위해
+	//enctype, processData, contentType 이 세가지를 반드시 세팅해야한다.
+	var params = $("#mynewform").serialize();
+	
+	$.ajax({
+		url : "<%=contextPath%>/boUpdate.bo",
+	data : $("#mynewform").serialize(),
+	type : "POST",
+	datatype : 'json',
+	success : function(data) {
+		alert('게시글 수정 완료');
+		console.log(data);
+		location.href = "<%=contextPath%>/boList.bo";
+		},
+	eroor:function(request,status,error){
+		alert('error');
+	}
+	});
 }
 </script>
 </body>
