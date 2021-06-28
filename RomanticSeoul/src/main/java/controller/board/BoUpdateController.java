@@ -1,10 +1,5 @@
 package controller.board;
 
-<<<<<<< HEAD
-public class BoUpdateController {
-
-}
-=======
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
@@ -64,4 +59,3 @@ public class BoUpdateController extends SuperClass{
 		return this.mav ;
 	}
 }
->>>>>>> branch 'master' of https://github.com/dlatldud11/romanticseoul.git
