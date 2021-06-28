@@ -97,7 +97,7 @@ String mappingName = "/main";
 								<li><a href="./zzimList.ma">찜</a></li>
 								<li><a href="./qnaBoList.bo">문의하기</a></li>
 								<c:if test="${whologin == 2}">
-									<li><a href="#">관리자</a></li>
+									<li><a href="./adminPage.me">관리자</a></li>
 								</c:if>
 							</ul>
 						</nav>

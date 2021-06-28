@@ -29,7 +29,7 @@
    </delete>
    <select id="SelectDataByPk" parameterType="String" resultType="MyMember">
       <include refid="myselect" />
-       where id = #{id} and hp = #{hp}
+       where id = #{id}
    </select>
 
 	  <select id="findId" parameterType="String" resultType="MyMember">
