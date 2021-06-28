@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="./../common/common.jsp" %>
+<%@ include file="../common/common.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%
 	/* position for grid system */	
 	int offset = 2 ;
@@ -81,5 +82,6 @@
 			</div>
 		</div>
 	</div>
+	<jsp:include page="../common/footer.jsp" />
 </body>
 </html>
