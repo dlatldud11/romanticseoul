@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MapMember">
+   <insert id="InsertData" parameterType="MyMember">
+		insert into members(id,password,name,nickname,email,gender,hp,address1,address2,zipcode,drink,
+		eat,play,walk,look,image) 
+		values(#{id}, #{password}, #{name}, #{nickname},#{email},#{gender},#{hp},
+		#{address1},#{address2},#{zipcode},#{drink},#{eat},#{play},
+		#{walk},#{look},#{image,jdbcType=VARCHAR})
+   </insert>
+   <sql id="myselect">
+      select * from members
+   </sql>
+   <select id="SelectTotalCount" resultType="int">
+      select count(*) as cnt from members
+   </select>
+   <select id="SelectDataList" resultType="MyMember">
+      select * from members order by id desc
+   </select>
+   <select id="SelectData" resultType="MyMember">
+      <include refid="myselect" />
+      where id = #{id} and password = #{password}
+   </select>
+   <delete id="DeleteData" parameterType="String">
+      delete from members            
+      where id = #{id}
+   </delete>
+   <select id="SelectDataByPk" parameterType="String" resultType="MyMember">
+      <include refid="myselect" />
+       where id = #{id}
+   </select>
+
+	  <select id="findId" parameterType="String" resultType="MyMember">
+	  select * from members where email = #{email} 
+   </select>
+   <update id="UpdateData" parameterType="MyMember">
+      update members set      
+      name = #{name},
+      password = #{password},
+      hiredate = #{hiredate},
+      gender = #{gender},
+      hobby = #{hobby},
+      job = #{job},
+      zipcode = #{zipcode},
+      address1 = #{address1},
+      address2 = #{address2}, 
+      where id = #{id}
+   </update>      
+
+      
+
+     
+   
+   <!-- 회원 탈퇴와 관련된 항목들 -->
+   <!-- <update id="UpdateBoardRemark" parameterType="String">
+      update boards set remark = #{remark} 
+      where writer = #{writer}
+   </update>
+   <update id="UpdateOrderRemark" parameterType="String">
+      update orders set remark = #{remark} 
+      where mid = #{mid}
+   </update>   
+   <delete id="DeleteData" parameterType="String">
+      delete from members
+       where id = #{id} and password = #{password}
+   </delete>   
+   
+   회원 로그 아웃과 관련된 항목들
+   <delete id="DeleteShoppingInfo" parameterType="String">
+      delete from shoppinginfos            
+      where mid = #{mid}
+   </delete> -->
+<!--    <insert id="InsertShoppingInfo" parameterType="MyShoppingInfo">
+      insert into shoppinginfos(mid, pnum, pname, qty, price, image, point)
+      values(#{mid}, #{pnum}, #{pname}, #{qty}, #{price}, #{image}, #{point})      
+   </insert>  -->     
+</mapper>

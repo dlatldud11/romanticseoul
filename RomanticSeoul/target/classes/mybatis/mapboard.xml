@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MapBoard">
+	<sql id="myselect">
+		SELECT qnaseq, id, regdate, content, title, checks FROM qna
+	</sql>
+	<select id="SelectTotalCount" resultType="int">
+		select count(*) as cnt from qna
+		<if test="mode == 'id'">
+			where id like #{keyword}
+		</if>
+		<if test="mode == 'title'">
+			where title like #{keyword}
+		</if>
+		<if test="mode == 'content'">
+			where content like #{keyword}
+		</if>
+	</select>
+	<select id="SelectDataList" resultType="MyBoard">
+		select * from qna order by qnaseq desc
+		<if test="mode == 'id'">
+			where id like #{keyword}
+		</if>
+		<if test="mode == 'title'">
+			where title like #{keyword}
+		</if>
+		<if test="mode == 'content'">
+			where content like #{keyword}
+		</if>
+	</select>
+	<select id="SelectDataByPk" parameterType="Integer" resultType="MyBoard">
+		<include refid="myselect" />
+		 where qnaseq = #{qnaseq}
+	</select>
+	<delete id="DeleteData" parameterType="int">
+		delete from qna where qnaseq = #{qnaseq} 
+	</delete>
+	<!-- <select id="getTotalCount" resultType="int">
+		select count(*) from boards
+		<if test="what == 'albumname'">
+			where albumname like #{keyword}
+		</if>		
+		<if test="what == 'song'">
+			where song like #{keyword}
+		</if>	
+	</select>
+		
+	<update id="UpdateReadhit" parameterType="int">
+		update boards set readhit = readhit + 1 
+		where no = #{no}
+	</update>	
+	<update id="UpdateData" parameterType="MyBoard">
+		update boards set 
+		content=#{content}, password=#{password}, 
+		regdate=to_date(#{regdate}, 'yyyy/mm/dd'), 
+		subject=#{subject}, writer=#{writer}
+		where no = #{no} 
+	</update>
+		
+	<select id="SelectDataList" resultType="MyBoard">
+		<include refid="myselect" />
+	</select> -->
+	<insert id="InsertData" parameterType="MyBoard">
+		insert into 
+		qna(qnaseq, id, regdate, content, title, checks, recontent, reregdate, remark, image)		
+		values(qna_seq.nextval, #{id, jdbcType=VARCHAR}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), #{content, jdbcType=VARCHAR}, #{title, jdbcType=VARCHAR}, '미답변', #{recontent, jdbcType=VARCHAR}, #{reregdate, jdbcType=VARCHAR}, #{remark, jdbcType=VARCHAR}, #{image, jdbcType=VARCHAR})
+	</insert>
+</mapper>
