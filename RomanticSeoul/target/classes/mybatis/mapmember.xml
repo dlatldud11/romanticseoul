@@ -10,27 +10,6 @@
 		#{walk},#{look},#{image,jdbcType=VARCHAR})
    </insert>
    <sql id="myselect">
-<<<<<<< HEAD
-      select * from members
-   </sql>
-   <select id="SelectTotalCount" resultType="int">
-      select count(*) as cnt from members
-   </select>
-   <select id="SelectDataList" resultType="MyMember">
-      select * from members order by id desc
-   </select>
-   <select id="SelectData" resultType="MyMember">
-      <include refid="myselect" />
-      where id = #{id} and password = #{password}
-   </select>
-   <delete id="DeleteData" parameterType="String">
-      delete from members            
-      where id = #{id}
-   </delete>
-   <select id="SelectDataByPk" parameterType="String" resultType="MyMember">
-      <include refid="myselect" />
-       where id = #{id}
-=======
       select *
       from members
    </sql>
@@ -55,7 +34,6 @@
    <select id="SelectDataByNickname" parameterType="String" resultType="MyMember">
       <include refid="myselect" />
        where nickname = #{nickname}
->>>>>>> branch 'master' of https://github.com/dlatldud11/romanticseoul.git
    </select>
 
 	  <select id="findId" parameterType="String" resultType="MyMember">
