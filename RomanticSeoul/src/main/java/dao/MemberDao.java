@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import bean.CheckBean;
 import bean.Member;
 //import shopping.ShoppingInfo 
 
@@ -16,7 +17,7 @@ import bean.Member;
 public class MemberDao {
 	private final String namespace = "MapMember." ;	
 	
-	@Autowired
+	@Autowired 
 	SqlSessionTemplate abcd;
 	
 	public MemberDao() { }	
@@ -61,29 +62,27 @@ public class MemberDao {
 	
 
 	public int DeleteData(Member bean) {
-		// boards.remark 수정, orders.remark 수정
-		// 해당 id를 이용하여 회원 탈퇴를 수행합니다.		
-						
-		// 탈퇴할 회원이 남긴 게시물 정보의 remark 컬럼 정보를 수정합니다.
-		Map<String, String> map = new HashMap<String, String>() ;
-		
-		// 심형래(sim09)가 회원 탈퇴를 하였습니다.
-		String remark = bean.getName() + "(" + bean.getId() + ")가 회원 탈퇴를 하였습니다." ;
-		
-		map.put("id", bean.getId()) ;		
-		
-		map.put("remark", remark) ;
-		
-		this.abcd.update(namespace + "UpdateBoardRemark", map);			
-		
-		// orders.remark 수정
-		map.clear();
-		map.put("remark", remark) ;
-		map.put("mid", bean.getId()) ;
-		this.abcd.update(namespace + "UpdateOrderRemark", map);
+		/*
+		 * // boards.remark 수정, orders.remark 수정 // 해당 id를 이용하여 회원 탈퇴를 수행합니다.
+		 * 
+		 * // 탈퇴할 회원이 남긴 게시물 정보의 remark 컬럼 정보를 수정합니다. Map<String, String> map = new
+		 * HashMap<String, String>() ;
+		 * 
+		 * // 심형래(sim09)가 회원 탈퇴를 하였습니다. String remark = bean.getName() + "(" +
+		 * bean.getId() + ")가 회원 탈퇴를 하였습니다." ;
+		 * 
+		 * map.put("id", bean.getId()) ;
+		 * 
+		 * map.put("remark", remark) ;
+		 * 
+		 * this.abcd.update(namespace + "UpdateBoardRemark", map);
+		 * 
+		 * // orders.remark 수정 map.clear(); map.put("remark", remark) ; map.put("mid",
+		 * bean.getId()) ; this.abcd.update(namespace + "UpdateOrderRemark", map);
+		 */
 
 		// 회원 탈퇴하기			
-		return this.abcd.delete(namespace + "DeleteData", bean.getId());		
+		return this.abcd.delete(namespace + "DeleteData", bean.getId());
 	}
 	
 	    // 아이디 찾기
@@ -99,9 +98,4 @@ public class MemberDao {
 //			this.abcd.insert(namespace + "InsertShoppingInfo", shpInfo);
 //		}
 //	}
-
-		public int UpdateReadhit(String id) {
-		// 조회수를 1증가 시킵니다.
-		return this.abcd.insert(namespace + "UpdateReadhit", id);
-	}
 }

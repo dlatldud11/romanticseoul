@@ -1,5 +1,6 @@
 package controller.member;
 
+<<<<<<< HEAD
 import java.io.File;
 import java.util.List;
 
@@ -162,3 +163,8 @@ public class MeUpdateController extends SuperClass{
 		return this.mav;
 	}
 }
+=======
+public class MeUpdateController {
+
+}
+>>>>>>> branch 'master' of https://github.com/dlatldud11/romanticseoul.git

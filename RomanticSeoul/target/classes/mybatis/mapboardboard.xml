@@ -47,11 +47,22 @@
 	</update>	
 	<update id="UpdateData" parameterType="MyBoardBoard">
 		update board set 
+<<<<<<< HEAD
 		content=#{content}, title=#{title}, 
 		regdate=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI')
 		where boseq = #{boseq} 
 	</update>	
 	<delete id="DeleteData" parameterType="int">
+=======
+		content=#{content}, title=#{title,jdbcType=VARCHAR}, 
+		regdate=TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI')
+		where boseq = #{boseq} 
+	</update>	
+	<delete id="DeleteData" parameterType="int">
+		delete from board where boseq = #{boseq} 
+	</delete>	
+	<delete id="DeleteDataByBoseq" parameterType="java.util.Map">
+>>>>>>> branch 'master' of https://github.com/dlatldud11/romanticseoul.git
 		delete from board where boseq = #{boseq} 
 	</delete>	
 	<insert id="InsertData" parameterType="MyBoardBoard">
