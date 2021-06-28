@@ -15,7 +15,7 @@ import bean.Member;
 
 @Component("mdao")
 public class MemberDao {
-	private final String namespace = "MapperMember." ;	
+	private final String namespace = "MapMember." ;	
 	
 	@Autowired
 	SqlSessionTemplate abcd;
@@ -50,13 +50,13 @@ public class MemberDao {
 		return this.abcd.update(namespace + "UpdateData", bean) ;
 	}
 
-	public List<Member> SelectDataList(int offset, int limit) {
+	public List<Member> SelectDataList(int offset, int limit, String mode, String keyword) {
 		// RowBounds 객체를 사용한 페이징 처리입니다.
 		RowBounds rbs = new RowBounds(offset, limit) ;
 		return this.abcd.selectList(namespace + "SelectDataList", null, rbs);	
 	}
 
-	public int SelectTotalCount() {
+	public int SelectTotalCount(String mode, String keyword) {
 		return this.abcd.selectOne(namespace + "SelectTotalCount");
 	}
 	
@@ -71,7 +71,7 @@ public class MemberDao {
 		// 심형래(sim09)가 회원 탈퇴를 하였습니다.
 		String remark = bean.getName() + "(" + bean.getId() + ")가 회원 탈퇴를 하였습니다." ;
 		
-		map.put("writer", bean.getId()) ;		
+		map.put("id", bean.getId()) ;		
 		
 		map.put("remark", remark) ;
 		
