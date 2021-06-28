@@ -1,5 +1,9 @@
 package controller.board;
 
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -27,7 +31,7 @@ public class BoDeleteController extends SuperClass{
 		super("boList", "boList");
 		this.mav = new ModelAndView();
 	}
-	
+	@ResponseBody
 	@GetMapping(command)
 	public ModelAndView doGet(
 			@RequestParam(value = "boseq", required = true) int boseq){
@@ -38,11 +42,11 @@ public class BoDeleteController extends SuperClass{
 		return this.mav ;
 	}
 	
-	
+	@ResponseBody
 	@PostMapping(command)
-	public ModelAndView doPost(@RequestParam String boseq){
-		int boseqn = Integer.parseInt(boseq);
-		this.dao.DeleteData(boseqn);
+	public ModelAndView doPost(@RequestParam Map <String, Object>param,
+			HttpServletRequest request){
+		this.dao.DeleteDataByBoseq(param);
 		this.mav.setViewName(super.postpage);
 		return this.mav ;
 	}

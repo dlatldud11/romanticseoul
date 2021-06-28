@@ -49,10 +49,11 @@
                     </div>
                     <div class="listing__details__comment__item__text">
                         <div class="listing__details__comment__item__rating">
-                            <button>수정</button>
                             <c:if test="${bean.id eq sessionScope.loginfo.id}">
-                            <input type="hidden" id="boseq" name="boseq" value="${bean.boseq}">
-                            <button type=button onclick="delete();">삭제</button>
+                            <button type="button" onclick="openUpdate(${bean.boseq},'${bean.content}' )">
+                            수정
+                            </button>
+                            <button type=button onclick="location.href='<%=contextPath%>/bodelete.bo?boseq=${bean.boseq}'">삭제</button>
                             </c:if>
                             <!-- <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -60,10 +61,12 @@
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i> -->
                         </div>
+                        <div id="UpdateContent${bean.boseq}">
                         <span>${bean.regdate}</span>
                         <h5>${bean.nickname}</h5>
                         <p>${bean.id}</p>
                         <p>${bean.content}</p>
+                        </div>
                         <ul>
                             <li><i class="fa fa-hand-o-right"></i> Like</li>
                             <li><i class="fa fa-share-square-o"></i> Reply</li>
@@ -89,7 +92,49 @@
         </div>
     </div>
   </div>
-
+<script>  
+var mod_check = 'N';
+ 	
+ 	function openUpdate(boseq, content){
+ 		
+ 		if(mod_check == 'Y')
+			{
+				alert('수정 중입니다.');
+				return;
+			}
+ 		document.getElementById('UpdateContent'+boseq).innerHTML = "<form id='mynewform' name='mynewform'>"
+ 		+"<div class='form-row'>"
+ 		+"<textarea name='content' id='content'>"+ content +"</textarea></div>"
+ 		+"<input type='hidden' id='boseq' name='boseq' value='" + boseq +"'>"
+ 		+"<input style='float:right;' class='btn btn-default' type='button' onclick='location.reload()' value='취소'>"
+ 		+"<input style='float:right;' class='btn btn-default' type='button' value='수정완료' onclick='test()'>" 
+ 		+"</form>";
+ 		
+ 		mod_check = 'Y';
+ 	}	
+</script>
+<script>
+function deleteone(){
+	//ajax로 파일전송 폼데이터를 보내기위해
+	//enctype, processData, contentType 이 세가지를 반드시 세팅해야한다.
+	$.ajax({
+		url : "<%=contextPath%>/bodelete.bo",
+	data : {
+		boseq : $('#boseq').val();
+	}
+	type : "POST",
+	datatype : 'json',
+	success : function(data) {
+		alert('게시글 삭제 완료');
+		console.log(data);
+		location.href = "<%=contextPath%>/boList.bo";
+		},
+	eroor:function(request,status,error){
+		alert('error');
+	}
+	});
+}
+</script>
 <script>
 function submit1(){
 	//ajax로 파일전송 폼데이터를 보내기위해
@@ -114,6 +159,26 @@ function submit1(){
 //이전 클릭 시 testList로 이동
 function redirect() {
 	$(location).attr('href', '<%=contextPath%>/main.co');
+}
+function test(){
+	//ajax로 파일전송 폼데이터를 보내기위해
+	//enctype, processData, contentType 이 세가지를 반드시 세팅해야한다.
+	var params = $("#mynewform").serialize();
+	
+	$.ajax({
+		url : "<%=contextPath%>/boUpdate.bo",
+	data : $("#mynewform").serialize(),
+	type : "POST",
+	datatype : 'json',
+	success : function(data) {
+		alert('게시글 수정 완료');
+		console.log(data);
+		location.href = "<%=contextPath%>/boList.bo";
+		},
+	eroor:function(request,status,error){
+		alert('error');
+	}
+	});
 }
 </script>
 </body>
