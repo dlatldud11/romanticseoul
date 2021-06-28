@@ -95,4 +95,8 @@ public class BoardBoardDao {
 	public List<BoardBoard> SelectDataList() {
 		return this.abcd.selectList(namespace + "SelectDataList");
 	}
+
+	public int DeleteDataByBoseq(Map<String, Object> param) {
+		return this.abcd.delete(namespace + "DeleteDataByBoseq", param);
+	}
 }
