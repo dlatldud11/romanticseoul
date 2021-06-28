@@ -11,7 +11,7 @@ public class BoardBoard extends Board {
 
 	@Override
 	public String toString() {
-		return "BoardBoard [boseq=" + boseq + ", id=" + id + ", title=" + title + ", nickname=" + nickname
+		return super.toString()+"BoardBoard [boseq=" + boseq + ", id=" + id + ", title=" + title + ", nickname=" + nickname
 				+ ", readhit=" + readhit + ", likes=" + likes + "]";
 	}
 
