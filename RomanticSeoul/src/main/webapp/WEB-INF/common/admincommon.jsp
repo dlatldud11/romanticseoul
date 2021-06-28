@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+<!-- 여기부터사이드바 -->
 <%@ page import="java.util.*"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -13,7 +14,7 @@ String contextPath = request.getContextPath();
 String mappingName = "/main";
 %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -25,10 +26,6 @@ String mappingName = "/main";
 	href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
 	rel="stylesheet" />
 <link href="css/styles.css" rel="stylesheet" />
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
-	crossorigin="anonymous"></script>
-</head>
 <style>
 h2 {
 	text-align: center;
@@ -57,9 +54,12 @@ td {
 	border-bottom: 1px solid #ddd;
 }
 </style>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+	crossorigin="anonymous"></script>
 <script type="text/javascript">
 	function writeForm(){
-		location.href='<%=contextPath%>/meList.me';
+		location.href='<%=contextPath%>/qnaBoInsert.bo';
 	}
 	function search(){
 		if( $('#mode').val() == 'all' ){
@@ -74,7 +74,7 @@ td {
 		//$('#mode').val('-');
 		//$('#keyword').val('');
 		location.href='<%=contextPath%>
-	/meList.me';
+	/qnaBoList.bo';
 	}
 </script>
 </head>
@@ -124,7 +124,7 @@ td {
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> Member List
-						</a> <a class="nav-link" href="/adminBoList.bo">
+						</a> <a class="nav-link" href="/qnaBoList.bo">
 							<div class="sb-nav-link-icon">
 								<i class="fas fa-tachometer-alt"></i>
 							</div> Q&A
@@ -151,95 +151,4 @@ td {
 				</div>
 			</nav>
 		</div>
-		<div id="layoutSidenav_content">
-			<main>
-
-				<section class="ftco-section">
-					<div class="container">
-						<h2>회원목록</h2>
-						<table>
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>NAME</th>
-									<th>NICKNAME</th>
-									<th>GENDER</th>
-									<th>HP</th>
-									<th>REMARK</th>
-									<th>DELETE</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach var="bean" items="${requestScope.lists}">
-									<tr>
-										<td>${bean.id}</td>
-										<td><a
-											href="<%=contextPath%>/meList.me?id=${bean.id}&${requestScope.parameters}">
-												${bean.name} </a></td>
-										<td>${bean.nickname}</td>
-										<td>${bean.gender}</td>
-										<td>${bean.hp}</td>
-										<td>${bean.remark}</td>
-										<td><c:if test="${sessionScope.loginfo.id == 'admin'}">
-												<a
-													href="<%=contextPath%>/adminDelete.me?id=${bean.id}">
-													DELETE </a>
-											</c:if></td>
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-						<br>
-						<button class="btn btn-default btn-info" type="button"
-							onclick="writeForm();">글쓰기</button>
-						<br>
-						<div class="row mt-5" align="center">
-							<div class="col text-center">
-								<div class="block-27">
-									<footer>${requestScope.pagingHtml}</footer>
-								</div>
-							</div>
-						</div>
-					</div>
-					<br>
-				</section>
-
-			</main>
-			<footer class="py-4 bg-light mt-auto">
-				<div class="container-fluid px-4">
-					<div
-						class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; Your Website 2021</div>
-						<div>
-							<a href="#">Privacy Policy</a> &middot; <a href="#">Terms
-								&amp; Conditions</a>
-						</div>
-					</div>
-				</div>
-			</footer>
-		</div>
-	</div>
-	<script type="text/javascript">
-		/* 방금 전 선택한 콤보 박스를 그대로 보여 주기 */
-		$('#mode option').each(function(index) {
-			if ($(this).val() == '${requestScope.mode}') {
-				$(this).attr('selected', 'selected');
-			}
-		});
-		/* 이전에 넣었던 값 그대로 보존 */
-		$('#keyword').val('${requestScope.keyword}');
-	</script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
-		crossorigin="anonymous"></script>
-	<script src="js/scripts.js"></script>
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
-		crossorigin="anonymous"></script>
-	<script src="assets/demo/chart-area-demo.js"></script>
-	<script src="assets/demo/chart-bar-demo.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest"
-		crossorigin="anonymous"></script>
-	<script src="js/datatables-simple-demo.js"></script>
-</body>
-</html>
+		<!--여기까지 옆에사이드바  -->
