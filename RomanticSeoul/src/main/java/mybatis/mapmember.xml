@@ -27,13 +27,11 @@
       delete from members            
       where id = #{id}
    </delete>
-<!-- 
-     
    <select id="SelectDataByPk" parameterType="String" resultType="MyMember">
       <include refid="myselect" />
        where id = #{id} and hp = #{hp}
    </select>
-      <!-- 아이디 찾기 -->
+
 	  <select id="findId" parameterType="String" resultType="MyMember">
 	  select * from members where email = #{email} 
    </select>
@@ -55,8 +53,8 @@
 
      
    
-   회원 탈퇴와 관련된 항목들
-   <update id="UpdateBoardRemark" parameterType="String">
+   <!-- 회원 탈퇴와 관련된 항목들 -->
+   <!-- <update id="UpdateBoardRemark" parameterType="String">
       update boards set remark = #{remark} 
       where writer = #{writer}
    </update>
