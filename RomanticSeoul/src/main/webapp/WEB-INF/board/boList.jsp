@@ -48,15 +48,21 @@
                         <img src="img/listing/details/comment.png" alt="">
                     </div>
                     <div class="listing__details__comment__item__text">
-                        <!-- <div class="listing__details__comment__item__rating">
+                        <div class="listing__details__comment__item__rating" id="myform" name="myform">
+                            <button>수정</button>
+                            <c:if test="${bean.id eq sessionScope.loginfo.id}">
+                            <input type="hidden" id="boseq" name="boseq" value="${bean.boseq}">
+                            <button type=button onclick="delete();">삭제</button>
+                            </c:if>
+                            <!-- <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div> -->
+                            <i class="fa fa-star"></i> -->
+                        </div>
                         <span>${bean.regdate}</span>
                         <h5>${bean.nickname}</h5>
+                        <p>${bean.id}</p>
                         <p>${bean.content}</p>
                         <ul>
                             <li><i class="fa fa-hand-o-right"></i> Like</li>
@@ -83,7 +89,7 @@
         </div>
     </div>
   </div>
-  <form>
+  <%-- <form>
 		아이디:<input type="text" id="checkid"><br> <br>
 		<button type="button" id="_check" >id 체크</button>
 	</form>
@@ -106,14 +112,30 @@
 				}
 			})
 		}
-	</script>
+	</script> --%>
 <script>
-//글쓰기
-function submit2(){
-	alert('submit2 실행');
+//글지우기
+function delete(){
+	alert('delete 실행');
+	var boseq = ${'#boseq'}
+	
+	$.ajax({
+		url : "<%=contextPath%>/bodelete.bo",
+		data : boseq,
+		type : "POST",
+		datatype : 'json',
+		success : function(data) {
+		alert('게시글 삭제 완료');
+		console.log(data);
+		location.href = "<%=contextPath%>/boList.bo";
+		},
+	eroor:function(request,status,error){
+		alert('error');
+	}
+	});
 }
+
 function submit1(){
-	alert('submit 실행');
 	if ($('#content') == null) {
 		alert('내용을 입력해주세요.');
 		return;
