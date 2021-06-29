@@ -86,8 +86,8 @@ public class MemberDao {
 	}
 	
 	    // 아이디 찾기
-		public Member findId(String email){
-			return this.abcd.selectOne(namespace + "findId", email);
+		public Member findEmail(String email){
+			return this.abcd.selectOne(namespace + "findEmail", email);
 		}
 //	public void InsertCartData(Member mem, List<ShoppingInfo> lists) {
 //		// 1. 장바구니 테이블에 혹시 남아 있을 수 있는 회원의 행을 모두 삭제합니다. 
@@ -98,4 +98,9 @@ public class MemberDao {
 //			this.abcd.insert(namespace + "InsertShoppingInfo", shpInfo);
 //		}
 //	}
+
+		public Member findId(String id) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 }
