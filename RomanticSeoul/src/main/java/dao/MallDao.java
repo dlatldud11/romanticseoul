@@ -1,31 +1,40 @@
-//package dao;
-//
-//import java.sql.Connection;
-//import java.sql.PreparedStatement;
-//import java.sql.SQLException;
-//import java.util.HashMap;
-//import java.util.List;
-//import java.util.Map;
-//import java.util.Set;
-//
-//import org.mybatis.spring.SqlSessionTemplate;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Component;
-//
-//import bean.Member;
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import bean.Eat;
+import bean.Member;
 //import bean.Order;
 //import bean.OrderDetail;
 //import shopping.ShoppingInfo;
-//
-//@Component("malldao")
-//public class MallDao {
-//	private final String namespace = "MapperMall." ;	
-//	
-//	@Autowired
-//	SqlSessionTemplate abcd;
-//	
-//	public MallDao() { }
-//	
+
+@Component("malldao")
+public class MallDao {
+	private final String namespace = "MapperMall." ;	
+	
+	@Autowired
+	SqlSessionTemplate abcd;
+	
+	public MallDao() { }
+	
+	public int InsertEat(String eatid) {
+		return this.abcd.insert(namespace + "InsertEat", eatid);
+	}
+
+	public List<Eat> selectEat() {
+		return this.abcd.selectList(namespace + "SelectEat");
+	}
+	
 //	public Order SelectDataByPk(int oid) {
 //		return this.abcd.selectOne(namespace + "SelectDataByPk", oid);
 //	}
@@ -91,4 +100,4 @@
 //		// 로그인시 나의 이전 장바구니 내역 정보를 읽어 옵니다.
 //		return this.abcd.selectList(namespace + "GetShoppingInfo", id);	 
 //	}	
-//}
+}
