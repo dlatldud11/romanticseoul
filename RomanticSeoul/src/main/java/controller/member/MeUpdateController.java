@@ -95,9 +95,9 @@ public class MeUpdateController extends SuperClass{
 			@RequestParam(value = "id", required = true) String id){
 		
 		// 여기서 xxx는 현재 수정하고자 하는 이전에 기입했던 게시물 1건을 의미합니다.
-		Member xxx = dao.SelectDataByPk(id);
+		Member bean = dao.SelectDataByPk(id);
 		
-		this.mav.addObject("bean", xxx);
+		this.mav.addObject("bean", bean);
 				
 		this.mav.setViewName(super.getpage);
 		return this.mav ;
@@ -134,7 +134,7 @@ public class MeUpdateController extends SuperClass{
 				// 업로드 폴더에 파일을 업로드합니다.
 				File destination = utility.Utility.getUploadedFileInfo(multi, realPath)  ;
 				
-				multi.transferTo(destination);
+				multi.transferTo(destination); 
 				
 				// response.sendRedirect("list.al")와 등가의 개념
 				mav.setViewName(super.postpage) ;				

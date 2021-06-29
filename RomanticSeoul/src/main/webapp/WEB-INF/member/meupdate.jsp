@@ -23,8 +23,20 @@
     <!-- Custom styles for this template -->
     <link href="<%=request.getContextPath() %>/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   <script>
+   $("input:radio[path='gender']:radio[mykey='${sessionScope.loginfo.gender}']").prop('checked', true); // 선택하기
+   $("input:radio[path='drink']:radio[mykey='${sessionScope.loginfo.drink}']").prop('checked', true); // 선택하기
+   $("input:radio[path='walk']:radio[mykey='${sessionScope.loginfo.walk}']").prop('checked', true); // 선택하기
+   $("input:radio[path='eat']:radio[mykey='${sessionScope.loginfo.eat}']").prop('checked', true); // 선택하기
+   $("input:radio[path='look']:radio[mykey='${sessionScope.loginfo.look}']").prop('checked', true); // 선택하기
+   $("input:radio[path='play']:radio[mykey='${sessionScope.loginfo.play}']").prop('checked', true); // 선택하기
+
+   $('input:radio[name='fruits']:input[value='사과']').attr("checked", true);
+
+   /* $("input:radio[name='fruits']:radio[value='사과']").prop('checked', false); // 해제하기 */
+   </script>
    <script type="text/javascript">
-   
+  
   
    
     function checkPost() {
@@ -83,6 +95,16 @@
    
 </head>
 <body>
+<label><input type="radio" name="fruits" value="사과">사과</label>
+
+<label><input type="radio" name="fruits" value="복숭아">복숭아</label>
+
+  ${sessionScope.loginfo.gender}
+   ${sessionScope.loginfo.drink}
+   ${sessionScope.loginfo.walk}
+  ${sessionScope.loginfo.eat}
+  ${sessionScope.loginfo.look}
+   ${sessionScope.loginfo.play}
    
  <div class="card card-primary offset-sm-3 col-sm-6" id="paInsert">
       <div class="card-body">
@@ -91,25 +113,26 @@
          </div>
 		<c:set var="apppath" value="<%=request.getContextPath()%>" />
          <form:form modelAttribute="member" id="myform" name="myform" method="post" enctype="multipart/form-data"
-         action="${apppath}/insert.me">
+         action="${apppath}/update.me">
          	<input type="hidden" name="idcheck" value="false">
          	<input type="hidden" name="nicknamecheck" value="false">
                 <div class="form-group">
                <label for="id" class="form-control-label col-sm-0">아이디</label>
                <div class="form-row">
-                  <div class="col-">
-                     <input type="text" class="form-control" id="id" name="id" onkeyup="idCheckFalse();">
-                  </div>
-                  <div class="col-">
-                     <input type="button" class="form-control btn btn-primary" value="중복체크" onclick="checkDuplicateId();">
-                  </div>
+                  <div class="col-sm-9">
+				        	<input type="text" class="form-control" disabled="disabled" 
+				        		id="fakeid" name="fakeid"
+				        		value="${sessionScope.loginfo.name}(${sessionScope.loginfo.id})" >				        		
+				        	<input type="hidden" name="id" value="${sessionScope.loginfo.id}">
+				      	</div>
 				<form:errors cssClass="err" path="id"/>
                </div>
             </div>
             <div class="form-group">
                <label for="password" class="form-control-label col-sm-0">비밀번호</label>
                <div class="col-">
-                  <input type="password" class="form-control" id="password" name="password">
+                  <input type="password" class="form-control" id="password" name="password" value="${sessionScope.loginfo.password}"
+                  placeholder="${sessionScope.loginfo.password}">
                </div>
 				<form:errors cssClass="err" path="password"/>
             </div>
@@ -123,7 +146,8 @@
             <div class="form-group">
                <label for="name" class="form-control-label col-sm-0">이름</label>
                <div class="col-">
-                  <input type="text" class="form-control" id="name" name="name">
+                  <input type="text" class="form-control" id="name" name="name"value="${sessionScope.loginfo.name}"
+                  placeholder="${sessionScope.loginfo.name}">
                </div>
 				<form:errors cssClass="err" path="name"/>
             </div>
@@ -132,7 +156,8 @@
             <div class="form-row">
 				<form:errors cssClass="err" path="nickname"/>
                   <div class="col-">
-                     <input type="text" class="form-control" id="nickname" name="nickname" onkeyup="nicknameCheckFalse();">
+                     <input type="text" class="form-control" id="nickname" name="nickname" onkeyup="nicknameCheckFalse();"
+                     value="${sessionScope.loginfo.nickname}" placeholder="${sessionScope.loginfo.nickname}">
                   </div>
                   <div class="col-">
                      <input type="button" class="form-control btn btn-primary" value="중복체크" onclick="checkDuplicateNickname();">
@@ -143,7 +168,7 @@
             	<label for="gender" class="form-control-label col-sm-0">성별</label>
             	<div class="form-row">
                <label class="radio-inline"> 
-				<form:radiobuttons path="gender" items="${genderlist}"
+				<form:radiobuttons id="gender" name="gender" path="gender" items="${genderlist}"
 					itemLabel="mykey" itemValue="mykey"/>
 					&nbsp;&nbsp;
 				</label> 
@@ -154,7 +179,8 @@
                <label for="email" class="form-control-label col-sm-0">이메일</label>
                <div class="form-row">
                   <div class="col-5">
-                     <input type="text" class="form-control" id="email" name="email"> 
+                     <input type="text" class="form-control" id="email" name="email"
+                     value="${sessionScope.loginfo.email}" placeholder="${sessionScope.loginfo.email}"> 
                   </div>
 					<form:errors cssClass="err" path="email" />
                </div>
@@ -162,7 +188,8 @@
             <div class="form-group">
                <label for="hp" class="form-control-label col-sm-0">휴대폰</label>
                <div class="col-">
-                  <input type="text" class="form-control" id="hp" name="hp" placeholder="ex)01012341234">
+                  <input type="text" class="form-control" id="hp" name="hp"
+                  value="${sessionScope.loginfo.hp}" placeholder="${sessionScope.loginfo.hp}">
                </div>
 				<form:errors cssClass="err" path="hp" />
             </div>
@@ -177,23 +204,27 @@
                <label for="zipcode" class="form-control-label col-sm-0">우편번호</label>
                <div class="form-row">
                   <div class="col-">
-                     <input type="text" class="form-control" id="zipcode" name="zipcode" readonly>
+                     <input type="text" class="form-control" id="zipcode" name="zipcode" 
+                      value="${sessionScope.loginfo.zipcode}" placeholder="${sessionScope.loginfo.zipcode}" readonly>
                   </div>
                   <div class="col-">
-                     <input type="button" class="form-control btn btn-primary" value="우편번호검색" onclick="checkPost()">
+                     <input type="button" class="form-control btn btn-primary" value="우편번호검색" onclick="checkPost()"
+                     >
                   </div>
                </div>
             </div>
             <div class="form-group">
                <label for="address1" class="form-control-label col-sm-0">주소</label>
                <div class="col-">
-                  <input type="text" class="form-control" id="address1" name="address1" readonly>
+                  <input type="text" class="form-control" id="address1" name="address1" 
+                  value="${sessionScope.loginfo.address1}" placeholder="${sessionScope.loginfo.address1}" readonly>
                </div>
             </div>
             <div class="form-group">
                <label for="address2" class="form-control-label col-sm-0">상세주소</label>
                <div class="col-">
-                <input type="text" class="form-control" id="address2" name="address2">
+                <input type="text" class="form-control" id="address2" name="address2"
+                value="${sessionScope.loginfo.address2}" placeholder="${sessionScope.loginfo.address2}" readonly>
 				<form:errors cssClass="err" path="address2" />
                </div>
             </div>
@@ -204,7 +235,7 @@
                <div class="form-row">
                <label for="drink" class="form-control-label col-sm-0">마실것&nbsp;</label>
                <label class="radio-inline"> 
-					<form:radiobuttons path="drink" items="${drinklist}"
+					<form:radiobuttons id="drink" name="drink" path="drink" items="${drinklist}"
 						itemLabel="mykey" itemValue="mykey"/>
 						&nbsp;&nbsp;
 					</label> 
@@ -212,7 +243,7 @@
                </div>
                <div class="form-row">
                <label for="eat" class="form-control-label col-sm-0">먹을것&nbsp;</label><label class="radio-inline"> 
-					<form:radiobuttons path="eat" items="${eatlist}"
+					<form:radiobuttons id="eat" name="eat" path="eat" items="${eatlist}"
 						itemLabel="mykey" itemValue="mykey"/>
 						&nbsp;&nbsp;
 					</label> 
@@ -220,7 +251,7 @@
                </div>
                <div class="form-row">
                <label for="play" class="form-control-label col-sm-0">놀것&nbsp;</label> <label class="radio-inline"> 
-					<form:radiobuttons path="play" items="${playlist}"
+					<form:radiobuttons id="play" name="play" path="play" items="${playlist}"
 						itemLabel="mykey" itemValue="mykey"/>
 						&nbsp;&nbsp;
 					</label> 
@@ -228,7 +259,7 @@
                </div>
                <div class="form-row">
                <label for="walk" class="form-control-label col-sm-0">걷기&nbsp;</label> <label class="radio-inline"> 
-					<form:radiobuttons path="walk" items="${walklist}"
+					<form:radiobuttons id="walk" name="walk" path="walk" items="${walklist}"
 						itemLabel="mykey" itemValue="mykey"/>
 						&nbsp;&nbsp;
 					</label> 
@@ -236,7 +267,7 @@
                </div>
                <div class="form-row">
                <label for="look" class="form-control-label col-sm-0">보기&nbsp;</label> <label class="radio-inline">
-					<form:radiobuttons path="look" items="${looklist}"
+					<form:radiobuttons id="look" name="look" path="look" items="${looklist}"
 						itemLabel="mykey" itemValue="mykey"/>
 						&nbsp;&nbsp;
 					</label> 
@@ -246,10 +277,10 @@
             <br>
                 <div class="form-group form-row">
             	<div class = "col-6">
-               		<input type="submit" class="form-control btn btn-primary" onclick="return checkForm();" value="회원수정">
+               		<button type="submit" class="form-control btn btn-primary"><b>정보수정</b></button>
                </div>
                <div class = "col-6">
-               		<input type="reset" class="form-control btn btn-secondary" value="초기화">
+               		<button type="reset" class="form-control btn btn-secondary"><b>취소</b></button>
                </div>
             </div>
          </form:form>

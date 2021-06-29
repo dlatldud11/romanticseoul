@@ -47,7 +47,7 @@
 							<a href="./insert.me">회원가입</a>
 								<br>
 								<a href="./findId.me">아이디 찾기</a>
-							<a href="">비밀번호 찾기</a>
+							<a href="./findPw.me">비밀번호 찾기</a>
 						</div>
 					</div>
 				</form>
