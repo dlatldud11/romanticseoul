@@ -14,8 +14,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-@Component("API")
-public class HelloOpenAPI {
+public class EatAPI {
 
     // tag값의 정보를 가져오는 메소드
    private String getTagValue(String tag, Element eElement) {

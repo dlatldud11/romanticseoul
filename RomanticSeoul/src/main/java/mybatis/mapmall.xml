@@ -11,13 +11,13 @@
 	<insert id="InsertLook" parameterType="String">
 	insert into eat (lookid) values (#{lookid})
 	</insert>
-	<select id="SelectEat" resultType="MyStore">
+	<select id="SelectEat" resultType="MyEat">
 	select * from eat
 	</select>
-	<select id="SelectDrink" resultType="MyStore">
+	<select id="SelectDrink" resultType="MyDrink">
 	select * from drink
 	</select>
-	<select id="SelectLook" resultType="MyStore">
+	<select id="SelectLook" resultType="MyLook">
 	select * from look
 	</select>
 </mapper>

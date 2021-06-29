@@ -8,7 +8,9 @@
       <typeAlias alias="MyBoard" type="bean.QnaBoard" />      
       <typeAlias alias="MyBoardBoard" type="bean.BoardBoard" />      
       <typeAlias alias="MyMember" type="bean.Member" />      
-      <typeAlias alias="MyStore" type="bean.Eat" />      
+      <typeAlias alias="MyEat" type="bean.Eat" />      
+      <typeAlias alias="MyDrink" type="bean.Drink" />      
+      <typeAlias alias="MyLook" type="bean.Look" />      
 <!--       <typeAlias alias="MyProduct" type="bean.Product" />
       <typeAlias alias="MyCombo1" type="bean.Combo01" />
       <typeAlias alias="MyPostcode" type="bean.Postcode" />

@@ -16,18 +16,16 @@ import bean.Eat;
 import bean.Member;
 import controller.common.SuperClass;
 import dao.MallDao;
-import utility.HelloOpenAPI;
+import utility.EatAPI;
 import zzim.MyCartList;
 
 @Controller
-public class MaTestController extends SuperClass {
+public class MaEatController extends SuperClass {
 	private final String command = "/test.ma" ;
 	private ModelAndView mav = null ;
 	private final String redirect = "redirect:/수정02.mall" ;
 	
-	@Autowired
-	@Qualifier("API")
-	private HelloOpenAPI api;
+	private EatAPI api;
 //	@Autowired
 //	@Qualifier("cdao")
 //	private CompositeDao dao ; 
@@ -36,7 +34,7 @@ public class MaTestController extends SuperClass {
 	@Qualifier("malldao")
 	private MallDao dao;
 	
-	public MaTestController() {
+	public MaEatController() {
 		super("mapexample", "eatlist");
 		this.mav = new ModelAndView();
 	}
@@ -45,6 +43,7 @@ public class MaTestController extends SuperClass {
 	public ModelAndView doGet() {
 		System.out.println("MaTest doGet 들어옴");
 		List<Eat>checks = this.dao.selectEat();
+		
 		if(checks.isEmpty()) {
 			ArrayList<String> eatlists = api.geteatlist();
 			System.out.println("eatlists "+eatlists.size());
@@ -52,7 +51,11 @@ public class MaTestController extends SuperClass {
 				this.dao.InsertEat(eatlist);
 			}
 			checks = this.dao.selectEat();
-		}else {
+		}
+		System.out.println("checks 에 내용 들어있음"+checks.size());
+		//System.out.println(checks.get(0).getEatid());
+		for(Eat eat : checks) {
+			System.out.println(eat);
 		}
 		mav.addObject("eatlists",checks);
 		mav.setViewName(super.postpage);
