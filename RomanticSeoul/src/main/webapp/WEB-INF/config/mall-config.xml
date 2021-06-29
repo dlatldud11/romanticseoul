@@ -13,6 +13,7 @@
 		
 	<!-- controller라는 패키지에서 컨트롤러를 검색합니다. -->		
 	<context:component-scan base-package="controller.mall" />
+	<context:component-scan base-package="utility" />
 	<context:component-scan base-package="dao" /> 
 		
 	<!-- ViewResolver 설정하기 -->

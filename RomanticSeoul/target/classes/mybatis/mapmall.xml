@@ -1,1 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MapperMall">
+	<insert id="InsertEat" parameterType="String">
+	insert into eat (eatid) values #{eatid}
+	</insert>
+	<insert id="InsertDrink" parameterType="String">
+	insert into drink (drinkid) values #{drinkid}
+	</insert>
+	<insert id="InsertLook" parameterType="String">
+	insert into eat (lookid) values #{lookid}
+	</insert>
+	<select id="SelectEat" resultType="MyStore">
+	select * from eat
+	</select>
+	<select id="SelectDrink" resultType="MyStore">
+	select * from drink
+	</select>
+	<select id="SelectLook" resultType="MyStore">
+	select * from look
+	</select>
+</mapper>
