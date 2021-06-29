@@ -47,7 +47,7 @@ public class MaTestController extends SuperClass {
 		List<Eat>checks = this.dao.selectEat();
 		if(checks.isEmpty()) {
 			ArrayList<String> eatlists = api.geteatlist();
-			System.out.println("eatlists "+eatlists.get(0));
+			System.out.println("eatlists "+eatlists.size());
 			for(String eatlist : eatlists) {
 				this.dao.InsertEat(eatlist);
 			}

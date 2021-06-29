@@ -75,12 +75,12 @@ public class HelloOpenAPI {
 //   }   // main end
    
    public ArrayList<String> geteatlist(){
-	   int page = 1;   // 페이지 초기값 
+	   int a = 1;   // 페이지 초기값 
 	   ArrayList<String> eatlists = new ArrayList<String>();
 	      try{
 	         while(true){
 	            // parsing할 url 지정(API 키 포함해서)
-	            String url = "http://openapi.seoul.go.kr:8088/5876546e6a6e6e6d313035734d716c50/xml/LOCALDATA_072404/1/5/"+page;
+	            String url = "http://openapi.seoul.go.kr:8088/5876546e6a6e6e6d313035734d716c50/xml/LOCALDATA_072404/"+a+"/"+(a*1000)+"/"+a;
 	            
 	            DocumentBuilderFactory dbFactoty = DocumentBuilderFactory.newInstance();
 	            DocumentBuilder dBuilder = dbFactoty.newDocumentBuilder();
@@ -109,9 +109,9 @@ public class HelloOpenAPI {
 	               }   // for end
 	            }   // if end
 	            
-	            page += 1;
-	            System.out.println("page number : "+page);
-	            if(page > 12){   
+	            a += 1;
+	            System.out.println("page number : "+a);
+	            if(a > 6){   
 	               break;
 	            }
 	         }   // while end

@@ -16,8 +16,10 @@
 	<div class="container">
 		<table>
 			<c:forEach var="bean" items="${eatlists}">
+			<tr>
 			<th>먹을거리 가게 기본키</th>
 			<td>${bean.eatid}</td>
+			</tr>
 			</c:forEach>
 		</table>
 	</div>
