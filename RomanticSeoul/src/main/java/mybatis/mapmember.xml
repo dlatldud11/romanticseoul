@@ -36,22 +36,35 @@
        where nickname = #{nickname}
    </select>
 
-	  <select id="findId" parameterType="String" resultType="MyMember">
+	<select id="findEmail" parameterType="String" resultType="MyMember">
 	  select * from members where email = #{email} 
    </select>
+   
    <update id="UpdateData" parameterType="MyMember">
       update members set      
       name = #{name},
       password = #{password},
-      hiredate = #{hiredate},
+      nickname = #{nickname},
+      email = #{email},
       gender = #{gender},
-      hobby = #{hobby},
-      job = #{job},
-      zipcode = #{zipcode},
+      hp = #{hp},
       address1 = #{address1},
-      address2 = #{address2}, 
-      where id = #{id}
-   </update>      
+      address2 = #{address2},
+      zipcode = #{zipcode},
+      drink = #{drink},
+      eat = #{eat},
+      play = #{play},
+      walk = #{walk},
+      look = #{look},
+      image = #{image},
+      remark = #{remark},
+      where id = #{id},
+      
+   </update> 
+  <!-- 비밀번호 변경 -->
+	<update id="UpdatePw" parameterType="MyMember">
+		update member set pw = #{pw} where id = #{id}
+	</update>     
 
       
 
