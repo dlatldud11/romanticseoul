@@ -103,15 +103,10 @@ td {
 			<button class="btn btn-default btn-info" type="button"
 				onclick="writeForm();">글쓰기</button>
 			<br>
-			<div class="row mt-5" align="center">
-				<div class="col text-center">
-					<div class="block-27">
-						<footer>${requestScope.pagingHtml}</footer>
-					</div>
-				</div>
 			</div>
-		</div>
-		<br>
+			<div class="block-27">
+				<footer>${requestScope.pagingHtml}</footer>
+			</div>
 	</section>
 	<script type="text/javascript">
 	   /* 방금 전 선택한 콤보 박스를 그대로 보여 주기 */ 

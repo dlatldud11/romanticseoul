@@ -89,8 +89,4 @@ public class BoardDao {
 //
 //		return this.abcd.insert(namespace + "ReplyDataInsert", bean);
 //	}
-
-	public List<QnaBoard> SelectDataList() {
-		return this.abcd.selectList(namespace + "SelectDataList");
-	}
 }

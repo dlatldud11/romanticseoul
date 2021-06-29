@@ -34,6 +34,7 @@ public class MallDao {
 	public List<Eat> selectEat() {
 		return this.abcd.selectList(namespace + "SelectEat");
 	}
+
 	
 //	public Order SelectDataByPk(int oid) {
 //		return this.abcd.selectOne(namespace + "SelectDataByPk", oid);
