@@ -8,7 +8,7 @@
 </head>
 <body>
 <%
-	String imsi = request.getContextPath() + "/insert.me";
+	String imsi = request.getContextPath() + "/test.ma";
 	response.sendRedirect(imsi) ;
 %>
 </body>
