@@ -56,6 +56,12 @@ public class QnaInsertController extends SuperClass{
 			
 		} else {
 			System.out.println("유효성 검사에 문제 없슴");
+			if (xxx.getImage().equals("") || xxx.getImage().equals(null) || xxx.getImage().equals("null"))  { // 파일 업로드 안했을 때
+				
+				mav.setViewName(super.postpage) ;				
+				this.dao.InsertData(xxx);
+			
+			} else {
 			MultipartFile multi = xxx.getFile() ;
 			String uploadPath = "/WEB-INF/upload" ;
 			//realPath :  
@@ -79,7 +85,8 @@ public class QnaInsertController extends SuperClass{
 				e.printStackTrace();
 				mav.setViewName(this.redirect) ;
 			}
-		}			
+		}
+		}
 		return this.mav ;
 	}
 }
