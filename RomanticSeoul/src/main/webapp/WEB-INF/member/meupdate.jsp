@@ -96,8 +96,8 @@
   ${sessionScope.loginfo.eat}
   ${sessionScope.loginfo.look}
    ${sessionScope.loginfo.play}
-   &{test}
-   <button type="button" onlick="check11();">눌러보기</button>
+   ${test}
+   <button type="button" onclick="check11();">눌러보기</button>
  <div class="card card-primary offset-sm-3 col-sm-6" id="paInsert">
       <div class="card-body">
          <div class="card-title">
@@ -283,7 +283,7 @@
    <jsp:include page="../common/footer.jsp" />
 </body>
   <script>
-   $(document).ready(function(){
+  /* $(document).ready(function(){
 	   $("input:radio[path='gender']:radio[mykey='${sessionScope.loginfo.gender}']").prop('checked', true); // 선택하기
 	   $("input:radio[path='drink']:radio[mykey='${sessionScope.loginfo.drink}']").prop('checked', true); // 선택하기
 	   $("input:radio[path='walk']:radio[mykey='${sessionScope.loginfo.walk}']").prop('checked', true); // 선택하기
@@ -291,18 +291,16 @@
 	   $("input:radio[path='look']:radio[mykey='${sessionScope.loginfo.look}']").prop('checked', true); // 선택하기
 	   $("input:radio[path='play']:radio[mykey='${sessionScope.loginfo.play}']").prop('checked', true); // 선택하기
 	
-	  /*  $('input:radio[name='fruits']:input[value='사과']').attr("checked", true); */
-	   $('input:radio[name='fruits']:input[value='사과']').prop("checked", true);
-	 var test = $('input:radio[name='fruits']:input[value='사과']').length);
+	  /*  $('input:radio[name='fruits']:input[value='사과']').attr("checked", true); 
+	   $('input:radio[name='fruits']:input[value='사과']').prop("checked", true); 
 	
-	   /* $("input:radio[name='fruits']:radio[value='사과']").prop('checked', false); // 해제하기 */
+	   /* $("input:radio[name='fruits']:radio[value='사과']").prop('checked', false); // 해제하기 
 	   // process.. 
-	});
+	}); */
+	 var test = $('input:radio[name='fruits']:input[value='사과']').length);
    
-   </script>
-  <script>
    function check11(){
-	   alert('ㅇㅇㅇㅇ');
+	   alert('dd');
    }
   </script>
 </html>

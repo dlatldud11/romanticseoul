@@ -1,5 +1,7 @@
 package bean;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class Menu {
 	private int menuseq;
 	private int storeseq;
@@ -7,6 +9,19 @@ public class Menu {
 	private int price;
 	private String image;
 	private String remark;
+	private MultipartFile file;
+
+	public MultipartFile getFile() {
+		return file;
+	}
+
+	public void setFile(MultipartFile file) {
+		this.file = file;
+
+		if (this.file != null) {
+			this.image = this.file.getOriginalFilename();
+		}
+	}
 	
 	
 	@Override

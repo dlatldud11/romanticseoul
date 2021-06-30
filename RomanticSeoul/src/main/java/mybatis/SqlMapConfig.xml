@@ -5,14 +5,14 @@
 <configuration>
    <!-- 마이바티스의 작동 규칙 정의 -->
 <typeAliases>
-      <typeAlias alias="MyBoard" type="bean.QnaBoard" />      
-      <typeAlias alias="MyBoardBoard" type="bean.BoardBoard" />      
-      <typeAlias alias="MyMember" type="bean.Member" />      
-      <typeAlias alias="MyEat" type="bean.Eat" />      
-      <typeAlias alias="MyDrink" type="bean.Drink" />      
-      <typeAlias alias="MyLook" type="bean.Look" />      
-<!--       <typeAlias alias="MyProduct" type="bean.Product" />
-      <typeAlias alias="MyCombo1" type="bean.Combo01" />
+		<typeAlias alias="MyBoard" type="bean.QnaBoard" />      
+		<typeAlias alias="MyBoardBoard" type="bean.BoardBoard" />      
+		<typeAlias alias="MyMember" type="bean.Member" />      
+		<typeAlias alias="MyEat" type="bean.Eat" />      
+		<typeAlias alias="MyDrink" type="bean.Drink" />      
+		<typeAlias alias="MyLook" type="bean.Look" />      
+		<typeAlias alias="MyProduct" type="bean.Menu" />
+      <!-- <typeAlias alias="MyCombo1" type="bean.Combo01" />
       <typeAlias alias="MyPostcode" type="bean.Postcode" />
       <typeAlias alias="MyCombo2" type="bean.Combo02" />
       <typeAlias alias="MyCombo3" type="bean.Combo03" />
@@ -21,7 +21,7 @@
       <typeAlias alias="MyOrder" type="bean.Order" />
       <typeAlias alias="MyOrderDetail" type="bean.OrderDetail" />
       <typeAlias alias="MyShoppingInfo" type="shopping.ShoppingInfo" /> -->
-      <typeAlias alias="MyType" type="bean.Type" />
+		<typeAlias alias="MyType" type="bean.Type" />
 </typeAliases >
 
    <!-- mapper 태그 사용시 앞에 슬래시 붙이지 말고 패키지 경로 쭉~~~ 파일 이름 명시 -->
@@ -31,7 +31,7 @@
       <mapper resource="mybatis/mapmember.xml" />
       <mapper resource="mybatis/mapboardboard.xml" />
       <mapper resource="mybatis/mapmall.xml" /> 
-      <!-- <mapper resource="mybatis/mapproduct.xml" />
-      <mapper resource="mybatis/mapcomposite.xml" />-->
+      <mapper resource="mybatis/mapproduct.xml" />
+      <!-- <mapper resource="mybatis/mapcomposite.xml" />-->
    </mappers>
 </configuration>

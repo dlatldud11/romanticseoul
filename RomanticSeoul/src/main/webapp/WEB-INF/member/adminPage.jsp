@@ -53,11 +53,7 @@
                                 Q&A
                             </a>
                             <div class="sb-sidenav-menu-heading">Store</div>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                                Product
-                            </a>
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="/menuList.pr">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Menu
                             </a>
