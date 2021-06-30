@@ -3,6 +3,7 @@ package controller.mall;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,12 +11,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Drink;
 import bean.Eat;
 import bean.Look;
 import bean.Member;
+import bean.Store;
 import controller.common.SuperClass;
 import dao.MallDao;
 import utility.DrinkAPI;
@@ -117,6 +121,23 @@ public class MaTypeController extends SuperClass {
 			System.out.println(drink);
 		}
 		mav.addObject("drinklists",checks);
+		mav.setViewName(super.postpage);
+		return this.mav ;
+	}
+	
+	@ResponseBody
+	@PostMapping("/gulist.ma")
+	public ModelAndView doGet4(HttpServletRequest request,
+			@RequestParam(value = "gu", required = true) String gu
+			,HttpSession session) {
+		System.out.println("MaTest doGet4 들어옴");
+		ArrayList<Store> eatlists = eapi.geteatGulist(gu);
+		ArrayList<Store> looklists = lapi.getlookGulist(gu);
+		ArrayList<Store> drinklists = dapi.getdrinkGulist(gu);
+//		mav.addObject("eatgulists",eatlists);
+		session.setAttribute("eatgulists", eatlists); 
+		session.setAttribute("lookgulists", looklists); 
+		session.setAttribute("drinkgulists", drinklists); 
 		mav.setViewName(super.postpage);
 		return this.mav ;
 	}

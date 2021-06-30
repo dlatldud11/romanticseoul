@@ -1,7 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <div id="map" style="width:100%;height:500px;"></div>
+<meta charset="UTF-8">
 <script src="./js/jquery-3.3.1.min.js"></script>
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=139d58a4ab00e9a3e7836d678aabdcd9"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 mapOption = { 
@@ -75,7 +79,6 @@ function displayArea(coordinates, name){
 		});
 		customOverlay.setMap(map);
 	});
-	
 	kakao.maps.event.addListener(polygon, 'click', function(mouseEvent) {
         var content = '<div class="info">' + 
                     '<div class="title">' + name + '</div>';
@@ -84,6 +87,28 @@ function displayArea(coordinates, name){
         infowindow.setContent(content); 
         infowindow.setPosition(mouseEvent.latLng); 
         infowindow.setMap(map);
+	    var gu = name;
+        ajaxstart(gu);
+        
    	});
+}
+</script>
+
+<script>
+function ajaxstart(gu){
+	$.ajax({
+		url : "${applicationScope.contextPath}/gulist.ma",
+	data : {'gu':gu},
+	type : "POST",
+	datatype : 'json',
+	success : function(data) {
+		//alert('구선택완료');
+		console.log(data);
+		location.href = "${applicationScope.contextPath}/main.co";
+		},
+	eroor:function(request,status,error){
+		alert('error');
+	}
+	});
 }
 </script>

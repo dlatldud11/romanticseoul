@@ -32,6 +32,7 @@
 String contextPath = request.getContextPath();
 String mappingName = "/main";
 %>
+<c:set var="contextPath" value="<%=contextPath%>" scope="application"/>
 <!DOCTYPE html>
 <html lang="zxx">
 <head>
