@@ -130,15 +130,20 @@ public ArrayList<Store> getdrinkGulist(String gu) {
 				if(nNode.getNodeType() == Node.ELEMENT_NODE) {
 					Element eElement = (Element) nNode;
 					Store bean = new Store();
-					System.out.println("기본키 : " + getTagValue("MGTNO" ,eElement));
+					String a = getTagValue("SITEWHLADDR" ,eElement); //지번주소
+					String b = getTagValue("RDNWHLADDR" ,eElement); //도로명주소
+					String c = a+b;
+					if(c.contains(gu)) {
+					System.out.println("drink gu와 일치");
 					bean.setCategory(getTagValue("UPTAENM" ,eElement)); //업태구분
 					bean.setName(getTagValue("BPLCNM" ,eElement)); //사업장명
-					bean.setAddress1(getTagValue("SITEWHLADDR" ,eElement)); //지번주소
-					bean.setAddress2(getTagValue("RDNWHLADDR" ,eElement)); //도로명주소
+					bean.setAddress1(a); //지번주소
+					bean.setAddress2(b); //도로명주소
 					bean.setHp(getTagValue("SITETEL" ,eElement)); //전화번호
 					bean.setRemark(getTagValue("DTLSTATENM" ,eElement)); //상세영업상태명
-					bean.setZipcode(Integer.parseInt(getTagValue("RDNPOSTNO" ,eElement))); //도로명 우편번호
+//					bean.setZipcode(Integer.parseInt(getTagValue("RDNPOSTNO" ,eElement))); //도로명 우편번호
 					drinklists.add(bean);
+					}
 				}
 			}
 			page += 1;

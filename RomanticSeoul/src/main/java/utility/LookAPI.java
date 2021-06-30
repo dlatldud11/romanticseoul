@@ -15,6 +15,7 @@ import bean.Store;
 
 public class LookAPI {
 //   public static void main(String[] args) {
+//	   ArrayList<Store> lists = getlookGulist("동대문구");
 //	   int page = 1;
 //		ArrayList<String> looklists = new ArrayList<String>();
 //	    try {
