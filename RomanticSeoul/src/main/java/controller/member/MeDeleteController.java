@@ -39,7 +39,8 @@ public class MeDeleteController extends SuperClass{
 		System.out.println("널값 들어오는지 확인하기"+bean);
 		
 		int cnt = -9999;
-		cnt = mdao.DeleteData(bean);
+
+
 		
 		// 나의 세션 정보를 클리어 해야 합니다.
 		session.invalidate();

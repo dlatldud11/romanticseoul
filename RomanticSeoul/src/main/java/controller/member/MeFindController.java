@@ -42,7 +42,7 @@ public class MeFindController extends SuperClass {
 		System.out.println(bean);
 		if (bean != null ) { // 존재하는 경우
 
-				this.mav.addObject("message", email + "은(는) <font color='green'><b>가입된</b></font>이메일입니다.") ;
+				this.mav.addObject("message", email + "은(는) 가입 된 이메일입니다. 아이디는 "+ "<font color='hotpink'><b>'"+bean.getId()+"'</b></font>"+" 입니다.") ;
 				this.mav.addObject("isCheck", false) ;
 			
 		} else { // 존재 하지 않는 경우

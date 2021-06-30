@@ -23,18 +23,9 @@
     <!-- Custom styles for this template -->
     <link href="<%=request.getContextPath() %>/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-   <script>
-   $("input:radio[path='gender']:radio[mykey='${sessionScope.loginfo.gender}']").prop('checked', true); // 선택하기
-   $("input:radio[path='drink']:radio[mykey='${sessionScope.loginfo.drink}']").prop('checked', true); // 선택하기
-   $("input:radio[path='walk']:radio[mykey='${sessionScope.loginfo.walk}']").prop('checked', true); // 선택하기
-   $("input:radio[path='eat']:radio[mykey='${sessionScope.loginfo.eat}']").prop('checked', true); // 선택하기
-   $("input:radio[path='look']:radio[mykey='${sessionScope.loginfo.look}']").prop('checked', true); // 선택하기
-   $("input:radio[path='play']:radio[mykey='${sessionScope.loginfo.play}']").prop('checked', true); // 선택하기
-
-   $('input:radio[name='fruits']:input[value='사과']').attr("checked", true);
-
-   /* $("input:radio[name='fruits']:radio[value='사과']").prop('checked', false); // 해제하기 */
-   </script>
+	 <!-- 적용방법 3 -->
+	<script src="http://code.jquery.com/jquery-latest.js"></script>
+ 
    <script type="text/javascript">
   
   
@@ -95,9 +86,9 @@
    
 </head>
 <body>
-<label><input type="radio" name="fruits" value="사과">사과</label>
+<label><input type="radio" id="fruits" name="fruits" value="사과">사과</label>
 
-<label><input type="radio" name="fruits" value="복숭아">복숭아</label>
+<label><input type="radio" id="fruits" name="fruits" value="복숭아">복숭아</label>
 
   ${sessionScope.loginfo.gender}
    ${sessionScope.loginfo.drink}
@@ -105,7 +96,8 @@
   ${sessionScope.loginfo.eat}
   ${sessionScope.loginfo.look}
    ${sessionScope.loginfo.play}
-   
+   &{test}
+   <button type="button" onlick="check11();">눌러보기</button>
  <div class="card card-primary offset-sm-3 col-sm-6" id="paInsert">
       <div class="card-body">
          <div class="card-title">
@@ -236,7 +228,7 @@
                <label for="drink" class="form-control-label col-sm-0">마실것&nbsp;</label>
                <label class="radio-inline"> 
 					<form:radiobuttons id="drink" name="drink" path="drink" items="${drinklist}"
-						itemLabel="mykey" itemValue="mykey"/>
+						itemLabel="mykey" itemValue="mykey" />
 						&nbsp;&nbsp;
 					</label> 
 					<form:errors cssClass="err" path="drink" />
@@ -290,4 +282,27 @@
    <br>
    <jsp:include page="../common/footer.jsp" />
 </body>
+  <script>
+   $(document).ready(function(){
+	   $("input:radio[path='gender']:radio[mykey='${sessionScope.loginfo.gender}']").prop('checked', true); // 선택하기
+	   $("input:radio[path='drink']:radio[mykey='${sessionScope.loginfo.drink}']").prop('checked', true); // 선택하기
+	   $("input:radio[path='walk']:radio[mykey='${sessionScope.loginfo.walk}']").prop('checked', true); // 선택하기
+	   $("input:radio[path='eat']:radio[mykey='${sessionScope.loginfo.eat}']").prop('checked', true); // 선택하기
+	   $("input:radio[path='look']:radio[mykey='${sessionScope.loginfo.look}']").prop('checked', true); // 선택하기
+	   $("input:radio[path='play']:radio[mykey='${sessionScope.loginfo.play}']").prop('checked', true); // 선택하기
+	
+	  /*  $('input:radio[name='fruits']:input[value='사과']').attr("checked", true); */
+	   $('input:radio[name='fruits']:input[value='사과']').prop("checked", true);
+	 var test = $('input:radio[name='fruits']:input[value='사과']').length);
+	
+	   /* $("input:radio[name='fruits']:radio[value='사과']").prop('checked', false); // 해제하기 */
+	   // process.. 
+	});
+   
+   </script>
+  <script>
+   function check11(){
+	   alert('ㅇㅇㅇㅇ');
+   }
+  </script>
 </html>
