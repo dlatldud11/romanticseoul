@@ -38,6 +38,31 @@
 			</tr>
 			</c:forEach>
 		</table>
+		<table>
+			<c:forEach var="bean" items="${eatgulists}">
+			<tr>
+			<th colspan="2">구별 먹거리 가게</th>
+			</tr>
+			<tr>
+				<th>업태구분</th>
+				<th>상세영업상태명</th>
+				<th>지번주소</th>
+				<th>도로명주소</th>
+				<th>전화번호</th>
+				<th>상세영업상태명</th>
+				<th>도로명우편번호</th>
+			</tr>
+			<tr>
+				<td>${bean.category}</td>
+				<td>${bean.name}</td>
+				<td>${bean.address1}</td>
+				<td>${bean.address2}</td>
+				<td>${bean.hp}</td>
+				<td>${bean.remark}</td>
+				<td>${bean.zipcode}</td>
+			</tr>
+			</c:forEach>
+		</table>
 	</div>
 </body>
 </html>

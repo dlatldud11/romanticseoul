@@ -1,8 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ include file="common.jsp"%>
 <%@ include file="map.jsp"%>
 <!-- 지도를 표시할 div 입니다 -->
 
 <!-- Most Search Section Begin -->
+<meta charset="UTF-8">
 <section class="most-search spad">
 	<div class="container">
 		<div class="row">
@@ -12,6 +15,17 @@
 					<h3>
 						<span id="guName" style="font-family: 'Noto Sans KR', sans-serif;"></span>
 					</h3>
+					테스트테스트
+					${eatgulists}ㅇㅇ
+					<c:forEach var="bean" items="${requestScope.eatgulists}">
+						${bean.category}
+						${bean.name}
+						${bean.address1}
+						${bean.address2}
+						${bean.hp}
+						${bean.remark}
+						${bean.zipcode}
+					</c:forEach>
 				</div>
 			</div>
 			<div class="col-lg-12">
