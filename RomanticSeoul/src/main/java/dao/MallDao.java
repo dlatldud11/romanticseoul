@@ -12,7 +12,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import bean.Drink;
 import bean.Eat;
+import bean.Look;
 import bean.Member;
 //import bean.Order;
 //import bean.OrderDetail;
@@ -33,6 +35,22 @@ public class MallDao {
 
 	public List<Eat> selectEat() {
 		return this.abcd.selectList(namespace + "SelectEat");
+	}
+	
+	public int InsertLook(String id) {
+		return this.abcd.insert(namespace + "InsertLook", id);
+	}
+
+	public List<Look> selectLook() {
+		return this.abcd.selectList(namespace + "SelectLook");
+	}
+	
+	public int InsertDrink(String id) {
+		return this.abcd.insert(namespace + "InsertDrink", id);
+	}
+
+	public List<Drink> selectDrink() {
+		return this.abcd.selectList(namespace + "SelectDrink");
 	}
 
 	

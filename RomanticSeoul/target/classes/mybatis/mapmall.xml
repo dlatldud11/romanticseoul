@@ -9,7 +9,7 @@
 	insert into drink (drinkid) values (#{drinkid})
 	</insert>
 	<insert id="InsertLook" parameterType="String">
-	insert into eat (lookid) values (#{lookid})
+	insert into look (lookid) values (#{lookid})
 	</insert>
 	<select id="SelectEat" resultType="MyEat">
 	select * from eat

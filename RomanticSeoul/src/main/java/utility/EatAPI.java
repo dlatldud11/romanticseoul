@@ -103,7 +103,6 @@ public class EatAPI {
 	                  //System.out.println(eElement.getTextContent());
 	                  System.out.println("관리번호  : " + getTagValue("MGTNO", eElement));
 	                  eatlists.add(getTagValue("MGTNO", eElement));
-	                  System.out.println("eatlist 에 들어옴"+eatlists.get(temp));
 	                  
 	               }   // for end
 	            }   // if end

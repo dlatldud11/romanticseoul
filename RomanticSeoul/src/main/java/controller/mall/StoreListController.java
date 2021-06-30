@@ -20,7 +20,7 @@ public class StoreListController extends SuperClass{
 	private final String redirect = "redirect:/수정02.mall" ;
 	
 	@Autowired
-	@Qualifier("madao")
+	@Qualifier("malldao")
 	private MallDao dao ; 	
 	
 	public StoreListController() {
