@@ -96,14 +96,13 @@ function displayArea(coordinates, name){
 
 <script>
 function ajaxstart(gu){
-	alert(gu);
 	$.ajax({
-		url : "${applicationScope.contextPath}/eatgulist.ma",
+		url : "${applicationScope.contextPath}/gulist.ma",
 	data : {'gu':gu},
 	type : "POST",
 	datatype : 'json',
 	success : function(data) {
-		alert('구선택완료');
+		//alert('구선택완료');
 		console.log(data);
 		location.href = "${applicationScope.contextPath}/main.co";
 		},

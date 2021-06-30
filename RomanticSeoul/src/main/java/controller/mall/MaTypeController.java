@@ -126,15 +126,18 @@ public class MaTypeController extends SuperClass {
 	}
 	
 	@ResponseBody
-	@PostMapping("/eatgulist.ma")
+	@PostMapping("/gulist.ma")
 	public ModelAndView doGet4(HttpServletRequest request,
 			@RequestParam(value = "gu", required = true) String gu
 			,HttpSession session) {
 		System.out.println("MaTest doGet4 들어옴");
 		ArrayList<Store> eatlists = eapi.geteatGulist(gu);
-		System.out.println("eapi 가 리스트 다 가져옴");
+		ArrayList<Store> looklists = lapi.getlookGulist(gu);
+		ArrayList<Store> drinklists = dapi.getdrinkGulist(gu);
 //		mav.addObject("eatgulists",eatlists);
 		session.setAttribute("eatgulists", eatlists); 
+		session.setAttribute("lookgulists", looklists); 
+		session.setAttribute("drinkgulists", drinklists); 
 		mav.setViewName(super.postpage);
 		return this.mav ;
 	}

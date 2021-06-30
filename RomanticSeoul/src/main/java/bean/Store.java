@@ -2,18 +2,18 @@ package bean;
 
 public class Store {
 	private int storeseq;
-	private String category; // 업태구분
-	private String name; // 상세영업상태명
-	private String address1; // 지번주소
-	private String address2; // 도로명 주소
-	private String hp; // 전화번호
+	private String category; // e:업태구분 l:분류 d:업태구분
+	private String name; // e:사업장명 l:명칭 d:사업장명
+	private String address1; // e:지번주소 d:지번주소
+	private String address2; // e:도로명 주소 l:행정 시+행정 구+행정 동 d:도로명주소
+	private String hp; // e:전화번호 d:전화번호
 	private String explain;
 	private String x;
 	private String y;
-	private String gu; 
+	private String gu;// l: 행정 구
 	private int likes;
-	private String remark; // 상세영업상태명
-	private int zipcode; // 도로명 우편번호
+	private String remark; // e:상세영업상태명 d:상세영업상태명
+	private int zipcode; // e:도로명 우편번호 d:도로명 우편번호
 	
 	
 	@Override

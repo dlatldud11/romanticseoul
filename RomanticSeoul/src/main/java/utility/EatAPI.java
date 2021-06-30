@@ -152,11 +152,11 @@ public class EatAPI {
 	                  String b = getTagValue("RDNWHLADDR", eElement);
 	                  String c = getTagValue("SITEWHLADDR", eElement);
 	                  String d = b+c; // 주소 합침
-	                  if(d.contains(gu)) {
+	                  if(d.contains(gu) && !(getTagValue("DTLSTATENM", eElement).equals("폐업"))) {
 	                	  System.out.println("원하는 구 값이 나옴");
 	                	  Store bean = new Store();
 	                	  bean.setCategory(getTagValue("UPTAENM", eElement)); //업태구분
-	                	  bean.setName(getTagValue("DTLSTATENM", eElement)); //상세영업상태명
+	                	  bean.setName(getTagValue("BPLCNM", eElement)); //사업장명
 	                	  bean.setAddress1(c); //지번주소
 	                	  bean.setAddress2(b); //도로명주소
 	                	  bean.setHp(getTagValue("SITETEL", eElement)); //전화번호
