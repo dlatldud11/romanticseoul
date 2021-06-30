@@ -22,6 +22,22 @@
 			</tr>
 			</c:forEach>
 		</table>
+		<table>
+			<c:forEach var="bean" items="${looklists}">
+			<tr>
+			<th>먹을거리 가게 기본키</th>
+			<td>${bean.lookid}</td>
+			</tr>
+			</c:forEach>
+		</table>
+		<table>
+			<c:forEach var="bean" items="${drinklists}">
+			<tr>
+			<th>먹을거리 가게 기본키</th>
+			<td>${bean.drinkid}</td>
+			</tr>
+			</c:forEach>
+		</table>
 	</div>
 </body>
 </html>

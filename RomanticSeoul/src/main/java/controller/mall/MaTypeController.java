@@ -30,7 +30,9 @@ public class MaTypeController extends SuperClass {
 	private final String redirect = "redirect:/수정02.mall" ;
 	
 	private EatAPI eapi;
+	
 	private LookAPI lapi;
+	
 	private DrinkAPI dapi;
 //	@Autowired
 //	@Qualifier("cdao")
@@ -43,6 +45,10 @@ public class MaTypeController extends SuperClass {
 	public MaTypeController() {
 		super("mapexample", "eatlist");
 		this.mav = new ModelAndView();
+		this.eapi = new EatAPI();
+		this.lapi = new LookAPI();
+		this.dapi = new DrinkAPI();
+		
 	}
 	
 	@GetMapping(command)
@@ -72,18 +78,19 @@ public class MaTypeController extends SuperClass {
 	@GetMapping("/looklist.ma")
 	public ModelAndView doGet2() {
 		System.out.println("MaTest doGet2 들어옴");
+		
 		List<Look>checks = this.dao.selectLook();
 		
 		if(checks.isEmpty()) {
-			List<String> looklists = lapi.getLooklists();
-			System.out.println("eatlists "+looklists.size());
+			System.out.println("checks에 값 안 들어있음");
+			ArrayList<String> looklists = lapi.getLooklists();
+			System.out.println("looklists "+looklists.size());
 			for(String looklist : looklists) {
 				this.dao.InsertLook(looklist);
 			}
 			checks = this.dao.selectLook();
 		}
 		System.out.println("checks 에 내용 들어있음"+checks.size());
-		//System.out.println(checks.get(0).getEatid());
 		for(Look look : checks) {
 			System.out.println(look);
 		}
@@ -106,7 +113,6 @@ public class MaTypeController extends SuperClass {
 			checks = this.dao.selectDrink();
 		}
 		System.out.println("checks 에 내용 들어있음"+checks.size());
-		//System.out.println(checks.get(0).getEatid());
 		for(Drink drink : checks) {
 			System.out.println(drink);
 		}

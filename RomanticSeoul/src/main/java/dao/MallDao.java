@@ -42,7 +42,7 @@ public class MallDao {
 	}
 
 	public List<Look> selectLook() {
-		return this.abcd.selectList(namespace + "SelectEat");
+		return this.abcd.selectList(namespace + "SelectLook");
 	}
 	
 	public int InsertDrink(String id) {
