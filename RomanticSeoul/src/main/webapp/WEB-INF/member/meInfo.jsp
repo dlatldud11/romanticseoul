@@ -19,6 +19,9 @@
 	function gotoUpdate(){
 		location.href='<%=contextPath%>/update.me?id=${sessionScope.loginfo.id}';
 	}
+	function gotoDelete(){
+		location.href='<%=contextPath%>/delete.me?id=${sessionScope.loginfo.id}';
+	}
 	</script>
 </head>
 <body>
@@ -103,7 +106,7 @@
 				<button class="btn btn-primary" onclick="gotoBack();">
 					돌아 가기
 				</button>
-				<button type="button" onclick=""  class="btn btn-danger">
+				<button type="button" onclick="gotoDelete();"  class="btn btn-danger">
 					회원 삭제
 				</button>
 			</div>
