@@ -8,37 +8,17 @@
 <html>
 <head>   
    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>내 정보 수정</title>
-
-   <link href="<%=request.getContextPath() %>/bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="<%=request.getContextPath() %>/bootstrap/css/sb-admin-2.min.css" rel="stylesheet">
-   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	 <!-- 적용방법 3 -->
-	<script src="http://code.jquery.com/jquery-latest.js"></script>
- 
-   <script type="text/javascript">
-  
-  
-   
-    function checkPost() {
-      var width = 500; //팝업의 너비
-      var height = 500; //팝업의 높이
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<!-- <script type="text/javascript">
+	function checkPost() {
+		var width = 500; //팝업의 너비
+		var height = 500; //팝업의 높이
          
-       new daum.Postcode({
-         width : width, //생성자에 크기 값을 명시적으로 지정해야 합니다.
-           height : height,
+		new daum.Postcode({
+			width : width, //생성자에 크기 값을 명시적으로 지정해야 합니다.
+	           height : height,
       
-           oncomplete: function(data) {
+           	oncomplete: function(data) {
               var addr = ''; // 주소 변수
               var extraAddr = ''; // 참고항목 변수
 
@@ -74,30 +54,57 @@
    });  
  }
 
-   </script>
-   <style type="text/css">
-      div#tiddiv,div#passworddiv,div#repassworddiv,div#imagediv,div#hpdiv,div#emaildiv,div#namediv,div#birthdiv,div#genderdiv,div#addressdiv,div#zipcodediv{
-         color:red;
-         font-size:10pt;
-         font-weight:bold;
-         padding-left:5px;
-      }
-   </style>
-   
+   </script> -->
+<script>
+$(document).ready(function(){
+	$("input[name='gender']").each(function(){
+		if($(this).val()=="${sessionScope.loginfo.gender}"){
+			//alert($(this).val());
+			$("input:radio[name='gender']:radio[value='${sessionScope.loginfo.gender}']").prop('checked', true);
+		}
+	});
+	$("input[name='drink']").each(function(){
+		if($(this).val()=="${sessionScope.loginfo.drink}"){
+			//alert($(this).val());
+			$("input:radio[name='drink']:radio[value='${sessionScope.loginfo.drink}']").prop('checked', true);
+		}
+	});
+	$("input[name='eat']").each(function(){
+		if($(this).val()=="${sessionScope.loginfo.eat}"){
+			//alert($(this).val());
+			$("input:radio[name='eat']:radio[value='${sessionScope.loginfo.eat}']").prop('checked', true);
+		}
+	});
+	$("input[name='look']").each(function(){
+		if($(this).val()=="${sessionScope.loginfo.look}"){
+			//alert($(this).val());
+			$("input:radio[name='look']:radio[value='${sessionScope.loginfo.look}']").prop('checked', true);
+		}
+	});
+	$("input[name='walk']").each(function(){
+		if($(this).val()=="${sessionScope.loginfo.walk}"){
+			//alert($(this).val());
+			$("input:radio[name='walk']:radio[value='${sessionScope.loginfo.walk}']").prop('checked', true);
+		}
+	});
+	$("input[name='play']").each(function(){
+		if($(this).val()=="${sessionScope.loginfo.play}"){
+			//alert($(this).val());
+			$("input:radio[name='play']:radio[value='${sessionScope.loginfo.play}']").prop('checked', true);
+		}
+	});
+});
+</script>
+<style type="text/css">
+div#tiddiv,div#passworddiv,div#repassworddiv,div#imagediv,div#hpdiv,div#emaildiv,div#namediv,div#birthdiv,div#genderdiv,div#addressdiv,div#zipcodediv{
+	color:red;
+	font-size:10pt;
+	font-weight:bold;
+    padding-left:5px;
+}
+</style>
 </head>
 <body>
-<label><input type="radio" id="fruits" name="fruits" value="사과">사과</label>
-
-<label><input type="radio" id="fruits" name="fruits" value="복숭아">복숭아</label>
-
-  ${sessionScope.loginfo.gender}
-   ${sessionScope.loginfo.drink}
-   ${sessionScope.loginfo.walk}
-  ${sessionScope.loginfo.eat}
-  ${sessionScope.loginfo.look}
-   ${sessionScope.loginfo.play}
-   &{test}
-   <button type="button" onlick="check11();">눌러보기</button>
  <div class="card card-primary offset-sm-3 col-sm-6" id="paInsert">
       <div class="card-body">
          <div class="card-title">
@@ -138,7 +145,7 @@
             <div class="form-group">
                <label for="name" class="form-control-label col-sm-0">이름</label>
                <div class="col-">
-                  <input type="text" class="form-control" id="name" name="name"value="${sessionScope.loginfo.name}"
+                  <input type="text" class="form-control" id="name" name="name" value="${sessionScope.loginfo.name}"
                   placeholder="${sessionScope.loginfo.name}">
                </div>
 				<form:errors cssClass="err" path="name"/>
@@ -228,7 +235,7 @@
                <label for="drink" class="form-control-label col-sm-0">마실것&nbsp;</label>
                <label class="radio-inline"> 
 					<form:radiobuttons id="drink" name="drink" path="drink" items="${drinklist}"
-						itemLabel="mykey" itemValue="mykey" />
+						itemLabel="mykey" itemValue="mykey"/>
 						&nbsp;&nbsp;
 					</label> 
 					<form:errors cssClass="err" path="drink" />
@@ -282,27 +289,4 @@
    <br>
    <jsp:include page="../common/footer.jsp" />
 </body>
-  <script>
-   $(document).ready(function(){
-	   $("input:radio[path='gender']:radio[mykey='${sessionScope.loginfo.gender}']").prop('checked', true); // 선택하기
-	   $("input:radio[path='drink']:radio[mykey='${sessionScope.loginfo.drink}']").prop('checked', true); // 선택하기
-	   $("input:radio[path='walk']:radio[mykey='${sessionScope.loginfo.walk}']").prop('checked', true); // 선택하기
-	   $("input:radio[path='eat']:radio[mykey='${sessionScope.loginfo.eat}']").prop('checked', true); // 선택하기
-	   $("input:radio[path='look']:radio[mykey='${sessionScope.loginfo.look}']").prop('checked', true); // 선택하기
-	   $("input:radio[path='play']:radio[mykey='${sessionScope.loginfo.play}']").prop('checked', true); // 선택하기
-	
-	  /*  $('input:radio[name='fruits']:input[value='사과']').attr("checked", true); */
-	   $('input:radio[name='fruits']:input[value='사과']').prop("checked", true);
-	 var test = $('input:radio[name='fruits']:input[value='사과']').length);
-	
-	   /* $("input:radio[name='fruits']:radio[value='사과']").prop('checked', false); // 해제하기 */
-	   // process.. 
-	});
-   
-   </script>
-  <script>
-   function check11(){
-	   alert('ㅇㅇㅇㅇ');
-   }
-  </script>
 </html>
