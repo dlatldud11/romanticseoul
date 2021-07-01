@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Menu;
-import bean.QnaBoard;
 import controller.common.SuperClass;
 import dao.ProductDao;
 import utility.FlowParameters;
@@ -29,9 +28,10 @@ public class MenuListController extends SuperClass{
 	private ProductDao dao ;
 	
 	public MenuListController() {
-		super("menuList.pr", null);
+		super("menuList", null);
 		this.mav = new ModelAndView();
 	}
+	
 	
 	@GetMapping(command)
 	public ModelAndView doGet(

@@ -19,14 +19,11 @@
 	</select>
 	<select id="SelectDataList" resultType="MyProduct">
 		select * from menu order by menuseq desc
-		<if test="mode == 'id'">
-			where id like #{keyword}
+		<if test="mode == 'mname'">
+			where mname like #{mname}
 		</if>
-		<if test="mode == 'title'">
-			where title like #{keyword}
-		</if>
-		<if test="mode == 'content'">
-			where content like #{keyword}
+		<if test="mode == 'price'">
+			where price like #{price}
 		</if>
 	</select>
 	<select id="SelectDataByPk" parameterType="Integer" resultType="MyProduct">

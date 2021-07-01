@@ -7,6 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,10 +19,11 @@ import bean.Menu;
 import controller.common.SuperClass;
 import dao.ProductDao;
 
+@Controller
 public class MenuInsertController extends SuperClass{
-	private final String command = "/menuInsert.bo" ; 
+	private final String command = "/menuInsert.pr" ; 
 	private ModelAndView mav = null ;
-	private String redirect = "redirect:/menuList.bo" ;
+	private String redirect = "redirect:/menuList.pr" ;
 	
 	@Autowired
 	@Qualifier("pdao")
@@ -55,7 +57,7 @@ public class MenuInsertController extends SuperClass{
 			System.out.println("유효성 검사에 문제 없슴");
 			if (xxx.getImage().equals("") || xxx.getImage().equals(null) || xxx.getImage().equals("null"))  { // 파일 업로드 안했을 때
 				
-				mav.setViewName(super.postpage) ;				
+				mav.setViewName(super.getpage) ;				
 				this.dao.InsertData(xxx);
 			
 			} else {
