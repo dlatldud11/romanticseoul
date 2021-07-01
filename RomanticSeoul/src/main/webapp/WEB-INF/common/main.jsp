@@ -60,7 +60,7 @@
 								</div>
 							</div>
 							</c:forEach>
-							<c:forEach var="bean" items="${drinklists}">
+							<c:forEach var="bean" items="${drinkgulists}">
 							<div class="col-lg-4 col-md-6">
 								<div class="listing__item">
 									<div class="listing__item__pic set-bg"
@@ -74,7 +74,7 @@
 									</div>
 									<div class="listing__item__text">
 										<div class="listing__item__text__inside">
-											<h5>Shrimp floured and fried</h5>
+											<h5>${bean.name}</h5>
 											<div class="listing__item__text__rating">
 												<div class="listing__item__rating__star">
 													<span class="icon_star"></span> <span class="icon_star"></span>
@@ -84,22 +84,25 @@
 												<h6>$40 - $70</h6>
 											</div>
 											<ul>
-												<li><span class="icon_pin_alt"></span> 1012 Vesper Dr.
-													Columbus, Georgia(GA), United States</li>
-												<li><span class="icon_phone"></span> (+12) 345-678-910</li>
+												<li><span class="icon_pin_alt"></span>
+												${bean.address2}
+												</li>
+												<li><span class="icon_phone"></span>${bean.hp}</li>
 											</ul>
 										</div>
 										<div class="listing__item__text__info">
 											<div class="listing__item__text__info__left">
-												<img src="img/listing/list_small_icon-2.png" alt=""> <span>Food
-													& Drink</span>
+												<img src="img/listing/list_small_icon-2.png" alt=""> 
+												<span>${bean.category}</span>
 											</div>
-											<div class="listing__item__text__info__right closed">Closed</div>
+											<div class="listing__item__text__info__right closed">${bean.remark}</div>
 										</div>
 									</div>
 								</div>
 							</div>
 							</c:forEach>	
+							
+							<c:forEach var="bean" items="${lookgulists}">
  							<div class="col-lg-4 col-md-6">
 								<div class="listing__item">
 									<div class="listing__item__pic set-bg"
@@ -113,7 +116,7 @@
 									</div>
 									<div class="listing__item__text">
 										<div class="listing__item__text__inside">
-											<h5>Sweet and sour pork ribs</h5>
+											<h5>${bean.name}</h5>
 											<div class="listing__item__text__rating">
 												<div class="listing__item__rating__star">
 													<span class="icon_star"></span> <span class="icon_star"></span>
@@ -123,20 +126,23 @@
 												<h6>$40 - $70</h6>
 											</div>
 											<ul>
-												<li><span class="icon_pin_alt"></span> 251 Wiley St.
-													Forks, Washington(WA), United States</li>
-												<li><span class="icon_phone"></span> (+12) 345-678-910</li>
+												<li><span class="icon_pin_alt"></span>
+												${bean.address2}
+												</li>
+												<li><span class="icon_phone"></span>없으니까 삭제 고려</li>
 											</ul>
 										</div>
 										<div class="listing__item__text__info">
 											<div class="listing__item__text__info__left">
-												<img src="img/listing/list_small_icon-1.png" alt=""> <span>Restaurant</span>
+												<img src="img/listing/list_small_icon-1.png" alt=""> 
+												<span>${bean.category}</span>
 											</div>
-											<div class="listing__item__text__info__right">Open Now</div>
+											<div class="listing__item__text__info__right">내용없으니 삭제 고려</div>
 										</div>
 									</div>
 								</div>
 							</div> <!-- 가게 리스트 -->
+							</c:forEach>
 							
 						</div>
 					</div>

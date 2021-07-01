@@ -120,29 +120,32 @@ td {
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">Member</div>
-						<a class="nav-link" href="/meList.me">
-							<div class="sb-nav-link-icon">
+						<div class="sb-nav-link-icon">
+							<a class="nav-link" href="/meList.me">
 								<i class="fas fa-tachometer-alt"></i>
-							</div> Member List
-						</a> <a class="nav-link" href="/adminBoList.bo">
-							<div class="sb-nav-link-icon">
+							</a> 
+						</div> Member List
+						<div class="sb-nav-link-icon">
+							<a class="nav-link" href="/adminBoList.bo">
 								<i class="fas fa-tachometer-alt"></i>
-							</div> Q&A
-						</a>
+							</a>
+						</div> Q&A
 						<div class="sb-sidenav-menu-heading">Store</div>
-						<a class="nav-link" href="#">
-							<div class="sb-nav-link-icon">
+						<div class="sb-nav-link-icon">
+							<a class="nav-link" href="#">
 								<i class="fas fa-tachometer-alt"></i>
-							</div> Product
-						</a> <a class="nav-link" href="#">
-							<div class="sb-nav-link-icon">
+							</a> 
+						</div> Product
+						<div class="sb-nav-link-icon">
+							<a class="nav-link" href="#">
 								<i class="fas fa-tachometer-alt"></i>
-							</div> Menu
-						</a> <a class="nav-link" href="#">
-							<div class="sb-nav-link-icon">
+							</a> 
+						</div> Menu
+						<div class="sb-nav-link-icon">
+							<a class="nav-link" href="#">
 								<i class="fas fa-tachometer-alt"></i>
-							</div> Qty
-						</a>
+							</a>
+						</div> Qty
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">

@@ -17,14 +17,14 @@ import dao.MemberDao;
 public class MeDeleteController extends SuperClass{
 	private final String command = "/delete.me" ;
 	private ModelAndView mav = null ;
-	private final String redirect = "./meList.me" ;
+	private final String redirect = "redirect:/meLoginForm.me" ;
 	
 	@Autowired
 	@Qualifier("mdao")
 	private MemberDao mdao;
 	
 	public MeDeleteController() {
-		super("meLoginForm", "meList");
+		super("meLoginForm", null);
 		this.mav = new ModelAndView();
 	}
 	
@@ -40,28 +40,10 @@ public class MeDeleteController extends SuperClass{
 		
 		int cnt = -9999;
 
-
-		
 		// 나의 세션 정보를 클리어 해야 합니다.
 		session.invalidate();
+		cnt = mdao.DeleteData(bean) ;
 		this.mav.setViewName(redirect);
-		return this.mav;
-	}
-	
-	@GetMapping("/adminDelete.me")
-	public ModelAndView dodo(
-		@RequestParam(value = "id", required = true) String id,
-		HttpSession session) {
-		// 회원 탈퇴 시, 과거 주문 내역과 작성했던 게시물 내역에 대한 수정이 필요합니다.
-		// 그래서, DeleteData 메소드에 member 객체를 매개 변수로 넘겨 주어야 합니다.
-		
-		Member bean = mdao.SelectDataByPk(id);
-		System.out.println("널값 들어오는지 확인하기"+bean);
-		
-		int cnt = -9999;
-		cnt = mdao.DeleteData(bean);
-		
-		this.mav.setViewName(this.redirect);
 		return this.mav;
 	}
 }

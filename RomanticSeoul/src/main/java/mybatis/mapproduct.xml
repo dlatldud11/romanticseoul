@@ -1,1 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="MapProduct">
+	<sql id="myselect">
+		SELECT * FROM menu
+	</sql>
+	<select id="SelectTotalCount" resultType="int">
+		select count(*) as cnt from menu
+		<if test="mode == 'id'">
+			where id like #{keyword}
+		</if>
+		<if test="mode == 'title'">
+			where title like #{keyword}
+		</if>
+		<if test="mode == 'content'">
+			where content like #{keyword}
+		</if>
+	</select>
+	<select id="SelectDataList" resultType="MyProduct">
+		select * from menu order by menuseq desc
+		<if test="mode == 'mname'">
+			where mname like #{mname}
+		</if>
+		<if test="mode == 'price'">
+			where price like #{price}
+		</if>
+	</select>
+	<select id="SelectDataByPk" parameterType="Integer" resultType="MyProduct">
+		<include refid="myselect" />
+		 where menu_seq = #{menu_seq}
+	</select>
+	<delete id="DeleteData" parameterType="int">
+		delete from menu where menu_seq = #{menu_seq} 
+	</delete>
+	<!-- <select id="getTotalCount" resultType="int">
+		select count(*) from boards
+		<if test="what == 'albumname'">
+			where albumname like #{keyword}
+		</if>		
+		<if test="what == 'song'">
+			where song like #{keyword}
+		</if>	
+	</select>
+		
+	<update id="UpdateReadhit" parameterType="int">
+		update boards set readhit = readhit + 1 
+		where no = #{no}
+	</update>	
+	<update id="UpdateData" parameterType="MyProduct">
+		update boards set 
+		content=#{content}, password=#{password}, 
+		regdate=to_date(#{regdate}, 'yyyy/mm/dd'), 
+		subject=#{subject}, writer=#{writer}
+		where no = #{no} 
+	</update>
+		
+	<select id="SelectDataList" resultType="MyBoard">
+		<include refid="myselect" />
+	</select> -->
+	<!-- <insert id="InsertData" parameterType="MyProduct">
+		insert into 
+		menu(menu_seq, id, regdate, content, title, checks, recontent, reregdate, remark, image)		
+		values(qna_seq.nextval, #{id, jdbcType=VARCHAR}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), #{content, jdbcType=VARCHAR}, #{title, jdbcType=VARCHAR}, '미답변', #{recontent, jdbcType=VARCHAR}, #{reregdate, jdbcType=VARCHAR}, #{remark, jdbcType=VARCHAR}, #{image, jdbcType=VARCHAR})
+	</insert> -->
+</mapper>

@@ -105,6 +105,18 @@ div#tiddiv,div#passworddiv,div#repassworddiv,div#imagediv,div#hpdiv,div#emaildiv
 </style>
 </head>
 <body>
+<label><input type="radio" id="fruits" name="fruits" value="사과">사과</label>
+
+<label><input type="radio" id="fruits" name="fruits" value="복숭아">복숭아</label>
+
+  ${sessionScope.loginfo.gender}
+   ${sessionScope.loginfo.drink}
+   ${sessionScope.loginfo.walk}
+  ${sessionScope.loginfo.eat}
+  ${sessionScope.loginfo.look}
+   ${sessionScope.loginfo.play}
+   ${test}
+   <button type="button" onclick="check11();">눌러보기</button>
  <div class="card card-primary offset-sm-3 col-sm-6" id="paInsert">
       <div class="card-body">
          <div class="card-title">
@@ -289,4 +301,5 @@ div#tiddiv,div#passworddiv,div#repassworddiv,div#imagediv,div#hpdiv,div#emaildiv
    <br>
    <jsp:include page="../common/footer.jsp" />
 </body>
+
 </html>
