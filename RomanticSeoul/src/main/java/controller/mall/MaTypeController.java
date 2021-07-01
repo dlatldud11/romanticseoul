@@ -138,6 +138,9 @@ public class MaTypeController extends SuperClass {
 		session.setAttribute("eatgulists", eatlists); 
 		session.setAttribute("lookgulists", looklists); 
 		session.setAttribute("drinkgulists", drinklists); 
+		System.out.println("eat : "+eatlists.size());
+		System.out.println("look : "+looklists.size());
+		System.out.println("drink : "+drinklists.size());
 		mav.setViewName(super.postpage);
 		return this.mav ;
 	}
