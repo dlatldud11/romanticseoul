@@ -9,9 +9,9 @@ button{
 }
 </style>
 <script>
-<%-- function writeForm(){
+function writeForm(){
 	location.href='<%=contextPath%>/qnaBoList.bo';
-} --%>
+}
 $(document).ready(function(){
 	$("#btnSave").click(function(){
 		var title = $("#title").val();
@@ -39,8 +39,9 @@ $(document).ready(function(){
                 </div>
                 <div class="card-body">
                 <c:set var="apppath" value="<%=request.getContextPath()%>" />
-                    <form:form id="form" name="form" modelAttribute="qnaBoard" role="form" action="${apppath}/qnaBoInsert.bo" method="post" enctype="multipart/form-data">
+                    <form:form id="form" name="form" modelAttribute="qnaBoard" role="form" action="${apppath}/qnaBoUpdate.bo" method="post" enctype="multipart/form-data">
                         <div class="form-row m-b-55">
+                        <input type="hidden" id="qnaseq" name="qnaseq" value="${bean.qnaseq}">
                             <div class="name">ID</div>
                             <div class="value">
                                 <div class="row row-space">
