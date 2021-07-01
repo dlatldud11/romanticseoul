@@ -13,6 +13,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -58,7 +59,7 @@ public class QnaInsertController extends SuperClass{
 			System.out.println("유효성 검사에 문제 없슴");
 			if (xxx.getImage().equals("") || xxx.getImage().equals(null) || xxx.getImage().equals("null"))  { // 파일 업로드 안했을 때
 				
-				mav.setViewName(super.postpage) ;				
+				mav.setViewName(this.redirect) ;				
 				this.dao.InsertData(xxx);
 			
 			} else {

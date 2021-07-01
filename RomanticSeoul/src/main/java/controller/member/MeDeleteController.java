@@ -17,7 +17,7 @@ import dao.MemberDao;
 public class MeDeleteController extends SuperClass{
 	private final String command = "/delete.me" ;
 	private ModelAndView mav = null ;
-	private final String redirect = "./meList.me" ;
+	private final String redirect = "redirect:/meList.me" ;
 	
 	@Autowired
 	@Qualifier("mdao")

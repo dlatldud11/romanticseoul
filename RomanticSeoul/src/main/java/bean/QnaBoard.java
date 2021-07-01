@@ -1,5 +1,7 @@
 package bean;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class QnaBoard {
@@ -116,6 +118,5 @@ public class QnaBoard {
 				+ regdate + ", checks=" + checks + ", recontent=" + recontent + ", reregdate=" + reregdate + ", remark="
 				+ remark + ", image=" + image + ", file=" + file + "]";
 	}
-	
-	
+
 }
