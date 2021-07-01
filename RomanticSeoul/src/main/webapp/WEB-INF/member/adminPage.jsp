@@ -44,25 +44,25 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading">Member</div>
-                            <a class="nav-link" href="/meList.me">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+	                            <a class="nav-link" href="/meList.me">
                                 Member List
-                            </a>
-                            <a class="nav-link" href="/adminBoList.bo">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+    	                        </a>
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+	                            <a class="nav-link" href="/adminBoList.bo">
                                 Q&A
-                            </a>
+    	                        </a>
                             <div class="sb-sidenav-menu-heading">Store</div>
-                            <a class="nav-link" href="/menuList.pr">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+	                            <li><a class="nav-link" href="./menuList.pr">
                                 Menu
-                            </a>
-                            <a class="nav-link" href="#">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+    	                        </a></li>
+                            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+	                            <a class="nav-link" href="#">
                                 Qty
-                            </a>
-                        </div>
-                    </div>
+    	                        </a>
+        	                </div>
+                   		</div>
                     <div class="sb-sidenav-footer">
                         <div class="small">Logged in as:</div>
                         Start Bootstrap

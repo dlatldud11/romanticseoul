@@ -1,4 +1,6 @@
 <%@ include file="../common/common.jsp"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%-- 스프링 관련 설정 코드 --%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
@@ -9,8 +11,8 @@ button{
 }
 </style>
 <script>
-<%--  function writeForm(){
-	location.href='<%=contextPath%>/qnaBoList.bo';
+<%-- function writeForm(){
+	location.href='<%=contextPath%>/menuList.bo';
 } --%>
 $(document).ready(function(){
 	$("#btnSave").click(function(){
@@ -39,7 +41,7 @@ $(document).ready(function(){
                 </div>
                 <div class="card-body">
                 <c:set var="apppath" value="<%=request.getContextPath()%>" />
-                    <form:form id="form" name="form" modelAttribute="qnaBoard" role="form" action="${apppath}/qnaBoInsert.bo" method="post" enctype="multipart/form-data">
+                    <form:form id="form" name="form" modelAttribute="menu" role="form" action="${apppath}/menuInsert.bo" method="post" enctype="multipart/form-data">
                         <div class="form-row m-b-55">
                             <div class="name">ID</div>
                             <div class="value">
