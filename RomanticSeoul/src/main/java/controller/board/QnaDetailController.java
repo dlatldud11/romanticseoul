@@ -7,12 +7,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import bean.Board;
 import bean.Member;
 import bean.QnaBoard;
 import controller.common.SuperClass;
 import dao.BoardDao;
+import utility.FlowParameters;
 
 @Controller
 public class QnaDetailController extends SuperClass{
@@ -28,13 +31,23 @@ public class QnaDetailController extends SuperClass{
 		super("qnaDetailView", "qnaBoList");
 		this.mav = new ModelAndView();
 	}
+	
 	@GetMapping(command)
 	public ModelAndView doGet(
-			@RequestParam(value = "qnaseq", required = true) int qnaseq, 
+			@RequestParam(value = "qnaseq", required = true) int qnaseq,
+			@RequestParam(value = "pageNumber", required = false) String pageNumber, 
+			@RequestParam(value = "pageSize", required = false) String pageSize,
+			@RequestParam(value = "mode", required = false) String mode,
+			@RequestParam(value = "keyword", required = false) String keyword,
 			HttpSession session){
 		
 		QnaBoard bean = dao.SelectDataByPk(qnaseq) ;
-	
+		
+		FlowParameters parameters 
+			= new FlowParameters(pageNumber, pageSize, mode, keyword);
+		
+		System.out.println(this.getClass() + " : " + parameters.toString());
+		
 		if (bean != null) { 
 			// 작성자의 게시물이 아니면 조회수를 +1 증가시킵니다.
 			// bean.getWriter()와 세션의 loginfo의 id를 비교합니다.
@@ -47,7 +60,7 @@ public class QnaDetailController extends SuperClass{
 				dao.UpdateReadhit(qnaseq) ;
 			}
 			mav.addObject("bean", bean);
-			//mav.addObject("parameters", parameters.toString());
+			mav.addObject("parameters", parameters.toString());
 			
 			//상세 보기 페이지로 이동
 			this.mav.setViewName(super.getpage);

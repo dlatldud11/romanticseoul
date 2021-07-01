@@ -18,6 +18,7 @@ public class MeDeleteController extends SuperClass{
 	private final String command = "/delete.me" ;
 	private ModelAndView mav = null ;
 	private final String redirect = "redirect:/meLoginForm.me" ;
+
 	
 	@Autowired
 	@Qualifier("mdao")

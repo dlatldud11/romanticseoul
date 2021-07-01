@@ -36,6 +36,9 @@
 	<delete id="DeleteData" parameterType="int">
 		delete from qna where qnaseq = #{qnaseq} 
 	</delete>
+	<update id="UpdateData" parameterType="MyBoard">
+		update qna set title = #{title}, content = #{content}, image = #{image} where qnaseq = #{qnaseq}
+	</update>
 	<!-- <select id="getTotalCount" resultType="int">
 		select count(*) from boards
 		<if test="what == 'albumname'">
@@ -50,13 +53,7 @@
 		update boards set readhit = readhit + 1 
 		where no = #{no}
 	</update>	
-	<update id="UpdateData" parameterType="MyBoard">
-		update boards set 
-		content=#{content}, password=#{password}, 
-		regdate=to_date(#{regdate}, 'yyyy/mm/dd'), 
-		subject=#{subject}, writer=#{writer}
-		where no = #{no} 
-	</update>
+	
 		
 	<select id="SelectDataList" resultType="MyBoard">
 		<include refid="myselect" />
@@ -66,4 +63,7 @@
 		qna(qnaseq, id, regdate, content, title, checks, recontent, reregdate, remark, image)		
 		values(qna_seq.nextval, #{id, jdbcType=VARCHAR}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'), #{content, jdbcType=VARCHAR}, #{title, jdbcType=VARCHAR}, '미답변', #{recontent, jdbcType=VARCHAR}, #{reregdate, jdbcType=VARCHAR}, #{remark, jdbcType=VARCHAR}, #{image, jdbcType=VARCHAR})
 	</insert>
+	<update id="ReplyInsertData" parameterType="MyBoard">
+		update qna set checks ='답변완료', recontent = #{recontent, jdbcType=VARCHAR}, reregdate = TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI') where qnaseq = #{qnaseq}
+	</update>
 </mapper>

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import bean.QnaBoard;
+import bean.Reply;
 
 @Component("bdao")
 public class BoardDao {
@@ -69,24 +70,8 @@ public class BoardDao {
 		System.out.println(this.ListData(bean));
 		return this.abcd.selectList(namespace + "ListData", bean); 
 	}
-//	public int ReplyData(QnaBoard bean) {
-////		-- 다음 문장으로 업데이트를 수행한다.
-////		-- update sample set orderno = orderno + 1 where groupno = 부모의groupno and orderno > 부모의orderno ; 
-//		int groupno = bean.get() ;
-//		int orderno = bean.getOrderno() ;
-//		
-//		int cnt = -99999 ;
-//		
-//		Map<String, Integer> map = new HashMap<String, Integer>() ;
-//		map.put("groupno", groupno) ;
-//		map.put("orderno", orderno) ;
-//		cnt = this.abcd.update(namespace + "ReplyDataUpdate", map);
-//		
-////		-- 다음의 값으로 인서트한다.
-////		-- num : 시퀀스.nextval, groupno : 부모의groupno사용, orderno은 1증가, depth는 1증가 시켜서 인서트한다.
-//		bean.setOrderno(bean.getOrderno() + 1 );
-//		bean.setDepth(bean.getDepth() + 1);		
-//
-//		return this.abcd.insert(namespace + "ReplyDataInsert", bean);
-//	}
+	public int ReplyInsertData(QnaBoard bean) {
+		return this.abcd.insert(namespace + "ReplyInsertData", bean);
+	}
+
 }
