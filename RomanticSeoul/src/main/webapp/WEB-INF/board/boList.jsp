@@ -113,7 +113,7 @@
 				                            </button>
 		                            	</c:if>
 		                            	<c:if test="${bean.id eq sessionScope.loginfo.id || sessionScope.loginfo.id eq 'admin'}">
-				                            <button type=button onclick="location.href='<%=contextPath%>/bodelete.bo?boseq=${bean.boseq}'">삭제</button>
+				                            <button type=button onclick="location.href='<%=contextPath%>/boRedelete.bo?replyseq=${bean2.replyseq}'">삭제</button>
 		                            	</c:if>
                             <!-- <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -157,9 +157,11 @@
 							    </c:if>
 							    </c:forEach>
 							    <div class="listing__details__review">
-							    <form:form>
-							    	<textarea placeholder="댓글을 입력하세요"></textarea>
-							    	<button type="button" onlick=submit2();>댓글작성</button>
+							    <form:form id="myreform" name="myreform" modelAttribute="reply">
+							    	<textarea id="content" name="content" placeholder="댓글을 입력하세요"></textarea>
+							    	<input type = "hidden" id="id" name="id" value="${sessionScope.loginfo.id}">
+							    	<input type = "hidden" id="boseq" name="boseq" value="${bean.boseq}">
+							    	<button type="button" onclick="submit2();">댓글작성</button>
 							    </form:form>
 							    </div>
 							  </div>
@@ -216,7 +218,7 @@ var reply_check = 'N';
 				alert('댓글 작성중입니다.');
 				return;
 			}
- 		document.getElementById('UpdateReContent'+boseq).innerHTML = "<form id='myreform' name='myreform'>"
+ 		document.getElementById('UpdateReContent'+boseq).innerHTML = "<form id='myrenewform' name='myrenewform'>"
  		+"<div class='form-row'>"
  		+"<textarea name='content' id='content'>"+ content +"</textarea></div>"
  		+"<input type='hidden' id='replyseq' name='replyseq' value='" + boseq +"'>"
@@ -259,9 +261,8 @@ function submit1(){
 	data : $('#myform').serialize(),
 	type : "POST",
 	datatype : 'json',
-	success : function(data) {
+	success : function() {
 		alert('게시글 등록 완료');
-		console.log(data);
 		location.href = "<%=contextPath%>/boList.bo";
 		},
 	eroor:function(request,status,error){
@@ -269,17 +270,18 @@ function submit1(){
 	}
 	});
 }
-
+</script>
+<script>
 function submit2(){
+	alert('submit2 실행');
 	// 댓글 작성
 	$.ajax({
-		url : "<%=contextPath%>/boInsert.bo",
-	data : $('#myform').serialize(),
+		url : "<%=contextPath%>/boReInsert.bo",
+	data : $('#myreform').serialize(),
 	type : "POST",
 	datatype : 'json',
-	success : function(data) {
-		alert('게시글 등록 완료');
-		console.log(data);
+	success : function() {
+		alert('댓글 등록 완료');
 		location.href = "<%=contextPath%>/boList.bo";
 		},
 	eroor:function(request,status,error){

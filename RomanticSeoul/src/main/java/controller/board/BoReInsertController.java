@@ -54,6 +54,7 @@ public class BoReInsertController extends SuperClass{
 			@ModelAttribute("reply") @Valid Reply xxx,
 			BindingResult asdf,
 			HttpServletRequest request){
+		System.out.println("BoReInsert 컨트롤러 두포스트 : "+xxx.toString());
 		this.dao.InsertReply(xxx);
 		this.mav.setViewName(super.postpage);
 		return this.mav ;

@@ -73,7 +73,7 @@
 		regdate = to_char(sysdate,'yyyy/MM/dd/HH24:MI:SS')
 		where replyseq = #{replyseq}	
 	</update>
-	<delete id="DeleteDataByReplyseq" parameterType="java.util.Map">
+	<delete id="DeleteDataByReplyseq" parameterType="int">
 		delete from b_reply where replyseq = #{replyseq} 
 	</delete>
 	<select id="SelectReply" resultType="MyReply">
