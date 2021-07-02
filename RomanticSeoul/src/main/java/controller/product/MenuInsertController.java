@@ -35,10 +35,11 @@ public class MenuInsertController extends SuperClass{
 	}
 	
 	@GetMapping(command)
-	public ModelAndView doGet(){		
+	public ModelAndView doGet()
+	{		
 		this.mav.setViewName(super.getpage);
 		System.out.println("doGet 메소드");
-		return this.mav ;
+		return this.mav;
 	}
 	
 	@PostMapping(command)
@@ -47,46 +48,55 @@ public class MenuInsertController extends SuperClass{
 			BindingResult asdf,
 			HttpServletRequest request){
 		
-		if (asdf.hasErrors()) {
+		if(asdf.hasErrors())
+		{
 			System.out.println("유효성 검사에 문제 있슴");
 			System.out.println(asdf);
 			this.mav.addObject("bean", xxx);	
 			this.mav.setViewName(super.getpage);
 			
-		} else {
+		}
+		else{
 			System.out.println("유효성 검사에 문제 없슴");
+			System.out.println("이미지 사진 : " + xxx.getImage());
 			if (xxx.getImage().equals("") || xxx.getImage().equals(null) || xxx.getImage().equals("null"))  { // 파일 업로드 안했을 때
 				
 				mav.setViewName(super.getpage) ;				
 				this.dao.InsertData(xxx);
 			
-			} else {
-			MultipartFile multi = xxx.getFile() ;
-			String uploadPath = "/WEB-INF/upload" ;
+			}
+			else
+			{
+			MultipartFile multi = xxx.getFile();
+			String uploadPath = "/WEB-INF/upload";
 			//realPath :  
 			String realPath = request.getRealPath(uploadPath) ;
 			System.out.println(realPath);			
 			
 			try {
-				File destination = utility.Utility.getUploadedFileInfo(multi, realPath)  ;
+				File destination = utility.Utility.getUploadedFileInfo(multi, realPath);
 				
 				multi.transferTo(destination);
-				mav.setViewName(this.redirect) ;				
+				mav.setViewName(this.redirect);				
 				
 				xxx.setImage(destination.getName());
 				this.dao.InsertData(xxx);
 				
-			} catch (IllegalStateException e) {				
+			}
+			catch (IllegalStateException e)
+			{				
 				e.printStackTrace();
-				mav.setViewName("") ;
+				mav.setViewName("");
 				
-			} catch (Exception e) {				
+			}
+			catch (Exception e)
+			{				
 				e.printStackTrace();
-				mav.setViewName(this.redirect) ;
+				mav.setViewName(this.redirect);
 			}
 		}
 		}
-		return this.mav ;
+		return this.mav;
 	}
 }
 

@@ -23,7 +23,7 @@ public class MeFindPwController extends SuperClass {
 	private MemberDao mdao  ; 
 	
 	public MeFindPwController() {
-		super("findPw", "foundPd");
+		super("findPw", "foundPw");
 		this.mav = new ModelAndView();
 	}
 	
@@ -36,9 +36,9 @@ public class MeFindPwController extends SuperClass {
 	
 	@PostMapping(command)
 	public ModelAndView doPost(
-			@RequestParam(value="id", required = true) String id){
+			@RequestParam(value="id", required = true) String id, @RequestParam(value="email", required = true) String email){
 		
-		Member bean = mdao.findId(id) ;
+		Member bean = mdao.findPassword(id, email) ;
 		System.out.println(bean);
 		if (bean != null ) { // 존재하는 경우
 

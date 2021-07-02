@@ -49,7 +49,7 @@ td {
 	function searchAll(){
 		//$('#mode').val('-');
 		//$('#keyword').val('');
-		location.href='<%=contextPath%>/menuList.bo';
+		location.href='<%=contextPath%>/menuList.pr';
 	}
 </script>
 <style>
@@ -67,19 +67,23 @@ form.form-inline{
 				<tr>
 					<td colspan="10" align="center">
 						<form class="form-inline" role="form" name="myform" action="<%=contextPath%>/menuList.pr" method="get">
-							<div class="form-group">
-								<select class="form-control" name="mode" id="mode">
-									<option value="all" selected="selected">--- Area ---
-								</select>
-							</div>
-							<div class="form-group">
-								<select class="form-control" name="mode" id="mode">
-									<option value="all" selected="selected">--- CATEGORY ---
-								</select>
-							</div>
+							 <div class="form-group">
+							 <form:select  path="gulists">
+							    <form:option value="NONE"> --SELECT--</form:option>
+							    <form:options items="${gulists}" itemLabel="mykey" itemValue="mykey"></form:options>
+							  </form:select>
+							 </div>
 							<div class="form-group">
 								<select class="form-control" name="mode" id="mode">
 									<option value="all" selected="selected">--- category ---
+									<option value="eat">eat
+									<option value="drink">drink
+									<option value="look">look
+								</select>
+							</div>
+							<div class="form-group">
+							 <select id="good">
+								<option>좋아하는 멤버를 선택해주세요</option>
 								</select>
 							</div>
 							<div class="form-group">
@@ -93,43 +97,18 @@ form.form-inline{
 					</td>
 					</tr>
 					<tr>
-						<th>NO</th>
-						<th>AREA</th>
-						<th>CATEGORY</th>
-						<th>STORE NAME</th>
-						<th>VIEW</th>
+						<th>category</th>
+						<th>name</th>
+						<th>address</th>
 					</tr>
 				</thead>
-				<tr>
-					
-				</tr>
 				<tbody>
-					<c:forEach var="bean" items="${requestScope.lists}">
+					<c:forEach var="bean" items="${storelists}">
 						<tr>
-							<td>${bean.qnaseq}</td>
-							<td>${bean.id}</td>
-							<td>
-							<a href="<%=contextPath%>/menuView.pr?menuseq=${bean.menuseq}&${requestScope.parameters}">
-								${bean.title}
-							</a>
-							</td>
-							<td>${bean.regdate}</td>
-							<td>${bean.checks}</td>
-							<td>
-							<c:if test="${sessionScope.loginfo.id == bean.id}">
-								<a href="<%=contextPath%>/menuUpdate.bo?menuseq=${bean.menuseq}&${requestScope.parameters}">
-									UPDATE
-								</a>
-							</c:if>
-						</td>
-						<td>
-							<c:if test="${sessionScope.loginfo.id == bean.id or sessionScope.loginfo.id == 'admin'}">
-								<a href="<%=contextPath%>/menuDelete.bo?menuseq=${bean.menuseq}&${requestScope.parameters}">
-									DELETE
-								</a>
-							</c:if>
-						</td>
-						</tr>
+						<td>${bean.category}</td>
+						<td>${bean.name}</td>
+						<td>${bean.address2}</td>
+					</tr>
 					</c:forEach>
 				</tbody>
 			</table>
@@ -154,4 +133,25 @@ form.form-inline{
 	</script>
 	<jsp:include page="../common/footer.jsp" />
 </body>
+<script>
+function categoryChange(e) {
+	var eat = ${eatlists};
+	var drink = ${drinklists};
+	var look = ${looklists};
+	var target = document.getElementById("mode");
+
+	if(e.value == "eat") var d = eat;
+	else if(e.value == "drink") var d = drink;
+	else if(e.value == "look") var d = look;
+
+	target.options.length = 0;
+
+	for (x in d) {
+		var opt = document.createElement("option");
+		opt.value = d.mykey;
+		opt.innerHTML = d.mykey;
+		target.appendChild(opt);
+	}	
+}
+</script>
 </html>

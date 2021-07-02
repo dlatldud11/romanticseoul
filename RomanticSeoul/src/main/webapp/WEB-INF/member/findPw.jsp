@@ -25,7 +25,7 @@
 			<c:set var="apppath" value="<%=request.getContextPath()%>" />
 			<form:form action="${apppath}/findPw.me" method="post">
 				<div class="w3-center w3-large w3-margin-top">
-					<h3>아이디 찾기</h3>
+					<h3>비밀번호 찾기</h3>
 				</div>
 				<div>
 					<p>

@@ -10,6 +10,55 @@ public class Menu {
 	private String image;
 	private String remark;
 	private MultipartFile file;
+	private String drinkid;
+	private String eatid;
+	private String lookid;
+	
+	
+	
+	
+	
+	/**
+	 * @return the drinkid
+	 */
+	public String getDrinkid() {
+		return drinkid;
+	}
+
+	/**
+	 * @param drinkid the drinkid to set
+	 */
+	public void setDrinkid(String drinkid) {
+		this.drinkid = drinkid;
+	}
+
+	/**
+	 * @return the eatid
+	 */
+	public String getEatid() {
+		return eatid;
+	}
+
+	/**
+	 * @param eatid the eatid to set
+	 */
+	public void setEatid(String eatid) {
+		this.eatid = eatid;
+	}
+
+	/**
+	 * @return the lookid
+	 */
+	public String getLookid() {
+		return lookid;
+	}
+
+	/**
+	 * @param lookid the lookid to set
+	 */
+	public void setLookid(String lookid) {
+		this.lookid = lookid;
+	}
 
 	public MultipartFile getFile() {
 		return file;
