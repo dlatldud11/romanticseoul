@@ -103,6 +103,11 @@ form.form-inline{
 					</tr>
 				</thead>
 				<tbody>
+					<tr>
+						<td>카테고리</td>
+						<td>가게이름</td>
+						<td>가게주소</td>
+					</tr>
 					<c:forEach var="bean" items="${storelists}">
 						<tr>
 						<td>${bean.category}</td>

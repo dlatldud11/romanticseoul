@@ -125,10 +125,10 @@ public class MenuListController extends SuperClass{
 			if(parameters.getMode().equals("eat")) {
 				List<Store> eatlists = this.eapi.geteatGulist(gulists); // eat 선택했을 때 구별로 가져오는 메소드
 				mav.addObject("storelists",eatlists);
-			}else if(mode.equals("look")) {
+			}else if(parameters.getMode().equals("look")) {
 				List<Store> looklists = this.lapi.getlookGulist(gulists); // eat 선택했을 때 구별로 가져오는 메소드
 				mav.addObject("storelists",looklists);
-			}else if(mode.equals("drink")) {
+			}else if(parameters.getMode().equals("drink")) {
 				List<Store> drinklists = this.dapi.getdrinkGulist(gulists); // eat 선택했을 때 구별로 가져오는 메소드
 				mav.addObject("storelists",drinklists);
 			}
