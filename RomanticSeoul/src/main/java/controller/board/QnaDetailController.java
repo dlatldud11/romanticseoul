@@ -31,7 +31,7 @@ public class QnaDetailController extends SuperClass{
 		super("qnaDetailView", "qnaBoList");
 		this.mav = new ModelAndView();
 	}
-	
+	@ResponseBody
 	@GetMapping(command)
 	public ModelAndView doGet(
 			@RequestParam(value = "qnaseq", required = true) int qnaseq,
@@ -56,9 +56,10 @@ public class QnaDetailController extends SuperClass{
 			// login : 현재 접속한 사람의 정보를 저장하고 있는 객체입니다.
 			Member login =  (Member)session.getAttribute("loginfo") ;
 			
-			if(bean.getId() == null || !bean.getId().equals(login.getId())) {
-				dao.UpdateReadhit(qnaseq) ;
-			}
+			/*
+			 * if(bean.getId() == null || !bean.getId().equals(login.getId())) {
+			 * dao.UpdateReadhit(qnaseq) ; }
+			 */
 			mav.addObject("bean", bean);
 			mav.addObject("parameters", parameters.toString());
 			

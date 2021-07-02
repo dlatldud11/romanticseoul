@@ -1,7 +1,6 @@
 package controller.board;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -37,13 +35,6 @@ public class QnaReInsertController extends SuperClass{
 		super("qnaDetailView", "qnaDetailView");
 		this.mav = new ModelAndView();
 	}
-//	@ResponseBody
-//	@RequestMapping(value="idCheck.do", produces = "application/String; charset=utf-8")
-//	//적어주기만 하면 무조건 session에 넘어간다 (의존성)
-//	public String idCheck(String id, HttpSession session) {
-//		String str = "오케이";
-//		return str;	
-//	}
 	
 	@ResponseBody
 	@GetMapping(command)
