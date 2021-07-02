@@ -185,6 +185,7 @@ public ArrayList<Store> getdrinkGulist(String gu) {
 					String c = a+b;
 					if(c.contains(gu)) {
 					System.out.println("drink gu와 일치");
+					bean.setStoreseq(getTagValue("MGTNO" ,eElement)); //기본키
 					bean.setCategory(getTagValue("UPTAENM" ,eElement)); //업태구분
 					bean.setName(getTagValue("BPLCNM" ,eElement)); //사업장명
 					bean.setAddress1(a); //지번주소

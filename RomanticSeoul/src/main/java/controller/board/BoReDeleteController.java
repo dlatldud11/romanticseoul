@@ -49,8 +49,8 @@ public class BoReDeleteController extends SuperClass{
 			@ModelAttribute("reply") @Valid Reply xxx,
 			BindingResult asdf,
 			HttpServletRequest request){
-		System.out.println("BoReInsert 컨트롤러 두포스트 : "+xxx.toString());
-		this.dao.InsertReply(xxx);
+		System.out.println("BoReDelete 컨트롤러 두포스트 : "+xxx.toString());
+		this.dao.DeleteDataByReplyseq(xxx.getBoseq());
 		this.mav.setViewName(super.postpage);
 		return this.mav ;
 	}
