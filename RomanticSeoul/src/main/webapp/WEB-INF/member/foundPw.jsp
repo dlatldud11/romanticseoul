@@ -15,7 +15,7 @@
 		})
 	})
 </script>
-<title>이메일 찾기</title>
+<title>비밀번호 찾기 검색결과</title>
 </head>
 <body>
 	<div class="w3-content w3-container w3-margin-top">

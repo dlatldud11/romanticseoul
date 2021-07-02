@@ -60,7 +60,7 @@ public class QnaReController extends SuperClass{
 
 			System.out.println(xxx.toString());
 			
-			cnt = dao.ReplyData(xxx) ;
+			cnt = dao.ReplyInsertData(xxx) ;
 			
 			
 			// request 객체의 내용을 보존하면서 목록 보기 페이지로 넘겨 줍니다.

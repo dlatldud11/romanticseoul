@@ -43,7 +43,7 @@ $(document).ready(function(){
                 <c:set var="apppath" value="<%=request.getContextPath()%>" />
                     <form:form id="form" name="form" modelAttribute="menu" role="form" action="${apppath}/menuInsert.pr" method="post" enctype="multipart/form-data">
                         <div class="form-row m-b-55">
-                            <div class="name">ID</div>
+                            <div class="name">MNAME</div>
                             <div class="value">
                                 <div class="row row-space">
                                     <div class="col-12">
@@ -76,6 +76,14 @@ $(document).ready(function(){
                             <div class="value">
                                 <div class="input-group">
                                     <input class="input--style-5" type="text" name="title" id="title" placeholder="세분화 해주세요^^">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">STORE NAME</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-5" type="text" name="title" id="title" placeholder="가게이름은 어떻게 돼세요?">
                                 </div>
                             </div>
                         </div>
