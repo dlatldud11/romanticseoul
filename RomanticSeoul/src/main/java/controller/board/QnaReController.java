@@ -9,6 +9,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Board;
@@ -36,16 +38,18 @@ public class QnaReController extends SuperClass{
 		super("reply", "qnaDetailView");
 		this.mav = new ModelAndView();
 	}
-	
+	@ResponseBody
 	@GetMapping(command)
 	public ModelAndView doGet(){		
 		this.mav.setViewName(super.getpage);
 		return this.mav ;
 	}
-	
+	@ResponseBody
 	@PostMapping(command)
 	public ModelAndView doPost(
-		@ModelAttribute("board") @Valid QnaBoard xxx,
+		@ModelAttribute("board")
+		@RequestParam(value="qnaseq",required=false) int qnaseq,
+		@Valid QnaBoard xxx,
 		BindingResult asdf){		
 		
 		if ( asdf.hasErrors() ) {

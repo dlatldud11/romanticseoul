@@ -1,11 +1,19 @@
-<%@ include file="../common/common.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="../common/common.jsp"%>
+<!DOCTYPE html>
+<html lang="zxx">
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript"></script>
+
+<head>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 function gotoBack(){
 	location.href='<%=contextPath%>/qnaBoList.bo?${requestScope.parameters}';
 	}
 </script>
+</head>
 <div class="panel-heading">
 	<h2 class="panel-title" align="left">게시물 상세 보기</h2>
 </div>
@@ -39,102 +47,118 @@ function gotoBack(){
 		</table>
 	</div>
 </div>
-<c:forEach var="bean" items="${lists}">
-	<div class="listing__details__comment__item">
-		<div class="listing__details__comment__item__pic">
-			<img src="img/listing/details/comment.png" alt="">
-		</div>
-		<div class="listing__details__comment__item__text">
-			<div class="listing__details__comment__item__rating">
-				<c:choose>
-					<c:when test="${bean.id eq sessionScope.loginfo.id}">
-						<button type="button"
-							onclick="openUpdate(${bean.boseq},'${bean.content}' )">
-							수정</button>
-					</c:when>
-					<c:when
-						test="${bean.id eq sessionScope.loginfo.id || sessionScope.loginfo.id eq 'admin'}">
-						<button type=button
-							onclick="location.href='<%=contextPath%>/bodelete.bo?boseq=${bean.boseq}'">삭제</button>
-					</c:when>
-				</c:choose>
-			</div>
-			<span>${bean.regdate}</span>
-			<h5>${bean.id}</h5>
-			<div id="UpdateContent${bean.boseq}">
-				<p>${bean.content}</p>
-			</div>
-			<div id="insertReply">
-				<ul>
-					<li><i class="fa fa-hand-o-right"></i> Like</li>
-					<li>
-						<!-- <div data-toggle="collapse" data-target="#demo"> --> <i
-						id="comment" name="comment" class="fa fa-share-square-o"
-						data-toggle="collapse" data-target="#demo"></i> Reply
-					</li>
-				</ul>
-				<div id="demo" class="collapse">
-					<!-- 댓글부분 -->
-					<div class="listing__details__comment__item">
-						<div class="listing__details__comment__item__pic">
-							<img src="img/listing/details/comment.png" alt="">
-						</div>
-						<div class="listing__details__comment__item__text">
-							<div class="listing__details__comment__item__rating">
-								<c:choose>
-									<c:when test="${bean.id eq sessionScope.loginfo.id}">
-										<button type="button"
-											onclick="openUpdate(${bean.boseq},'${bean.content}' )">
-											수정</button>
-									</c:when>
-									<c:when
-										test="${bean.id eq sessionScope.loginfo.id || sessionScope.loginfo.id eq 'admin'}">
-										<button type=button
-											onclick="location.href='<%=contextPath%>/bodelete.bo?boseq=${bean.boseq}'">삭제</button>
-									</c:when>
-								</c:choose>
-							</div>
-							<span>${bean.regdate}</span>
-							<h5>${bean.id}</h5>
-							<div id="UpdateContent${bean.boseq}">
-								<p>${bean.content}</p>
-							</div>
-							<div id="insertReply">
-								<ul>
-									<li><i class="fa fa-hand-o-right"></i> Like</li>
-									<li>
-										<i id="comment" name="comment" class="fa fa-share-square-o"
-										data-toggle="collapse" data-target="#demo"></i> Reply
-									</li>
-								</ul>
-								<div id="demo" class="collapse"></div>
-							</div>
-						</div>
-					</div>
-					<!-- 댓글부분 -->
-				</div>
-			</div>
-		</div>
-	</div>
-</c:forEach>
-<div class="listing__details__review">
-	<h4>COMMENT</h4>
-	<c:set var="apppath" value="<%=request.getContextPath()%>" />
-	<form:form id="myform" name="myform" modelAttribute="board" method="get">
-	<input type="hidden" id="id" name="id" value="${sessionScope.loginfo.id}">
-	<input type="hidden" id="qnaseq" name="qnaseq" value="${bean.qnaseq}">
-		<textarea placeholder="글내용을 작성하세요" id="content" name="content"></textarea>
-		<button id="btn_register" name="btn_register" type="button"
-			class="site-btn" onclick="submit1();">Submit Now</button>
-		<button id="btn_previous" name="btn_register" type="button"
-			class="site-btn" onclick="redirect();">뒤로가기</button>
-	</form:form>
-</div>
+<div class="container">
+<div class="row" style="justify-content: center;">
+<div class="listing__details__comment">
+                <h4>Comment</h4>
+                <div class="listing__details__comment__item">
+                    <div class="listing__details__comment__item__pic">
+                        <img src="img/listing/details/comment.png" alt="">
+                    </div>
+                    <div class="listing__details__comment__item__text">
+                        <div class="listing__details__comment__item__rating">
+                            <c:choose>
+                            	<c:when test="${bean.id eq sessionScope.loginfo.id || sessionScope.loginfo.id eq 'admin'}">
+		                            <button class="btn btn-primary" type="button" onclick="openUpdate(${bean.qnaseq},'${bean.recontent}' )">
+		                            수정
+		                            </button>
+                            	</c:when>
+                            	<c:when test="${bean.id eq sessionScope.loginfo.id || sessionScope.loginfo.id eq 'admin'}">
+		                            <button class="btn btn-danger" type=button onclick="location.href='<%=contextPath%>/bodelete.bo?qnaseq=${bean.qnaseq}'">삭제</button>
+                            	</c:when>
+                            </c:choose>
+                        </div>
+                        <span>${bean.reregdate}</span>
+                        <p>관리자</p>
+                        <div id="UpdateContent${bean.qnaseq}">
+                        <p>${bean.recontent}</p>
+                        <div id="insertReply">
+                        <ul> 
+                            <li>
+                            <i class="fa fa-hand-o-right"></i> Like
+                            </li>
+                            <li>
+                            <i id="comment" name="comment" class="fa fa-share-square-o"data-toggle="collapse" data-target="#demo"></i> 
+                            Reply
+                            </li>
+                        </ul>
+                        </div>
+                    </div>
+                </div>
+            <c:choose>
+               	<c:when test="${sessionScope.loginfo.id eq 'admin'}">
+            <div class="listing__details__review">
+                <h4>자유게시판 글쓰기</h4>
+                <c:set var="apppath" value="<%=request.getContextPath()%>" />
+         		<form:form id="myform" name="myform" modelAttribute="Board" >
+         		<%-- <form:form modelAttribute="boardBoard" id="myform" name="myform" method="post"
+         		action="${apppath}/boInsert.bo"> --%>
+                    <input type="hidden" id="qnaseq" name="qnaseq" value="${bean.qnaseq}">
+                    <input type="text" id="id" name="id" value="${sessionScope.loginfo.id}" readonly
+                    placeholder="${sessionScope.loginfo.nickname}">
+                    <!-- <input type="text" placeholder="Name" id="nickname" name="nickname"> -->
+                    <textarea placeholder="글내용을 작성하세요" id="recontent" name="recontent"></textarea>
+                    <button id="btn_register" name="btn_register" type="button" class="site-btn" onclick="submit1();">Submit Now</button>
+                    <button id="btn_previous" name="btn_register" type="button" class="site-btn" onclick="redirect();">뒤로가기</button>
+                </form:form>
+            </div>
+            </c:when>
+            </c:choose>
+        </div>
+    </div>
+  </div>
+  </div>
+<script>  
+var mod_check = 'N';
+var reply_check = 'N';
+ 	
+ 	function openUpdate(qnaseq, recontent){
+ 		
+ 		if(mod_check == 'Y')
+			{
+				alert('수정 중입니다.');
+				return;
+			}
+ 		document.getElementById('UpdateContent'+qnaseq).innerHTML = "<form id='mynewform' name='mynewform'>"
+ 		+"<div class='form-row'>"
+ 		+"<textarea name='recontent' id='recontent'>"+ recontent +"</textarea></div>"
+ 		+"<input type='hidden' id='qnaseq' name='qnaseq' value='" + qnaseq +"'>"
+ 		+"<input style='float:right;' class='btn btn-default' type='button' onclick='location.reload()' value='취소'>"
+ 		+"<input style='float:right;' class='btn btn-default' type='button' value='수정완료' onclick='test()'>" 
+ 		+"</form>";
+ 		
+ 		mod_check = 'Y';
+ 	}
+</script>
+<script>
+function deleteone(){
+	//ajax로 파일전송 폼데이터를 보내기위해
+	//enctype, processData, contentType 이 세가지를 반드시 세팅해야한다.
+	$.ajax({
+		url : "<%=contextPath%>/bodelete.bo",
+	data : {
+		qnaseq : $('#qnaseq').val();
+	}
+	type : "POST",
+	datatype : 'json',
+	success : function(data) {
+		alert('게시글 삭제 완료');
+		console.log(data);
+		location.href = "<%=contextPath%>/boList.bo";
+		},
+	eroor:function(request,status,error){
+		alert('error');
+	}
+	});
+}
+</script>
 <script>
 function submit1(){
 	//ajax로 파일전송 폼데이터를 보내기위해
 	//enctype, processData, contentType 이 세가지를 반드시 세팅해야한다.
-		$.ajax({
+	
+	var qnaseq = $('input#qnaseq').val();	
+	$.ajax({
 			url : "<%=contextPath%>/qnaBoReply.bo",
 		data : $('#myform').serialize(),
 		type : "POST",
@@ -142,7 +166,7 @@ function submit1(){
 		success : function(data) {
 			alert('답변 등록 완료');
 			console.log(data);
-			location.href = "<%=contextPath%>/qnaDetailView.bo";
+			location.href = "<%=contextPath%>/qnaDetailView.bo?qnaseq="+qnaseq;
 			},
 		eroor:function(request,status,error){
 			alert('error');
@@ -151,6 +175,26 @@ function submit1(){
 }
 function redirect() {
 	$(location).attr('href', '<%=contextPath%>/qnaBoList.bo');
+}
+function test(){
+	//ajax로 파일전송 폼데이터를 보내기위해
+	//enctype, processData, contentType 이 세가지를 반드시 세팅해야한다.
+	var params = $("#mynewform").serialize();
+	
+	$.ajax({
+		url : "<%=contextPath%>/qnaBoReply.bo",
+	data : $("#mynewform").serialize(),
+	type : "POST",
+	datatype : 'json',
+	success : function(data) {
+		alert('게시글 수정 완료');
+		console.log(data);
+		location.href = "<%=contextPath%>/qnaDetailView.bo?qnaseq="+qnaseq;
+		},
+	eroor:function(request,status,error){
+		alert('error');
+	}
+	});
 }
 </script>
 <jsp:include page="../common/footer.jsp" />
