@@ -66,16 +66,14 @@
                     </div>
                     <div class="listing__details__comment__item__text">
                         <div class="listing__details__comment__item__rating">
-                            <c:choose>
-                            	<c:when test="${bean.id eq sessionScope.loginfo.id}">
+                            <c:if test="${bean.id eq sessionScope.loginfo.id}">
 		                            <button type="button" onclick="openUpdate(${bean.boseq},'${bean.content}' )">
 		                            수정
 		                            </button>
-                            	</c:when>
-                            	<c:when test="${bean.id eq sessionScope.loginfo.id || sessionScope.loginfo.id eq 'admin'}">
+                            	</c:if>
+                            	<c:if test="${bean.id eq sessionScope.loginfo.id || sessionScope.loginfo.id eq 'admin'}">
 		                            <button type=button onclick="location.href='<%=contextPath%>/bodelete.bo?boseq=${bean.boseq}'">삭제</button>
-                            	</c:when>
-                            </c:choose>
+                            	</c:if>
                             <!-- <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
@@ -95,11 +93,13 @@
                             </li>
                             <li>
                             <!-- <div data-toggle="collapse" data-target="#demo"> -->
-                            <i id="comment" name="comment" class="fa fa-share-square-o"data-toggle="collapse" data-target="#demo"></i> 
+                            <i id="comment" name="comment" class="fa fa-share-square-o"data-toggle="collapse" data-target="#demo${bean.boseq}"></i> 
                             Reply
                             </li>
                         </ul>
-							  <div id="demo" class="collapse">
+							  <div id="demo${bean.boseq}" class="collapse">
+							    <c:forEach var="bean2" items="${relists}">
+							    <c:if test="${bean.boseq eq bean2.boseq}">
 							    <!-- 댓글부분 -->
 							    <div class="listing__details__comment__item">
                     			<div class="listing__details__comment__item__pic">
@@ -107,27 +107,34 @@
                     			</div>
                    				 <div class="listing__details__comment__item__text">
                        			 <div class="listing__details__comment__item__rating">
-		                            <c:choose>
-		                            	<c:when test="${bean.id eq sessionScope.loginfo.id}">
-				                            <button type="button" onclick="openUpdate(${bean.boseq},'${bean.content}' )">
+		                            	<c:if test="${bean.id eq sessionScope.loginfo.id}">
+				                            <button type="button" onclick="openReUpdate(${bean2.replyseq},'${bean2.content}' )">
 				                            수정
 				                            </button>
-		                            	</c:when>
-		                            	<c:when test="${bean.id eq sessionScope.loginfo.id || sessionScope.loginfo.id eq 'admin'}">
+		                            	</c:if>
+		                            	<c:if test="${bean.id eq sessionScope.loginfo.id || sessionScope.loginfo.id eq 'admin'}">
 				                            <button type=button onclick="location.href='<%=contextPath%>/bodelete.bo?boseq=${bean.boseq}'">삭제</button>
-		                            	</c:when>
-		                            </c:choose>
+		                            	</c:if>
                             <!-- <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i>
                             <i class="fa fa-star"></i> -->
                        			</div>
-			                        <span>${bean.regdate}</span>
-			                        <h5>${bean.nickname}</h5>
-			                        <p>${bean.id}</p>
-			                        <div id="UpdateContent${bean.boseq}">
-			                        <p>${bean.content}</p>
+			                        <span>${bean2.regdate}</span>
+			                        <h5>${bean2.nickname}</h5>
+			                        <p>
+			                        <c:choose>
+			                        	<c:when test="${empty bean2.rid}">
+					                        @${bean.nickname}
+			                        	</c:when>
+			                        	<c:otherwise>
+			                        		@${bean2.rid}
+			                        	</c:otherwise>
+			                        </c:choose>
+			                        </p>
+			                        <div id="UpdateReContent${bean2.replyseq}">
+			                        <p>${bean2.content}</p>
 			                        </div>
 			                        <div id="insertReply">
 			                        <ul> 
@@ -147,8 +154,16 @@
 				                    </div>
 				                </div>
 							    <!-- 댓글부분 -->
+							    </c:if>
+							    </c:forEach>
+							    <div class="listing__details__review">
+							    <form:form>
+							    	<textarea placeholder="댓글을 입력하세요"></textarea>
+							    	<button type="button" onlick=submit2();>댓글작성</button>
+							    </form:form>
+							    </div>
 							  </div>
-                        </div>
+                        </div> <!-- insertdata 끝 -->
                     </div>
                 </div>
             </c:forEach>
@@ -194,22 +209,22 @@ var reply_check = 'N';
  	
  	
  	
- 	function openUpdate(boseq, content){
+ 	function openReUpdate(boseq, content){
  		
  		if(reply_check == 'Y')
 			{
 				alert('댓글 작성중입니다.');
 				return;
 			}
- 		document.getElementById('UpdateContent'+boseq).innerHTML = "<form id='mynewform' name='mynewform'>"
+ 		document.getElementById('UpdateReContent'+boseq).innerHTML = "<form id='myreform' name='myreform'>"
  		+"<div class='form-row'>"
  		+"<textarea name='content' id='content'>"+ content +"</textarea></div>"
- 		+"<input type='hidden' id='boseq' name='boseq' value='" + boseq +"'>"
+ 		+"<input type='hidden' id='replyseq' name='replyseq' value='" + boseq +"'>"
  		+"<input style='float:right;' class='btn btn-default' type='button' onclick='location.reload()' value='취소'>"
  		+"<input style='float:right;' class='btn btn-default' type='button' value='수정완료' onclick='test()'>" 
  		+"</form>";
  		
- 		mod_check = 'Y';
+ 		reply_check = 'Y';
  	}	
 
 </script>
@@ -239,6 +254,24 @@ function deleteone(){
 function submit1(){
 	//ajax로 파일전송 폼데이터를 보내기위해
 	//enctype, processData, contentType 이 세가지를 반드시 세팅해야한다.
+	$.ajax({
+		url : "<%=contextPath%>/boInsert.bo",
+	data : $('#myform').serialize(),
+	type : "POST",
+	datatype : 'json',
+	success : function(data) {
+		alert('게시글 등록 완료');
+		console.log(data);
+		location.href = "<%=contextPath%>/boList.bo";
+		},
+	eroor:function(request,status,error){
+		alert('error');
+	}
+	});
+}
+
+function submit2(){
+	// 댓글 작성
 	$.ajax({
 		url : "<%=contextPath%>/boInsert.bo",
 	data : $('#myform').serialize(),

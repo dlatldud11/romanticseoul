@@ -62,14 +62,24 @@
 		board(boseq,id,content,title,regdate,readhit,likes)		
 		values(board_seq.nextval, #{id}, #{content}, #{title,jdbcType=VARCHAR}, TO_CHAR(SYSDATE, 'YYYY-MM-DD HH24:MI'),0,0)
 	</insert>
-<!-- 	<insert id="ReplyDataInsert" parameterType="MyBoard">
+	<insert id="InsertReply" parameterType="MyReply">
 		insert into 
-		boards(no, subject, writer, password, content, readhit, regdate, groupno, orderno, depth)
-		values(myboard.nextval, #{subject}, #{writer}, #{password}, #{content}, default, to_date(#{regdate}, 'yyyy/MM/dd'), #{groupno}, #{orderno}, #{depth}) 
+		b_reply(replyseq, boseq, id, rid, likes,content, regdate, groupno, orderno, depth)		
+		values(b_rep_seq.nextval, #{boseq}, #{id}, #{rid,jdbcType=VARCHAR},0, #{content}, to_char(sysdate,'yyyy/MM/dd/HH24:MI:SS'), b_rep_seq.currval, 0, 0)
 	</insert>
-	<update id="ReplyDataUpdate">
-		update boards set 
-		orderno = orderno + 1 
-		where groupno = #{groupno} and orderno > #{orderno}		
-	</update> -->	
+	<update id="UpdateReply" parameterType="MyReply">
+		update b_reply set
+		content = '#{content}',
+		regdate = to_char(sysdate,'yyyy/MM/dd/HH24:MI:SS')
+		where replyseq = #{replyseq}	
+	</update>
+	<delete id="DeleteDataByReplyseq" parameterType="java.util.Map">
+		delete from b_reply where replyseq = #{replyseq} 
+	</delete>
+	<select id="SelectReply" resultType="MyReply">
+		select a.replyseq,a.boseq,a.id,a.likes,a.content,a.regdate,a.groupno,a.depth,a.rid,a.orderno,b.nickname from
+		b_reply a join members b on (a.id = b.id)
+		order by groupno, orderno, depth
+	</select> 	
+		
 </mapper>

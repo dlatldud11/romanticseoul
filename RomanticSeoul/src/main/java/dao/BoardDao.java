@@ -73,5 +73,6 @@ public class BoardDao {
 	public int ReplyInsertData(QnaBoard bean) {
 		return this.abcd.insert(namespace + "ReplyInsertData", bean);
 	}
+	
 
 }
