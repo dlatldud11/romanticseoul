@@ -13,12 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Board;
-import bean.BoardBoard;
-import bean.QnaBoard;
+import bean.Reply;
 import controller.common.SuperClass;
 import dao.BoardBoardDao;
-//import dao.BoardDao;
-import dao.BoardDao;
 import utility.FlowParameters;
 import utility.Paging;
 
@@ -77,10 +74,10 @@ public class BoListController extends SuperClass{
 				parameters.getMode(), 
 				parameters.getKeyword()) ;
 				// "%" 문자열은 like 연산자 때문에 넣었습니다.
-		
+		List<Reply> relists = dao.SelectReply(); // 댓글
 		// 바인딩해야 할 목록들
 		mav.addObject("lists", lists); // 게시물 목록
-		
+		mav.addObject("relists",relists); //리플 목록
 		// 페이징 관련 항목들
 		mav.addObject("pagingHtml", pageInfo.getPagingHtml());
 		mav.addObject("pagingStatus", pageInfo.getPagingStatus());

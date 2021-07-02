@@ -12,17 +12,29 @@ public class Reply {
 	private int depth;
 	private int orderno;
 	private String remark;
+	private String nickname; //댓글 작성자 닉네임
 	
 	public Reply() {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "Reply [replyseq=" + replyseq + ", boseq=" + boseq + ", id=" + id + ", rid=" + rid + ", likes=" + likes
 				+ ", content=" + content + ", regdate=" + regdate + ", groupno=" + groupno + ", depth=" + depth
-				+ ", orderno=" + orderno + ", remark=" + remark + "]";
+				+ ", orderno=" + orderno + ", remark=" + remark + ", nickname=" + nickname + "]";
 	}
+
+
+	public String getNickname() {
+		return nickname;
+	}
+
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
+
 	public int getReplyseq() {
 		return replyseq;
 	}

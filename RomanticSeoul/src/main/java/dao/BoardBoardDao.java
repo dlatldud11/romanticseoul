@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 
 import bean.Board;
 import bean.BoardBoard;
-import bean.QnaBoard;
+import bean.Reply;
 
 @Component("bbdao")
 public class BoardBoardDao {
@@ -98,5 +98,17 @@ public class BoardBoardDao {
 
 	public int DeleteDataByBoseq(Map<String, Object> param) {
 		return this.abcd.delete(namespace + "DeleteDataByBoseq", param);
+	}
+	public List<Reply> SelectReply(){
+		return this.abcd.selectList(namespace + "SelectReply"); 
+	}
+	public int DeleteDataByReplyseq (int replyseq) {
+		return this.abcd.delete(namespace + "DeleteDataByReplyseq", replyseq);
+	}
+	public int InsertReply(Reply reply) {
+		return this.abcd.insert(namespace + "InsertReply", reply);
+	}
+	public int UpdateReply(Reply reply) {
+		return this.abcd.update(namespace + "UpdateReply", reply);
 	}
 }
