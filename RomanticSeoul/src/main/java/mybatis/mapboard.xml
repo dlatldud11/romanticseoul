@@ -3,7 +3,7 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MapBoard">
 	<sql id="myselect">
-		SELECT qnaseq, id, regdate, content, title, checks FROM qna
+		SELECT qnaseq, id, recontent, reregdate, regdate, content, title, checks FROM qna
 	</sql>
 	<select id="SelectTotalCount" resultType="int">
 		select count(*) as cnt from qna

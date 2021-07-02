@@ -100,14 +100,17 @@
 			</div>
 			<hr>
 			<div class="col-sm-7" style="float:right;">
+				<button class="btn btn-success" onclick="gotoMeList;">
+					내 글 보기
+				</button>
 				<button class="btn btn-info" onclick="gotoUpdate();">
 					회원 수정
 				</button>
-				<button class="btn btn-primary" onclick="gotoBack();">
-					돌아 가기
-				</button>
 				<button type="button" onclick="gotoDelete();"  class="btn btn-danger">
 					회원 삭제
+				</button>
+				<button class="btn btn-primary" onclick="gotoBack();">
+					돌아 가기
 				</button>
 			</div>
 		</div>
