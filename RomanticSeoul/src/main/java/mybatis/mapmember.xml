@@ -40,6 +40,10 @@
 	  select * from members where email = #{email} 
    </select>
    
+   <select id="findPassword" parameterType="String" resultType="MyMember">
+	  select * from members where email = #{email} and id = #{id}
+   </select>
+   
    <update id="UpdateData" parameterType="MyMember">
       update members set      
       name = #{name},

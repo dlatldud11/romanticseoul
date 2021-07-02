@@ -74,8 +74,9 @@ form.form-inline{
 							</div>
 							<div class="form-group">
 								<select class="form-control" name="mode" id="mode">
-									<option value="all" selected="selected">--- CATEGORY ---
+									<option value="all" selected="selected">--- CATEGORY --- 									
 								</select>
+								
 							</div>
 							<div class="form-group">
 								<select class="form-control" name="mode" id="mode">

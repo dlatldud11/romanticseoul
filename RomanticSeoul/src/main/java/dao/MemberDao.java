@@ -103,4 +103,11 @@ public class MemberDao {
 			// TODO Auto-generated method stub
 			return null;
 		}
+
+		public Member findPassword(String id, String email) {
+			Map<String, String> map = new HashMap<String, String>() ;
+			map.put("id", id) ;
+			map.put("email", email) ;
+			return this.abcd.selectOne(namespace + "findPassword", map);
+		}
 }
