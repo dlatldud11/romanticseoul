@@ -8,13 +8,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import bean.CheckBean;
+import bean.Member;
 import bean.Menu;
+import bean.Store;
+import bean.Type;
 import controller.common.SuperClass;
 import dao.ProductDao;
+import dao.TypeDao;
+import utility.DrinkAPI;
+import utility.EatAPI;
 import utility.FlowParameters;
+import utility.LookAPI;
 import utility.Paging;
 
 @Controller
@@ -23,13 +32,51 @@ public class MenuListController extends SuperClass{
 	private ModelAndView mav = null ;
 	private String redirect = "redirect:/menuList.pr" ;
 	
+	
 	@Autowired
 	@Qualifier("pdao")
 	private ProductDao dao ;
+
+	@Autowired
+	@Qualifier("tdao")
+	private TypeDao tdao  ;
 	
+	@ModelAttribute("type")
+	public Type mytype() {
+		return new Type() ;
+	}
+	
+	private DrinkAPI dapi;
+	private EatAPI eapi;
+	private LookAPI lapi;
+	
+	
+	@ModelAttribute("gulists")
+	public List<CheckBean> drink(){
+		List<CheckBean> gulists = this.tdao.GetList("menu", "gu") ;
+		return gulists ;
+	}
+	@ModelAttribute("eatlists")
+	public List<CheckBean> drink1(){
+		List<CheckBean> gulists = this.tdao.GetList("stores", "eat") ;
+		return gulists ;
+	}
+	@ModelAttribute("drinklists")
+	public List<CheckBean> drink2(){
+		List<CheckBean> gulists = this.tdao.GetList("stores", "drink") ;
+		return gulists ;
+	}
+	@ModelAttribute("looklists")
+	public List<CheckBean> drink3(){
+		List<CheckBean> gulists = this.tdao.GetList("stores", "look") ;
+		return gulists ;
+	}
 	public MenuListController() {
 		super("menuList", null);
 		this.mav = new ModelAndView();
+		this.eapi = new EatAPI();
+		this.lapi = new LookAPI();
+		this.dapi = new DrinkAPI();
 	}
 	
 	
@@ -38,8 +85,9 @@ public class MenuListController extends SuperClass{
 			HttpServletRequest request,
 			@RequestParam(value = "pageNumber", required = false) String pageNumber, 
 			@RequestParam(value = "pageSize", required = false) String pageSize,
-			@RequestParam(value = "mode", required = false) String mode,
-			@RequestParam(value = "keyword", required = false) String keyword){
+			@RequestParam(value = "mode", required = false) String mode, //eat,look,drink
+			@RequestParam(value = "keyword", required = false) String keyword,
+			@RequestParam(value = "gulists", required = false) String gulists){
 		
 		// 페이징과 필드 검색을 위한 파라미터를 우선 챙깁니다.
 		FlowParameters parameters 
@@ -73,7 +121,18 @@ public class MenuListController extends SuperClass{
 				parameters.getMode(), 
 				parameters.getKeyword()) ;
 				// "%" 문자열은 like 연산자 때문에 넣었습니다.
-		
+		if(!(parameters.getMode().equals(null) || parameters.getMode().equals("null")|| parameters.getMode().equals(""))) {
+			if(parameters.getMode().equals("eat")) {
+				List<Store> eatlists = this.eapi.geteatGulist(gulists); // eat 선택했을 때 구별로 가져오는 메소드
+				mav.addObject("storelists",eatlists);
+			}else if(parameters.getMode().equals("look")) {
+				List<Store> looklists = this.lapi.getlookGulist(gulists); // eat 선택했을 때 구별로 가져오는 메소드
+				mav.addObject("storelists",looklists);
+			}else if(parameters.getMode().equals("drink")) {
+				List<Store> drinklists = this.dapi.getdrinkGulist(gulists); // eat 선택했을 때 구별로 가져오는 메소드
+				mav.addObject("storelists",drinklists);
+			}
+		}
 		// 바인딩해야 할 목록들
 		mav.addObject("lists", lists); // 게시물 목록
 		
@@ -91,4 +150,5 @@ public class MenuListController extends SuperClass{
 		this.mav.setViewName(super.postpage);
 		return this.mav ;
 	}	
+	
 }
