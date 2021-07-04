@@ -89,6 +89,7 @@ public class MenuListController extends SuperClass{
 			@RequestParam(value = "keyword", required = false) String keyword,
 			@RequestParam(value = "gulists", required = false) String gulists){
 		
+		System.out.println(mode);
 		// 페이징과 필드 검색을 위한 파라미터를 우선 챙깁니다.
 		FlowParameters parameters 
 			= new FlowParameters(pageNumber, pageSize, mode, keyword);
@@ -121,16 +122,26 @@ public class MenuListController extends SuperClass{
 				parameters.getMode(), 
 				parameters.getKeyword()) ;
 				// "%" 문자열은 like 연산자 때문에 넣었습니다.
+		System.out.println("ddd");
+		System.out.println("[" + parameters.getMode() + "]");	
+		System.out.println(gulists);
+		
 		if(!(parameters.getMode().equals(null) || parameters.getMode().equals("null")|| parameters.getMode().equals(""))) {
 			if(parameters.getMode().equals("eat")) {
 				List<Store> eatlists = this.eapi.geteatGulist(gulists); // eat 선택했을 때 구별로 가져오는 메소드
 				mav.addObject("storelists",eatlists);
+				mav.addObject("mode2",mode);
+				System.out.println("a");
 			}else if(parameters.getMode().equals("look")) {
 				List<Store> looklists = this.lapi.getlookGulist(gulists); // eat 선택했을 때 구별로 가져오는 메소드
 				mav.addObject("storelists",looklists);
+				mav.addObject("mode2",mode);
+				System.out.println("b");
 			}else if(parameters.getMode().equals("drink")) {
 				List<Store> drinklists = this.dapi.getdrinkGulist(gulists); // eat 선택했을 때 구별로 가져오는 메소드
 				mav.addObject("storelists",drinklists);
+				mav.addObject("mode2",mode);
+				System.out.println("c");
 			}
 		}
 		// 바인딩해야 할 목록들
