@@ -34,9 +34,6 @@ td {
 }
 </style>
 <script type="text/javascript">
-	function writeForm(){
-		location.href='<%=contextPath%>/menuInsert.pr';
-	}
 	function search(){
 		if( $('#mode').val() == 'all' ){
 			alert('검색 목록을 선택해주세요') ;
@@ -68,7 +65,7 @@ form.form-inline{
 					<td colspan="10" align="center">
 						<form class="form-inline" role="form" name="myform" action="<%=contextPath%>/menuList.pr" method="get">
 							 <div class="form-group">
-							 <form:select  path="gulists">
+							 <form:select name="gulists"  path="gulists">
 							    <form:option value="NONE"> --SELECT--</form:option>
 							    <form:options items="${gulists}" itemLabel="mykey" itemValue="mykey"></form:options>
 							  </form:select>
@@ -100,6 +97,7 @@ form.form-inline{
 						<th>category</th>
 						<th>name</th>
 						<th>address</th>
+						<th>view detail</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -108,14 +106,16 @@ form.form-inline{
 						<td>${bean.category}</td>
 						<td>${bean.name}</td>
 						<td>${bean.address2}</td>
+						<td>
+						<a href="<%=contextPath%>/menuDetailView.pr?storeseq=${bean.storeseq}&mode=${mode2}&${requestScope.parameters}">
+						상세보기
+						</a>
+						</td>
 					</tr>
 					</c:forEach>
 				</tbody>
 			</table>
-			<br>
-			<button class="btn btn-default btn-info" type="button"
-				onclick="writeForm();">글쓰기</button>
-			<br>
+			
 			</div>
 			<div class="block-27">
 				<footer>${requestScope.pagingHtml}</footer>
