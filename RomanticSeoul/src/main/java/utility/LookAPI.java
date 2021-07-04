@@ -201,6 +201,7 @@ public ArrayList<Store> getlookGulist(String gu) {
 					Store look = new Store();
 					if(getTagValue("H_KOR_GU" ,eElement).equals(gu)) {
 					System.out.println("look 일치하는 구 나옴");	
+					look.setStoreseq(getTagValue("MAIN_KEY" ,eElement)); //기본키
 					look.setCategory(getTagValue("CATE3_NAME" ,eElement)); //분류3
 					look.setName(getTagValue("NAME_KOR" ,eElement)); //명칭
 					look.setAddress2(getTagValue("H_KOR_CITY" ,eElement)+" "

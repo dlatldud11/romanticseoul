@@ -42,7 +42,7 @@
 													<span class="icon_star"></span> <span class="icon_star"></span>
 													<span class="icon_star-half_alt"></span>
 												</div>
-												<h6>$40 - $70</h6>
+												<h6>${bean.storeseq}</h6>
 											</div>
 											<ul>
 												<li><span class="icon_pin_alt"></span> 

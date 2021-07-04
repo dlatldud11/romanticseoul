@@ -210,6 +210,7 @@ public class EatAPI {
 	                  if(d.contains(gu) && !(getTagValue("DTLSTATENM", eElement).equals("폐업"))) {
 	                	  System.out.println("원하는 구 값이 나옴");
 	                	  Store bean = new Store();
+	                	  bean.setStoreseq(getTagValue("MGTNO", eElement)); //기본키
 	                	  bean.setCategory(getTagValue("UPTAENM", eElement)); //업태구분
 	                	  bean.setName(getTagValue("BPLCNM", eElement)); //사업장명
 	                	  bean.setAddress1(c); //지번주소
