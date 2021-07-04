@@ -1,7 +1,7 @@
 package bean;
 
 public class Store {
-	private int storeseq;
+	private String storeseq;
 	private String category; // e:업태구분 l:분류 d:업태구분
 	private String name; // e:사업장명 l:명칭 d:사업장명
 	private String address1; // e:지번주소 d:지번주소
@@ -24,19 +24,22 @@ public class Store {
 	}
 
 
+
 	
-	public int getStoreseq() {
+	public String getStoreseq() {
 		return storeseq;
 	}
 
 
-	
-	public void setStoreseq(int storeseq) {
+
+
+	public void setStoreseq(String storeseq) {
 		this.storeseq = storeseq;
 	}
 
 
-	
+
+
 	public String getCategory() {
 		return category;
 	}
