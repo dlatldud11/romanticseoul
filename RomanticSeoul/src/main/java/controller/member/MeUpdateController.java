@@ -47,10 +47,6 @@ public class MeUpdateController extends SuperClass{
 		return new Member() ;
 	}
 	
-	@ModelAttribute("type")
-	public Type mytype() {
-		return new Type() ;
-	}
 	@ModelAttribute("drinklist")
 	public List<CheckBean> drink(){
 		List<CheckBean> lists = this.tdao.GetList("stores", "drink") ;

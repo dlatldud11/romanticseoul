@@ -16,7 +16,6 @@ import bean.Member;
 import bean.Menu;
 import bean.QnaBoard;
 import bean.Store;
-import bean.Type;
 import controller.common.SuperClass;
 import dao.BoardDao;
 import dao.ProductDao;
@@ -40,10 +39,7 @@ public class MenuDetailViewController extends SuperClass{
 	private LookAPI lapi;
 	private EatAPI eapi;
 	
-	@ModelAttribute("type")
-	public Type mytype() {
-		return new Type() ;
-	}
+	
 	public MenuDetailViewController() {
 		super("menuDetailView", "menuBoList");
 		this.mav = new ModelAndView();

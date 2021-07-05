@@ -8,6 +8,7 @@
 </head>
 <body>
 x좌표 : ${x}<br>
-y좌표 : ${y}
+y좌표 : ${y}<br>
+구 : ${gu}
 </body>
 </html>

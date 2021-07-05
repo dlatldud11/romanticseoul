@@ -40,11 +40,7 @@ public class MenuListController extends SuperClass{
 	@Autowired
 	@Qualifier("tdao")
 	private TypeDao tdao  ;
-	
-	@ModelAttribute("type")
-	public Type mytype() {
-		return new Type() ;
-	}
+
 	
 	private DrinkAPI dapi;
 	private EatAPI eapi;

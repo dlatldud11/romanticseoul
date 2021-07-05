@@ -235,39 +235,38 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
+				<form action="<%=contextPath%>/meCoList.pr" id="mecoform" name="mecoform" method="post">
 				<div class="section-title">
 					<h2>취향에 맞는 코스를 추천해드립니다!</h2>
 					<p>현재 위치를 입력해 주세요</p>
 				</div>
 				<div class="hero__search__form">
-						<form action="#" id="mecoform" name="mecoform" method="post">
 							<input type="text" placeholder="현재 위치를 입력해주세요." id="address" name="address" readonly>
 							<button type="button" onclick="checkPost()">주소 검색하기</button>
-						</form>
 					</div>
 					<div class="row">
 							<div class="select__option">
-								<select>
+								<select id="first" name="first">
 									<option value="">첫번째 코스 선택</option>
-									<option value="${sessionScope.loginfo.eat}">먹거리</option>
-									<option value="${sessionScope.loginfo.drink}">마실거리</option>
-									<option value="${sessionScope.loginfo.look}">볼거리</option>
+									<option value="eat/${sessionScope.loginfo.eat}">먹거리(${sessionScope.loginfo.eat})</option>
+									<option value="drink/${sessionScope.loginfo.drink}">마실거리(${sessionScope.loginfo.drink})</option>
+									<option value="look/${sessionScope.loginfo.look}">볼거리(${sessionScope.loginfo.look})</option>
 								</select>
 							</div>
 							<div class="select__option">
-								<select>
+								<select id="second" name="second">
 									<option value="">두번째 코스 선택</option>
-									<option value="${sessionScope.loginfo.eat}">먹거리</option>
-									<option value="${sessionScope.loginfo.drink}">마실거리</option>
-									<option value="${sessionScope.loginfo.look}">볼거리</option>
+									<option value="eat/${sessionScope.loginfo.eat}">먹거리(${sessionScope.loginfo.eat})</option>
+									<option value="drink/${sessionScope.loginfo.drink}">마실거리(${sessionScope.loginfo.drink})</option>
+									<option value="look/${sessionScope.loginfo.look}">볼거리(${sessionScope.loginfo.look})</option>
 								</select>
 							</div>
 							<div class="select__option">
-								<select>
+								<select id="third" name="third">
 									<option value="">세번째 코스 선택</option>
-									<option value="${sessionScope.loginfo.eat}">먹거리</option>
-									<option value="${sessionScope.loginfo.drink}">마실거리</option>
-									<option value="${sessionScope.loginfo.look}">볼거리</option>
+									<option value="eat/${sessionScope.loginfo.eat}">먹거리(${sessionScope.loginfo.eat})</option>
+									<option value="drink/${sessionScope.loginfo.drink}">마실거리(${sessionScope.loginfo.drink})</option>
+									<option value="look/${sessionScope.loginfo.look}">볼거리(${sessionScope.loginfo.look})</option>
 								</select>
 							</div>
 					</div>
@@ -275,6 +274,7 @@
 						<button type="button">취향 설정 변경하기</button>
 						<button type="submit">코스 추천받기</button>
 					</div>
+			</form>
 			</div>
 		</div>
 	</div>
