@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import bean.CheckBean;
 import bean.Menu;
 import bean.Store;
-import bean.Type;
 import controller.common.SuperClass;
 import dao.ProductDao;
 import dao.TypeDao;

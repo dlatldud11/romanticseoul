@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import bean.CheckBean;
 import bean.Member;
-import bean.Type;
 import controller.common.SuperClass;
 import dao.MemberDao;
 import dao.TypeDao;
