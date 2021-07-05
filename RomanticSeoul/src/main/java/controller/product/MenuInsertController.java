@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Menu;
+import bean.Stock;
 import controller.common.SuperClass;
 import dao.ProductDao;
 
@@ -38,6 +39,7 @@ public class MenuInsertController extends SuperClass{
 	public ModelAndView doGet()
 	{		
 		this.mav.setViewName(super.getpage);
+		System.out.println("MenuinsertController");
 		System.out.println("doGet 메소드");
 		return this.mav;
 	}
@@ -45,14 +47,16 @@ public class MenuInsertController extends SuperClass{
 	@PostMapping(command)
 	public ModelAndView doPost(
 			@ModelAttribute("menu") @Valid Menu xxx,
+			@ModelAttribute("stock") @Valid Stock yyy,
 			BindingResult asdf,
 			HttpServletRequest request){
-		
+		System.out.println("Menu 들어왔는지 확인 "+xxx.toString());
+		System.out.println("Stock 들어왔는지 확인 "+yyy.toString());
 		if(asdf.hasErrors())
 		{
 			System.out.println("유효성 검사에 문제 있슴");
 			System.out.println(asdf);
-			this.mav.addObject("bean", xxx);	
+			this.mav.addObject("menu", xxx);	
 			this.mav.setViewName(super.getpage);
 			
 		}
@@ -62,8 +66,8 @@ public class MenuInsertController extends SuperClass{
 			if (xxx.getImage().equals("") || xxx.getImage().equals(null) || xxx.getImage().equals("null"))  { // 파일 업로드 안했을 때
 				
 				mav.setViewName(super.getpage) ;				
-				this.dao.InsertData(xxx);
-			
+				this.dao.InsertData(xxx); //메뉴 등록
+				// 재고 등록
 			}
 			else
 			{
