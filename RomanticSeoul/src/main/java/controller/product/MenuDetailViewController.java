@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Store;
-import bean.Type;
 import controller.common.SuperClass;
 import dao.ProductDao;
 import utility.DrinkAPI;
@@ -35,10 +34,7 @@ public class MenuDetailViewController extends SuperClass{
 	private LookAPI lapi;
 	private EatAPI eapi;
 	
-	@ModelAttribute("type")
-	public Type mytype() {
-		return new Type() ;
-	}
+	
 	public MenuDetailViewController() {
 		super("menuDetailView", "menuBoList");
 		this.mav = new ModelAndView();

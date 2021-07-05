@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 
 
 /**
@@ -30,13 +32,22 @@ public class Main {
         // 푸시 알림이나 유저 아이디 리스트가 필요할 때 설정 합니다. 
         // (디벨로퍼스 내에 앱설정 메뉴를 가시면 있습니다)
         apiHelper.setAdminKey("9e90b0a2e9295fbe5e97219cf57fe642");
-
-        testUserManagement();
-        testKakaoStory();
-        testKakaoTalk();
-        testPush();
+        
+        	searchmap();
+//        testUserManagement();
+//        testKakaoStory();
+//        testKakaoTalk();
+//        testPush();
     }
-
+    public void searchmap(){
+    	
+    	Map<String, String> paramMap;
+    	
+    	paramMap = new HashMap<String, String>();
+        paramMap.put("query", "전북 삼성동 100");
+		apiHelper.searchmap(paramMap);
+		
+    }
     public void testUserManagement() {
 
         Map<String, String> paramMap;
@@ -72,14 +83,14 @@ public class Main {
         // 앱 사용자 리스트 요청
         //apiHelper.getUserIds();
 
-        /*
+        
         // 앱 사용자 리스트 요청 (파라미터)
         paramMap = new HashMap<String, String>();
         paramMap.put("limit", "100");
         paramMap.put("fromId", "1");
         paramMap.put("order", "asc");
         apiHelper.getUserIds(paramMap);
-        */
+        
     }
 
     public void testKakaoStory() {
@@ -249,5 +260,6 @@ public class Main {
         apiHelper.sendPush(paramMap);
         */
     }
+    
 }
 

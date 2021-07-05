@@ -41,6 +41,19 @@
 		menu(menuseq, mname, price, image, remark, drinkid, eatid, lookid)
 		values(menu_seq.nextval, #{mname, jdbcType=VARCHAR}, #{price, jdbcType=VARCHAR}, #{image, jdbcType=VARCHAR}, #{remark, jdbcType=VARCHAR}, #{drinkid, jdbcType=VARCHAR}, #{eatid, jdbcType=VARCHAR}, #{lookid, jdbcType=VARCHAR})
 	</insert>
+	<select id="SelectDataByGuCate" resultType="MyProduct">
+		<include refid="myselect"/>
+		<if test="mode == 'eat'">
+			where eatid in ( select eatid from eat
+		</if>
+		<if test="mode == 'drink'">
+			where drinkid in ( select drinkid from drink
+		</if>
+		<if test="mode == 'look'">
+			where lookid in ( select lookid from look
+		</if>
+		where remark = #{keyword})
+	</select>
 	<!-- <select id="getTotalCount" resultType="int">
 		select count(*) from boards
 		<if test="what == 'albumname'">
