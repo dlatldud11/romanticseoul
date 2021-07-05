@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.CheckBean;
-import bean.Member;
 import bean.Menu;
 import bean.Store;
 import bean.Type;
@@ -130,17 +129,14 @@ public class MenuListController extends SuperClass{
 			if(parameters.getMode().equals("eat")) {
 				List<Store> eatlists = this.eapi.geteatGulist(gulists); // eat 선택했을 때 구별로 가져오는 메소드
 				mav.addObject("storelists",eatlists);
-				mav.addObject("mode2",mode);
 				System.out.println("a");
 			}else if(parameters.getMode().equals("look")) {
 				List<Store> looklists = this.lapi.getlookGulist(gulists); // eat 선택했을 때 구별로 가져오는 메소드
 				mav.addObject("storelists",looklists);
-				mav.addObject("mode2",mode);
 				System.out.println("b");
 			}else if(parameters.getMode().equals("drink")) {
 				List<Store> drinklists = this.dapi.getdrinkGulist(gulists); // eat 선택했을 때 구별로 가져오는 메소드
 				mav.addObject("storelists",drinklists);
-				mav.addObject("mode2",mode);
 				System.out.println("c");
 			}
 		}

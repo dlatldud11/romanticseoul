@@ -26,6 +26,9 @@
 			where price like #{price}
 		</if>
 	</select>
+	<select id="SelectDataList2" resultType="MyProduct">
+		select m.menuseq, m.mname, m.price, m.image, m.remark, s.qty, s.starts, s.ends from menu m join stock s on (m.menuseq = s.menuseq)
+	</select>
 	<select id="SelectDataByPk" parameterType="Integer" resultType="MyProduct">
 		<include refid="myselect" />
 		 where menu_seq = #{menu_seq}

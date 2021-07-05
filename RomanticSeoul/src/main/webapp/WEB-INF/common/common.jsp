@@ -111,7 +111,27 @@ String mappingName = "/main";
 							<a href="./meLogout.me" class="primary-btn"><i class="fa fa-plus"></i> 로그아웃</a> 
 							</c:when>
 						</c:choose>
-							<a href="./meInfo.me?id=${sessionScope.loginfo.id}" class="login-btn"><i class="fa fa-user"></i></a>
+						<div class="dropdown">
+							<button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown"><i class="fa fa-user"></i>
+							<span class="caret"></span></button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+								<li role="presentation"><a href="#" role="menuitem" tabindex="-1">내 정보 상세 보기</a></li>
+														
+								<li role="presentation"><a href="#" role="menuitem" tabindex="-1">내 구매 내역</a></li>
+							</ul>
+						</div>
+						<%-- <div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown"><i class="fa fa-user"></i>
+							<span class="caret"></span></button>
+							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+		                	<c:if test="${whologin == 1}">
+		                	<li role="presentation"><a href="<%=contextPath%>/meInfo.me?id=${sessionScope.loginfo.id}" role="menuitem" tabindex="-1">내 정보 상세 보기</a></li>
+							</c:if>
+	      		     		<c:if test="${whologin == 1}">
+							<li role="presentation"><a href="<%=contextPath%>/buy.me?id=${sessionScope.loginfo.id}" role="menuitem" tabindex="-1">내 구매 내역</a></li>
+							</c:if>
+							</ul>
+						</div> --%>
 						</div>
 					</div>
 				</div>
@@ -119,4 +139,8 @@ String mappingName = "/main";
 			<div id="mobile-menu-wrap"></div>
 		</div>
 	</header>
+<script src="/lib/jquery-1.12.2.min.js"></script>
+<script src="/lib/bootstrap.min.js"></script>
+	</body>
+	</html>
 	<!-- Header Section End -->
