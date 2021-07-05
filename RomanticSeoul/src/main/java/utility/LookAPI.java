@@ -121,6 +121,58 @@ public ArrayList<String> getLooklists(){
     }return looklists;
 }
 
+public Store getLookByPk(String pk){
+	int page = 1;
+	Store bean = new Store();
+	try {
+		while(true)
+		{
+			String url = "http://openapi.seoul.go.kr:8088/787771684d6e6e6d3930576a5a4e6a/xml/SebcArtGalleryKor/1/240/";
+			/*
+			 * String url =
+			 * "http://openapi.seoul.go.kr:8088/sample/xml/LOCALDATA_072405/1/5/" +
+			 * "ServiceKey=7571686f456e6e6d3430446f4d637a" + "&strSrch=3"+page;
+			 */            
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			Document doc = dBuilder.parse(url);
+			doc.getDocumentElement().normalize();
+			
+			System.out.println("Root element : " + doc.getDocumentElement().getNodeName());
+			
+			NodeList nList = doc.getElementsByTagName("row");
+			
+			System.out.println("파싱할 리스트 수 : "+nList.getLength());
+			
+			for(int temp = 0; temp < nList.getLength(); temp++) {
+				Node nNode = nList.item(temp);
+				
+				if(nNode.getNodeType() == Node.ELEMENT_NODE) {
+					Element eElement = (Element) nNode;
+					
+					System.out.println("--------------------------------------------");
+					System.out.println("기본키 : " + getTagValue("MAIN_KEY" ,eElement));
+					if(getTagValue("MAIN_KEY" ,eElement).equals(pk)) {
+					bean.setStoreseq(getTagValue("MAIN_KEY" ,eElement)); //기본키
+					bean.setCategory(getTagValue("CATE3_NAME" ,eElement)); //분류3
+					bean.setName(getTagValue("NAME_KOR" ,eElement)); //명칭
+					bean.setAddress2(getTagValue("H_KOR_CITY" ,eElement)+" "
+							+getTagValue("H_KOR_GU" ,eElement)+" "+getTagValue("H_KOR_DONG" ,eElement)); // 행정시+구+동
+					bean.setGu(getTagValue("H_KOR_GU" ,eElement)); //구
+					}
+				}
+			}
+			page += 1;
+			System.out.println("page number " + page);
+			if(page > 1) {
+				break;
+			}
+		}
+	}catch(Exception e) {
+		e.printStackTrace();
+	}return bean;
+}
+
 public ArrayList<String> getLookdistinct(){
 	int page = 1;
 	ArrayList<String> looklists = new ArrayList<String>();

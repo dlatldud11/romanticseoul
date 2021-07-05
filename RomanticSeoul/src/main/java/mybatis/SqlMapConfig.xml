@@ -13,6 +13,7 @@
 		<typeAlias alias="MyLook" type="bean.Look" />      
 		<typeAlias alias="MyProduct" type="bean.Menu" />
 		<typeAlias alias="MyReply" type="bean.Reply" />
+		<typeAlias alias="MyStock" type="bean.Stock" />
       <!-- <typeAlias alias="MyCombo1" type="bean.Combo01" />
       <typeAlias alias="MyPostcode" type="bean.Postcode" />
       <typeAlias alias="MyCombo2" type="bean.Combo02" />
