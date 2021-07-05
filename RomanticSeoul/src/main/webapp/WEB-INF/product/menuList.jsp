@@ -107,7 +107,7 @@ form.form-inline{
 						<td>${bean.name}</td>
 						<td>${bean.address2}</td>
 						<td>
-						<a href="<%=contextPath%>/menuDetailView.pr?storeseq=${bean.storeseq}&mode=${mode2}&${requestScope.parameters}">
+						<a href="<%=contextPath%>/menuDetailView.pr?storeseq=${bean.storeseq}&${requestScope.parameters}">
 						상세보기
 						</a>
 						</td>
