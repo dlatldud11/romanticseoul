@@ -7,9 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	String imsi = request.getContextPath() + "/drinklist.ma";
-	response.sendRedirect(imsi) ;
-%>
+x좌표 : ${x}<br>
+y좌표 : ${y}<br>
+구 : ${gu}
 </body>
 </html>

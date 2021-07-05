@@ -11,9 +11,9 @@ button{
 }
 </style>
 <script>
-<%--    function writeForm(){
-	location.href='<%=contextPath%>/menuList.pr';
-} --%>
+    function writeForm(){
+	location.href='<%=contextPath%>/menuDetailView.pr';
+	} 
 $(document).ready(function(){
 	$("#btnSave").click(function(){
 		var title = $("#title").val();
@@ -41,57 +41,49 @@ $(document).ready(function(){
                 </div>
                 <div class="card-body">
                 <c:set var="apppath" value="<%=request.getContextPath()%>" />
-                    <form:form id="form" name="form" modelAttribute="menu" role="form" action="${apppath}/menuInsert.pr" method="post" enctype="multipart/form-data">
+                    <form:form id="form" name="form" role="form" action="${apppath}/menuInsert.pr" method="post" enctype="multipart/form-data">
                         <div class="form-row m-b-55">
                             <div class="name">MNAME</div>
                             <div class="value">
                                 <div class="row row-space">
                                     <div class="col-12">
                                         <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" id="id" name="id" value="${sessionScope.loginfo.id}" disabled="disabled">
-                                            <input type="hidden" name="id" id="id" value="${sessionScope.loginfo.id}" />
+                                            <input class="input--style-5" type="text" id="mname" name="mname">
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">AREA</div>
+                            <div class="name">QTY</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="title" id="title" placeholder="어느 지역에 있어요?">
+                                    <input class="input--style-5" type="number" name="qty" id="qty">
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">CATEGORY</div>
+                            <div class="name">PRICE</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="title" id="title" placeholder="어느 캐터고리 이신가요?">
+                                    <input class="input--style-5" type="text" name="price" id="price">
+                                </div>
+                            </div>
+                        </div>
+                         <div class="form-row">
+                            <div class="name">STARTS</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-5" type="text" name="starts" id="starts">
                                 </div>
                             </div>
                         </div>
                        <div class="form-row">
-                            <div class="name">category</div>
+                            <div class="name">ENDS</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="title" id="title" placeholder="세분화 해주세요^^">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="name">STORE NAME</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <input class="input--style-5" type="text" name="title" id="title" placeholder="가게이름은 어떻게 돼세요?">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="name">STORE NAME</div>
-                            <div class="value">
-                                <div class="input-group">
-                                    <input class="input--style-5" type="text" name="title" id="title" placeholder="가게이름은 어떻게 돼세요?">
+                                    <input class="input--style-5" type="text" name="ends" id="ends">
                                 </div>
                             </div>
                         </div>
@@ -104,7 +96,7 @@ $(document).ready(function(){
 		                        <div>
 	                        </div>
                         </div>
-                            <button id="btnSave" class="btn btn--radius-2 btn--red" type="submit" onclick="writeForm();">SUBMIT</button>
+                            <button id="btnSave" class="btn btn--radius-2 btn--red" type="submit">SUBMIT</button>
                         </div>
                     </form:form>
                 </div>

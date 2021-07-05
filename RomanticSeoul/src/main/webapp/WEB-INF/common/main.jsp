@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="common.jsp"%>
 <%@ include file="map.jsp"%>
+<!-- 다음 주소검색 api -->
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>   
 <!-- 지도를 표시할 div 입니다 -->
 
 <!-- Most Search Section Begin -->
@@ -233,78 +235,46 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
+				<form action="<%=contextPath%>/meCoList.pr" id="mecoform" name="mecoform" method="post">
 				<div class="section-title">
-					<h2>Trusted By Over 5000+ User</h2>
-					<p>What people say about us</p>
+					<h2>취향에 맞는 코스를 추천해드립니다!</h2>
+					<p>현재 위치를 입력해 주세요</p>
 				</div>
-				<div class="testimonial__slider owl-carousel">
+				<div class="hero__search__form">
+							<input type="text" placeholder="현재 위치를 입력해주세요." id="address" name="address" readonly>
+							<button type="button" onclick="checkPost()">주소 검색하기</button>
+					</div>
+					<div class="row">
+							<div class="select__option">
+								<select id="first" name="first">
+									<option value="">첫번째 코스 선택</option>
+									<option value="eat/${sessionScope.loginfo.eat}">먹거리(${sessionScope.loginfo.eat})</option>
+									<option value="drink/${sessionScope.loginfo.drink}">마실거리(${sessionScope.loginfo.drink})</option>
+									<option value="look/${sessionScope.loginfo.look}">볼거리(${sessionScope.loginfo.look})</option>
+								</select>
+							</div>
+							<div class="select__option">
+								<select id="second" name="second">
+									<option value="">두번째 코스 선택</option>
+									<option value="eat/${sessionScope.loginfo.eat}">먹거리(${sessionScope.loginfo.eat})</option>
+									<option value="drink/${sessionScope.loginfo.drink}">마실거리(${sessionScope.loginfo.drink})</option>
+									<option value="look/${sessionScope.loginfo.look}">볼거리(${sessionScope.loginfo.look})</option>
+								</select>
+							</div>
+							<div class="select__option">
+								<select id="third" name="third">
+									<option value="">세번째 코스 선택</option>
+									<option value="eat/${sessionScope.loginfo.eat}">먹거리(${sessionScope.loginfo.eat})</option>
+									<option value="drink/${sessionScope.loginfo.drink}">마실거리(${sessionScope.loginfo.drink})</option>
+									<option value="look/${sessionScope.loginfo.look}">볼거리(${sessionScope.loginfo.look})</option>
+								</select>
+							</div>
+					</div>
 					<div class="testimonial__item" data-hash="review-1">
-						<p>" We worked with Consultant. Our representative was very
-							knowledgeable and helpful. Consultant made a number of
-							suggestions to help improve our systems. Consultant explained how
-							things work and why it would help."</p>
-						<div class="testimonial__item__author">
-							<a href="#review-3"><img src="img/testimonial/author-3.png"
-								alt=""></a> <a href="#review-1" class="active"><img
-								src="img/testimonial/author-1.png" alt=""></a> <a
-								href="#review-2"><img src="img/testimonial/author-2.png"
-								alt=""></a>
-						</div>
-						<div class="testimonial__item__author__text">
-							<h5>John Smith -</h5>
-							<div class="testimonial__item__author__rating">
-								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i>
-							</div>
-						</div>
-						<span>CEO Colorlib</span>
+						<button type="button">취향 설정 변경하기</button>
+						<button type="submit">코스 추천받기</button>
 					</div>
-					<div class="testimonial__item" data-hash="review-2">
-						<p>" We worked with Consultant. Our representative was very
-							knowledgeable and helpful. Consultant made a number of
-							suggestions to help improve our systems. Consultant explained how
-							things work and why it would help."</p>
-						<div class="testimonial__item__author">
-							<a href="#review-1"><img src="img/testimonial/author-1.png"
-								alt=""></a> <a href="#review-2" class="active"><img
-								src="img/testimonial/author-2.png" alt=""></a> <a
-								href="#review-3"><img src="img/testimonial/author-3.png"
-								alt=""></a>
-						</div>
-						<div class="testimonial__item__author__text">
-							<h5>John Smith -</h5>
-							<div class="testimonial__item__author__rating">
-								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i>
-							</div>
-						</div>
-						<span>CEO Colorlib</span>
-					</div>
-					<div class="testimonial__item" data-hash="review-3">
-						<p>" We worked with Consultant. Our representative was very
-							knowledgeable and helpful. Consultant made a number of
-							suggestions to help improve our systems. Consultant explained how
-							things work and why it would help."</p>
-						<div class="testimonial__item__author">
-							<a href="#review-2"><img src="img/testimonial/author-2.png"
-								alt=""></a> <a href="#review-3" class="active"><img
-								src="img/testimonial/author-3.png" alt=""></a> <a
-								href="#review-1"><img src="img/testimonial/author-1.png"
-								alt=""></a>
-						</div>
-						<div class="testimonial__item__author__text">
-							<h5>John Smith -</h5>
-							<div class="testimonial__item__author__rating">
-								<i class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i> <i class="fa fa-star"></i> <i
-									class="fa fa-star"></i>
-							</div>
-						</div>
-						<span>CEO Colorlib</span>
-					</div>
-				</div>
+			</form>
 			</div>
 		</div>
 	</div>
@@ -361,5 +331,52 @@
 		</div>
 	</div>
 </section>
+<script type="text/javascript">
+function checkPost1(){
+	alert('checkPost1');
+}
+/* 다음주소검색 api */
+    function checkPost() {
+      var width = 500; //팝업의 너비
+      var height = 500; //팝업의 높이
+      
+       new daum.Postcode({
+         width : width, //생성자에 크기 값을 명시적으로 지정해야 합니다.
+           height : height,
+      
+           oncomplete: function(data) {
+              var addr = ''; // 주소 변수
+              var extraAddr = ''; // 참고항목 변수
+
+              //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+              if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                   addr = data.roadAddress;
+               } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                   addr = data.jibunAddress;
+               }
+
+               // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+               if(data.userSelectedType === 'R'){
+                   // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+                   // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+                   if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                       extraAddr += data.bname;
+                   }
+                   // 건물명이 있고, 공동주택일 경우 추가한다.
+                   if(data.buildingName !== '' && data.apartment === 'Y'){
+                       extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                   }
+           
+               // 우편번호와 주소 정보를 해당 필드에 넣는다.
+               document.getElementById("address").value = addr;
+               // 커서를 상세주소 필드로 이동한다.
+              }
+         }
+       }).open({
+         left: (window.screen.width / 2) - (width / 2),
+         top: (window.screen.height / 2) - (height / 2)
+   });  
+ }
+</script>
 <!-- Newslatter Section End -->
 <%@ include file="footer.jsp"%>

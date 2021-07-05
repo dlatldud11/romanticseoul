@@ -44,9 +44,10 @@ public class FlowParameters {
 		this.pageNumber = pageNumber ;
 		this.pageSize = pageSize ;
 		if ( mode == null || mode.equals("null") || mode.equals("") ) {
-			mode = "all" ;
+			this.mode = "all" ;
+		}else {
+			this.mode = mode ;
 		}
-		this.mode = mode ;
 		if ( keyword == null || keyword.equals("null") || keyword.equals("")  || keyword.equals("all") ) {
 			keyword = "" ;
 		}

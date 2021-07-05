@@ -17,7 +17,6 @@ public class Menu {
 	
 	
 	
-	
 	/**
 	 * @return the drinkid
 	 */
@@ -73,14 +72,16 @@ public class Menu {
 	}
 	
 	
+	
+
+	
 	@Override
 	public String toString() {
 		return "Menu [menuseq=" + menuseq + ", storeseq=" + storeseq + ", mname=" + mname + ", price=" + price
-				+ ", image=" + image + ", remark=" + remark + "]";
+				+ ", image=" + image + ", remark=" + remark + ", file=" + file + ", drinkid=" + drinkid + ", eatid="
+				+ eatid + ", lookid=" + lookid + "]";
 	}
 
-
-	
 	public int getMenuseq() {
 		return menuseq;
 	}
