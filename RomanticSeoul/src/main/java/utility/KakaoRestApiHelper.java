@@ -8,6 +8,8 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 //import com.google.gson.Gson;
 
@@ -47,6 +49,8 @@ public class KakaoRestApiHelper {
     private static final String PROPERTIES_PARAM_NAME = "properties";
 
     private static final List<String> adminApiPaths = new ArrayList<String>();
+    
+    private static final String SEARCH_ADDRESS_PATH = "/v2/local/search/address";
 
     static {
         adminApiPaths.add(USER_IDS_PATH);
@@ -70,12 +74,15 @@ public class KakaoRestApiHelper {
     ///////////////////////////////////////////////////////////////
     // User Management
     ///////////////////////////////////////////////////////////////
-
+    // 주소 검색하기 기능
+    public String searchmap(final Map<String, String> params) {
+    	return request(HttpMethodType.GET, SEARCH_ADDRESS_PATH , mapToParams(params));
+    }
     public String signup() {
         return request(HttpMethodType.POST, USER_SIGNUP_PATH);
     }
 
-    public String signup(final Map<String, String> params) {
+    public String signup(final Map<String, String> params) throws JsonProcessingException {
         return request(HttpMethodType.POST, USER_SIGNUP_PATH, PROPERTIES_PARAM_NAME + "=" + mapToJsonStr(params));
     }
 
@@ -91,7 +98,7 @@ public class KakaoRestApiHelper {
         return request(USER_ME_PATH);
     }
 
-    public String updatProfile(final Map<String, String> params) {
+    public String updatProfile(final Map<String, String> params) throws JsonProcessingException {
         return request(HttpMethodType.POST, USER_UPDATE_PROFILE_PATH, PROPERTIES_PARAM_NAME + "=" + mapToJsonStr(params));
     }
 
@@ -219,8 +226,8 @@ public class KakaoRestApiHelper {
         InputStream inputStream = null;
         BufferedReader reader = null;
         try {
-            inputStream = new BufferedInputStream(conn.getInputStream());
-            reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
+//            inputStream = new BufferedInputStream(conn.getInputStream());
+            reader = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
             String line;
             StringBuilder builder = new StringBuilder();
             while ((line = reader.readLine()) != null) {
@@ -280,7 +287,7 @@ public class KakaoRestApiHelper {
     }
 
     public String request(HttpMethodType httpMethod, final String apiPath, final String params) {
-
+    	System.out.println("request 메소드에 들어옴 파라미터 :" + params);
         String requestUrl = API_SERVER_HOST + apiPath;
         if (httpMethod == null) {
             httpMethod = HttpMethodType.GET;
@@ -320,9 +327,9 @@ public class KakaoRestApiHelper {
             System.out.println(String.format("\nSending '%s' request to URL : %s", httpMethod, requestUrl));
             System.out.println("Response Code : " + responseCode);
             if (responseCode == 200)
-                isr = new InputStreamReader(conn.getInputStream());
+                isr = new InputStreamReader(conn.getInputStream(), "UTF-8");
             else
-                isr = new InputStreamReader(conn.getErrorStream());
+                isr = new InputStreamReader(conn.getErrorStream(), "UTF-8");
 
             reader = new BufferedReader(isr);
             final StringBuffer buffer = new StringBuffer();

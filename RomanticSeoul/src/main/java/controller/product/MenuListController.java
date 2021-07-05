@@ -15,7 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 import bean.CheckBean;
 import bean.Menu;
 import bean.Store;
-import bean.Type;
 import controller.common.SuperClass;
 import dao.ProductDao;
 import dao.TypeDao;
@@ -39,11 +38,7 @@ public class MenuListController extends SuperClass{
 	@Autowired
 	@Qualifier("tdao")
 	private TypeDao tdao  ;
-	
-	@ModelAttribute("type")
-	public Type mytype() {
-		return new Type() ;
-	}
+
 	
 	private DrinkAPI dapi;
 	private EatAPI eapi;

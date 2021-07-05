@@ -18,7 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import bean.CheckBean;
 import bean.Member;
-import bean.Type;
 import controller.common.SuperClass;
 import dao.MemberDao;
 import dao.TypeDao;
@@ -42,10 +41,6 @@ public class MeInsertController extends SuperClass {
 		return new Member() ;
 	}
 	
-	@ModelAttribute("type")
-	public Type mytype() {
-		return new Type() ;
-	}
 	@ModelAttribute("drinklist")
 	public List<CheckBean> drink(){
 		List<CheckBean> lists = this.tdao.GetList("stores", "drink") ;

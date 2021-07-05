@@ -63,5 +63,11 @@ public class ProductDao {
 		// 해당 상품을 삭제합니다.		
 		return this.abcd.delete(namespace + "DeleteData", num);
 	}
+	public List<Menu> SelectDataByGuCate(String mode, String keyword){ //mode 는 eat,drink,look 인지 keyword 는 구이름
+		Map<String, String> map = new HashMap<String, String>() ;
+		map.put("mode", mode) ;
+		map.put("keyword", keyword) ;
+		return this.abcd.selectList(namespace + "SelectDataByGuCate", map);
+	}
 
 }
