@@ -11,6 +11,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import bean.CheckBean;
+import bean.Drink;
 import bean.Store;
 
 public class DrinkAPI {
@@ -69,8 +71,8 @@ public class DrinkAPI {
       return nValue.getNodeValue();
    }
    
-   public List<String> getDrinkLists(){
-	   ArrayList<String> drinklists = new ArrayList<String>();
+   public List<Drink> getDrinkLists(List<CheckBean> gu){
+	   ArrayList<Drink> drinklists = new ArrayList<Drink>();
 	   int page = 1;
 	      try {
 	         while(true)
@@ -93,10 +95,19 @@ public class DrinkAPI {
 	               
 	               if(nNode.getNodeType() == Node.ELEMENT_NODE) {
 	                  Element eElement = (Element) nNode;
-	                  
+	                  Drink bean = new Drink();
 	                  System.out.println("--------------------------------------------");
 	                  System.out.println("기본키 : " + getTagValue("MGTNO" ,eElement));
-	                  drinklists.add(getTagValue("MGTNO" ,eElement));
+	                  String a = getTagValue("SITEWHLADDR" ,eElement); //지번주소
+	                  String b = getTagValue("RDNWHLADDR" ,eElement); //도로명주소
+	                  String c = a+b;
+	                  for(int i=0; i<gu.size(); i++) {
+	                	  if(c.contains(gu.get(i).getMykey())) {
+	                		  bean.setRemark(gu.get(i).getMykey());
+	                	  }
+	                  }
+	                  bean.setDrinkid(getTagValue("MGTNO" ,eElement));
+	                  drinklists.add(bean);
 	               }
 	            }
 	            page += 1;

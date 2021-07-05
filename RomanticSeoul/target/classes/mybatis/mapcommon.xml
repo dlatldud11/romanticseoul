@@ -4,7 +4,7 @@
 
 <mapper namespace="MapperCommon">
    
-   <select id="GetList" parameterType="String" resultType="MyType">
+   <select id="GetList" parameterType="String" resultType="MyCheckBean">
       select *
       from type
       where module = #{module} and field = #{field}

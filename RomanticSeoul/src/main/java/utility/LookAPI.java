@@ -11,6 +11,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import bean.CheckBean;
+import bean.Look;
 import bean.Store;
 
 public class LookAPI {
@@ -75,9 +77,9 @@ public class LookAPI {
       return nValue.getNodeValue();
    }
 
-public ArrayList<String> getLooklists(){
+public ArrayList<Look> getLooklists(List<CheckBean> gu){
 	int page = 1;
-	ArrayList<String> looklists = new ArrayList<String>();
+	ArrayList<Look> looklists = new ArrayList<Look>();
     try {
        while(true)
        {
@@ -100,13 +102,18 @@ public ArrayList<String> getLooklists(){
           
           for(int temp = 0; temp < nList.getLength(); temp++) {
              Node nNode = nList.item(temp);
-             
              if(nNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element eElement = (Element) nNode;
-                
+                Look bean = new Look();
                 System.out.println("--------------------------------------------");
                 System.out.println("기본키 : " + getTagValue("MAIN_KEY" ,eElement));
-                looklists.add(getTagValue("MAIN_KEY" ,eElement));
+                for(int i=0; i < gu.size(); i++) {
+                	if((getTagValue("H_KOR_GU" ,eElement).equals(gu.get(i).getMykey()))) {
+                		bean.setRemark(gu.get(i).getMykey());
+                	}
+                }
+                bean.setLookid(getTagValue("MAIN_KEY" ,eElement));
+                looklists.add(bean);
                 System.out.println("looklist에 들어옴"+looklists.get(temp));
              }
           }

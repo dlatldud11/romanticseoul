@@ -37,16 +37,16 @@ public class MallDao {
 		return this.abcd.selectList(namespace + "SelectEat");
 	}
 	
-	public int InsertLook(String id) {
-		return this.abcd.insert(namespace + "InsertLook", id);
+	public int InsertLook(Look look) {
+		return this.abcd.insert(namespace + "InsertLook", look);
 	}
 
 	public List<Look> selectLook() {
 		return this.abcd.selectList(namespace + "SelectLook");
 	}
 	
-	public int InsertDrink(String id) {
-		return this.abcd.insert(namespace + "InsertDrink", id);
+	public int InsertDrink(Drink drink) {
+		return this.abcd.insert(namespace + "InsertDrink", drink);
 	}
 
 	public List<Drink> selectDrink() {
