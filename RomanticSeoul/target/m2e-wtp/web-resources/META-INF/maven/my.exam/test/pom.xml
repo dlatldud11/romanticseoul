@@ -193,5 +193,11 @@
 		    <artifactId>unirest-java</artifactId>
 		    <version>3.7.04</version>
 		</dependency>
+		<!-- 1.1.1.jar 다운 -->
+		<dependency>
+		  <groupId>com.googlecode.json-simple</groupId>
+		  <artifactId>json-simple</artifactId>
+		  <version>1.1.1</version>
+		</dependency>
 	</dependencies>
 </project>

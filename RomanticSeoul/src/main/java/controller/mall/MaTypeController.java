@@ -10,11 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import bean.CheckBean;
 import bean.Drink;
 import bean.Eat;
 import bean.Look;
@@ -22,6 +24,7 @@ import bean.Member;
 import bean.Store;
 import controller.common.SuperClass;
 import dao.MallDao;
+import dao.TypeDao;
 import utility.DrinkAPI;
 import utility.EatAPI;
 import utility.LookAPI;
@@ -43,8 +46,18 @@ public class MaTypeController extends SuperClass {
 //	private CompositeDao dao ; 
 	
 	@Autowired
+	@Qualifier("tdao")
+	private TypeDao tdao;
+	
+	@Autowired
 	@Qualifier("malldao")
 	private MallDao dao;
+	
+	@ModelAttribute("gulists")
+	public List<CheckBean> drink(){
+		List<CheckBean> gulists = this.tdao.GetList("menu", "gu") ;
+		return gulists ;
+	}
 	
 	public MaTypeController() {
 		super("mapexample", "eatlist");
@@ -61,9 +74,10 @@ public class MaTypeController extends SuperClass {
 		List<Eat>checks = this.dao.selectEat();
 		
 		if(checks.isEmpty()) {
-			ArrayList<String> eatlists = eapi.geteatlist();
+			List<CheckBean> gulists = drink();
+			ArrayList<Eat> eatlists = eapi.geteatlist(gulists);
 			System.out.println("eatlists "+eatlists.size());
-			for(String eatlist : eatlists) {
+			for(Eat eatlist : eatlists) {
 				this.dao.InsertEat(eatlist);
 			}
 			checks = this.dao.selectEat();

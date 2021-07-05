@@ -29,8 +29,8 @@ public class MallDao {
 	
 	public MallDao() { }
 	
-	public int InsertEat(String eatid) {
-		return this.abcd.insert(namespace + "InsertEat", eatid);
+	public int InsertEat(Eat eat) {
+		return this.abcd.insert(namespace + "InsertEat", eat);
 	}
 
 	public List<Eat> selectEat() {

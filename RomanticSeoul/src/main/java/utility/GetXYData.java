@@ -15,14 +15,14 @@ import org.json.simple.JSONValue;
 
 
 
-public class GetJSONData{
-	public static void main(String[] args) {
-		Map<String,Object> answer = coordToAddr("전북 익산시 부송동 100");
-		System.out.println(answer);
-		
-	}
+public class GetXYData{
+//	public static void main(String[] args) {
+//		Map<String,Object> answer = addToCoord("서울 동대문구 서울시립대로29길 45");
+//		System.out.println(answer);
+//		
+//	}
 	
-	public static Map<String,Object> coordToAddr(String add){
+	public static Map<String,Object> addToCoord(String add){
 
 		String url = "https://dapi.kakao.com/v2/local/search/address.json?page=1&size=10&query=";
 		Map<String,Object> addr = new HashMap<String,Object>();

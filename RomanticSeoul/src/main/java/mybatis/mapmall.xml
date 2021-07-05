@@ -2,14 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="MapperMall">
-	<insert id="InsertEat" parameterType="String">
-	insert into eat (eatid) values (#{eatid})
+	<insert id="InsertEat" parameterType="MyEat">
+	insert into eat (eatid, remark) values (#{eatid}, #{remark})
 	</insert>
-	<insert id="InsertDrink" parameterType="String">
-	insert into drink (drinkid) values (#{drinkid})
+	<insert id="InsertDrink" parameterType="MyDrink">
+	insert into drink (drinkid, remark) values (#{drinkid}, #{remark})
 	</insert>
-	<insert id="InsertLook" parameterType="String">
-	insert into look (lookid) values (#{lookid})
+	<insert id="InsertLook" parameterType="MyLook">
+	insert into look (lookid, remark) values (#{lookid}, #{remark})
 	</insert>
 	<select id="SelectEat" resultType="MyEat">
 	select * from eat

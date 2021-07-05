@@ -1,6 +1,7 @@
 package utility;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -10,6 +11,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import bean.CheckBean;
+import bean.Eat;
 import bean.Store;
 
 public class EatAPI {
@@ -76,9 +79,9 @@ public class EatAPI {
 //	   geteatlist();
 //   }   // main end
    
-   public ArrayList<String> geteatlist(){
+   public ArrayList<Eat> geteatlist(List<CheckBean> gulists){
 	   int a = 1;   // 페이지 초기값 
-	   ArrayList<String> eatlists = new ArrayList<String>();
+	   ArrayList<Eat> eatlists = new ArrayList<Eat>();
 	      try{
 	         while(true){
 	            // parsing할 url 지정(API 키 포함해서)
@@ -100,13 +103,21 @@ public class EatAPI {
 	            for(int temp = 0; temp < nList.getLength(); temp++){
 	               Node nNode = nList.item(temp);
 	               if(nNode.getNodeType() == Node.ELEMENT_NODE){
-	                  
+	                  Eat bean = new Eat();
 	                  Element eElement = (Element) nNode;
 	                  System.out.println("######################");
 	                  //System.out.println(eElement.getTextContent());
 	                  System.out.println("관리번호  : " + getTagValue("MGTNO", eElement));
-	                  eatlists.add(getTagValue("MGTNO", eElement));
-	                  
+	                  String b = getTagValue("RDNWHLADDR", eElement); //도로명주소
+	                  String c = getTagValue("SITEWHLADDR", eElement); //지번주소
+	                  String d = b+c; // 주소 합침
+	                  bean.setEatid(getTagValue("MGTNO", eElement));//기본키
+	                  for(int i=0; i < gulists.size(); i++) {
+	                	  if(d.contains((String)gulists.get(i).getMykey())) {
+	                		  bean.setRemark((String)gulists.get(i).getMykey());
+	                	  }
+	                  }
+	                  eatlists.add(bean);
 	               }   // for end
 	            }   // if end
 	            
@@ -204,8 +215,8 @@ public class EatAPI {
 	                  //System.out.println(eElement.getTextContent());
 //	                  System.out.println("도로명주소  : " + getTagValue("RDNWHLADDR", eElement));
 //	                  System.out.println("지번주소  : " + getTagValue("SITEWHLADDR", eElement));
-	                  String b = getTagValue("RDNWHLADDR", eElement);
-	                  String c = getTagValue("SITEWHLADDR", eElement);
+	                  String b = getTagValue("RDNWHLADDR", eElement); //도로명주소
+	                  String c = getTagValue("SITEWHLADDR", eElement); //지번주소
 	                  String d = b+c; // 주소 합침
 	                  if(d.contains(gu) && !(getTagValue("DTLSTATENM", eElement).equals("폐업"))) {
 	                	  System.out.println("원하는 구 값이 나옴");

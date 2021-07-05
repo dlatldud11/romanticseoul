@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%
+	String contextPath = request.getContextPath() ;
+%>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>   
@@ -40,10 +43,8 @@
                    }
            
                // 우편번호와 주소 정보를 해당 필드에 넣는다.
-               document.getElementById('zipcode').value = data.zonecode;
-               document.getElementById("address1").value = addr;
+               document.getElementById("address").value = addr;
                // 커서를 상세주소 필드로 이동한다.
-               document.getElementById("address2").focus();
               }
          }
        }).open({
@@ -56,28 +57,19 @@
 <body>
 <div class="container">
 <div class="form-group">
-               <label for="zipcode" class="form-control-label col-sm-0">우편번호</label>
-               <div class="form-row">
                   <div class="col-">
-                     <input type="text" class="form-control" id="zipcode" name="zipcode" readonly>
-                  </div>
-                  <div class="col-">
-                     <input type="button" class="form-control btn btn-primary" value="우편번호검색" onclick="checkPost()">
+                     <input type="button" class="form-control btn btn-primary" value="현재위치 입력" onclick="checkPost()">
                   </div>
                </div>
             </div>
             <div class="form-group">
-               <label for="address1" class="form-control-label col-sm-0">주소</label>
+               <form action="<%=contextPath%>/test.pr" method="post">
+               <label for="address" class="form-control-label col-sm-0">주소</label>
                <div class="col-">
-                  <input type="text" class="form-control" id="address1" name="address1" readonly>
+                  <input type="text" class="form-control" id="address" name="address" readonly>
+                  <button type=submit>좌표얻기</button>
                </div>
-            </div>
-            <div class="form-group">
-               <label for="address2" class="form-control-label col-sm-0">상세주소</label>
-               <div class="col-">
-                <input type="text" class="form-control" id="address2" name="address2">
-               </div>
-            </div>
+               </form>
             </div>
 </body>
 </html>
