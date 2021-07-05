@@ -3,11 +3,9 @@
 <%@ include file="../common/common.jsp"%>
 <!DOCTYPE html>
 <html lang="zxx">
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script type="text/javascript"></script>
-
 <head>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 function gotoBack(){
 	location.href='<%=contextPath%>/qnaBoList.bo?${requestScope.parameters}';
@@ -48,66 +46,68 @@ function gotoBack(){
 	</div>
 </div>
 <div class="container">
-<div class="row" style="justify-content: center;">
-<div class="listing__details__comment">
-                <h4>Comment</h4>
-                <div class="listing__details__comment__item">
-                    <div class="listing__details__comment__item__pic">
-                        <img src="img/listing/details/comment.png" alt="">
-                    </div>
-                    <div class="listing__details__comment__item__text">
-                        <div class="listing__details__comment__item__rating">
-                            <c:choose>
-                            	<c:when test="${bean.id eq sessionScope.loginfo.id || sessionScope.loginfo.id eq 'admin'}">
-		                            <button class="btn btn-primary" type="button" onclick="openUpdate(${bean.qnaseq},'${bean.recontent}' )">
-		                            수정
-		                            </button>
-                            	</c:when>
-                            	<c:when test="${bean.id eq sessionScope.loginfo.id || sessionScope.loginfo.id eq 'admin'}">
-		                            <button class="btn btn-danger" type=button onclick="location.href='<%=contextPath%>/bodelete.bo?qnaseq=${bean.qnaseq}'">삭제</button>
-                            	</c:when>
-                            </c:choose>
-                        </div>
-                        <span>${bean.reregdate}</span>
-                        <p>관리자</p>
-                        <div id="UpdateContent${bean.qnaseq}">
-                        <p>${bean.recontent}</p>
-                        <div id="insertReply">
-                        <ul> 
-                            <li>
-                            <i class="fa fa-hand-o-right"></i> Like
-                            </li>
-                            <li>
-                            <i id="comment" name="comment" class="fa fa-share-square-o"data-toggle="collapse" data-target="#demo"></i> 
-                            Reply
-                            </li>
-                        </ul>
-                        </div>
-                    </div>
-                </div>
-            <c:choose>
-               	<c:when test="${sessionScope.loginfo.id eq 'admin'}">
-            <div class="listing__details__review">
-                <h4>자유게시판 글쓰기</h4>
-                <c:set var="apppath" value="<%=request.getContextPath()%>" />
-         		<form:form id="myform" name="myform" modelAttribute="Board" >
-         		<%-- <form:form modelAttribute="boardBoard" id="myform" name="myform" method="post"
+	<div class="row" style="justify-content: center;">
+		<div class="listing__details__comment">
+			<h4>Comment</h4>
+			<div class="listing__details__comment__item">
+				<div class="listing__details__comment__item__pic">
+					<img src="img/listing/details/comment.png" alt="">
+				</div>
+				<div class="listing__details__comment__item__text">
+					<div class="listing__details__comment__item__rating">
+						<c:choose>
+							<%-- <c:when test="${bean.id eq sessionScope.loginfo.id || sessionScope.loginfo.id eq 'admin'}">
+		                            <button class="btn btn-primary" type=button onclick="location.href='<%=contextPath%>/boupdate.bo?qnaseq=${bean.qnaseq}'">수정</button>
+                            	</c:when> --%>
+							<c:when
+								test="${bean.id eq sessionScope.loginfo.id || sessionScope.loginfo.id eq 'admin'}">
+								<button class="btn btn-danger" type=button
+									onclick="location.href='<%=contextPath%>/bodelete.bo?qnaseq=${bean.qnaseq}'">삭제</button>
+							</c:when>
+						</c:choose>
+					</div>
+					<span>${bean.reregdate}</span>
+					<p>관리자</p>
+					<div id="UpdateContent${bean.qnaseq}">
+						<p>${bean.recontent}</p>
+						<div id="insertReply">
+							<ul>
+								<li><i class="fa fa-hand-o-right"></i> Like</li>
+								<li><i id="comment" name="comment"
+									class="fa fa-share-square-o" data-toggle="collapse"
+									data-target="#demo"></i> Reply</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<c:choose>
+					<c:when test="${sessionScope.loginfo.id eq 'admin'}">
+						<div class="listing__details__review">
+							<h4>자유게시판 글쓰기</h4>
+							<c:set var="apppath" value="<%=request.getContextPath()%>" />
+							<form:form id="myform" name="myform" modelAttribute="Board">
+								<%-- <form:form modelAttribute="boardBoard" id="myform" name="myform" method="post"
          		action="${apppath}/boInsert.bo"> --%>
-                    <input type="hidden" id="qnaseq" name="qnaseq" value="${bean.qnaseq}">
-                    <input type="text" id="id" name="id" value="${sessionScope.loginfo.id}" readonly
-                    placeholder="${sessionScope.loginfo.nickname}">
-                    <!-- <input type="text" placeholder="Name" id="nickname" name="nickname"> -->
-                    <textarea placeholder="글내용을 작성하세요" id="recontent" name="recontent"></textarea>
-                    <button id="btn_register" name="btn_register" type="button" class="site-btn" onclick="submit1();">Submit Now</button>
-                    <button id="btn_previous" name="btn_register" type="button" class="site-btn" onclick="redirect();">뒤로가기</button>
-                </form:form>
-            </div>
-            </c:when>
-            </c:choose>
-        </div>
-    </div>
-  </div>
-  </div>
+								<input type="hidden" id="qnaseq" name="qnaseq"
+									value="${bean.qnaseq}">
+								<input type="text" id="id" name="id"
+									value="${sessionScope.loginfo.id}" readonly
+									placeholder="${sessionScope.loginfo.nickname}">
+								<!-- <input type="text" placeholder="Name" id="nickname" name="nickname"> -->
+								<textarea placeholder="글내용을 작성하세요" id="recontent"
+									name="recontent"></textarea>
+								<button id="btn_register" name="btn_register" type="button"
+									class="site-btn" onclick="submit1();">Submit Now</button>
+								<button id="btn_previous" name="btn_register" type="button"
+									class="site-btn" onclick="redirect();">뒤로가기</button>
+							</form:form>
+						</div>
+					</c:when>
+				</c:choose>
+			</div>
+		</div>
+	</div>
+</div>
 <script>  
 var mod_check = 'N';
 var reply_check = 'N';

@@ -4,6 +4,23 @@
 <%@ include file="map.jsp"%>
 <!-- 지도를 표시할 div 입니다 -->
 
+<script>	
+	function search(){
+		var mode = $('#mode').val() ;
+		var keyword = $('#keyword').val() ;
+		location.href='<%=NoForm%>prList' + '&mode=' + mode + '&keyword=' + keyword ;
+	}
+	function searchAll(){
+		location.href='<%=NoForm%>prList';
+	}
+	function writeForm(){
+		location.href='<%=NoForm%>prInsert';
+	}
+	
+	$(document).ready(function(){
+		
+	});
+</script>
 <!-- Most Search Section Begin -->
 <meta charset="UTF-8">
 <section class="most-search spad">
@@ -35,7 +52,8 @@
 									</div>
 									<div class="listing__item__text">
 										<div class="listing__item__text__inside">
-											<h5>${bean.name}</h5>
+											<h5><a href="<%=contextPath%>/coBoList.bo?storeseq=${bean.storeseq}&${requestScope.parameters}">
+											${bean.name}</a></h5>
 											<div class="listing__item__text__rating">
 												<div class="listing__item__rating__star">
 													<span class="icon_star"></span> <span class="icon_star"></span>
@@ -159,23 +177,26 @@
 			<div class="col-lg-12">
 				<div class="hero__text">
 					<div class="section-title">
-						<h2>Discover The Best Services Near You</h2>
-						<p>1.118.940.376 The best service package is waiting for you</p>
+						<h2>가게 검색</h2>
+						<p>원하는 가게를 검색해보세요!</p>
 					</div>
 					<div class="hero__search__form">
-						<form action="#">
+						<form action="" class="form-inline" role="form" name="myform" method="get">
 							<input type="text" placeholder="Search...">
 							<div class="select__option">
-								<select>
-									<option value="">Choose Categories</option>
+								<select id="mode" name="mode" class="form-control">
+									<option value="all" selected="selected">-- Select
+									<option value="pname">Name
+									<option value="brand">Brand
+									<option value="category">Category
 								</select>
 							</div>
 							<div class="select__option">
 								<select>
-									<option value="">Choose Location</option>
+									<option value="">Gu</option>
 								</select>
 							</div>
-							<button type="submit">Explore Now</button>
+							<button class="btn btn-primary" type="button" onclick="search();">Search</button>
 						</form>
 					</div>
 				</div>
