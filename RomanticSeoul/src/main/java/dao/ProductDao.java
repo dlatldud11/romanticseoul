@@ -9,7 +9,9 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import bean.Combo1;
 import bean.Menu;
+import bean.Stock;
 
 
 @Component("pdao")
@@ -24,6 +26,10 @@ public class ProductDao {
 	public int InsertData(Menu bean) {	
 		System.out.println(this.getClass() + " : 상품을 등록합니다." ); 
 		return this.abcd.insert(namespace + "InsertData", bean);
+	}	
+	public int InsertData2(Stock bean) {	
+		System.out.println(this.getClass() + " : 상품을 등록합니다." ); 
+		return this.abcd.insert(namespace + "InsertData2", bean);
 	}	
 	
 	public int SelectTotalCount(String mode, String keyword) {
@@ -41,6 +47,14 @@ public class ProductDao {
 		map.put("mode", mode) ;
 		map.put("keyword", "%" + keyword + "%") ;	
 		return this.abcd.selectList(namespace + "SelectDataList", map, rowBounds);
+	}	
+	public List<Combo1> SelectDataList2(String mode, String keyword) {
+		// 페이징 처리와 필드 검색을 통한 상품 목록을 구해줍니다.
+		Map<String, String> map = new HashMap<String, String>() ;
+		map.put("mode", mode) ;
+		map.put("keyword", keyword ) ;	
+		System.out.println("mode :"+map.get("mode")+"/keyword : "+map.get("keyword"));
+		return this.abcd.selectList(namespace + "SelectDataList2", map);
 	}	
 
 	public Menu SelectDataByPk(int num) {

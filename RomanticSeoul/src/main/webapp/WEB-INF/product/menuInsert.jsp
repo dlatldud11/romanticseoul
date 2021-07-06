@@ -40,6 +40,7 @@ $(document).ready(function(){
                     <h2 class="title">Menu</h2>
                 </div>
                 <div class="card-body">
+                
                 <c:set var="apppath" value="<%=request.getContextPath()%>" />
                     <form:form id="form" name="form" role="form" action="${apppath}/menuInsert.pr" method="post" enctype="multipart/form-data">
                         <div class="form-row m-b-55">
@@ -49,7 +50,9 @@ $(document).ready(function(){
                                     <div class="col-12">
                                         <div class="input-group-desc">
                                             <input class="input--style-5" type="text" id="mname" name="mname">
-                                            
+                                            <input type="hidden" id="eatid" name="eatid" value="${eatid}">
+                                            <input type="hidden" id="drinkid" name="drinkid" value="${drinkid}">
+                                            <input type="hidden" id="lookid" name="lookid" value="${lookid}">
                                         </div>
                                     </div>
                                 </div>
