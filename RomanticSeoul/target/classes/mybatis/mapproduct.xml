@@ -42,7 +42,18 @@
 		values(menu_seq.nextval, #{mname, jdbcType=VARCHAR}, #{price, jdbcType=VARCHAR}, #{image, jdbcType=VARCHAR}, #{remark, jdbcType=VARCHAR}, #{drinkid, jdbcType=VARCHAR}, #{eatid, jdbcType=VARCHAR}, #{lookid, jdbcType=VARCHAR})
 	</insert>
 	<select id="SelectDataByGuCate" resultType="MyProduct">
-		<include refid="myselect"/>
+		select distinct
+		<if test="mode == 'eat'">
+			eatid
+		</if>
+		<if test="mode == 'drink'">
+			drinkid
+		</if>
+		<if test="mode == 'look'">
+			lookid
+		</if>
+		from menu
+		
 		<if test="mode == 'eat'">
 			where eatid in ( select eatid from eat
 		</if>
