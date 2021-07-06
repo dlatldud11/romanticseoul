@@ -282,14 +282,14 @@
 									<option value="look/${sessionScope.loginfo.look}">볼거리(${sessionScope.loginfo.look})</option>
 								</select>
 							</div>
-							<div class="select__option">
+							<%-- <div class="select__option">
 								<select id="third" name="third">
 									<option value="">세번째 코스 선택</option>
 									<option value="eat/${sessionScope.loginfo.eat}">먹거리(${sessionScope.loginfo.eat})</option>
 									<option value="drink/${sessionScope.loginfo.drink}">마실거리(${sessionScope.loginfo.drink})</option>
 									<option value="look/${sessionScope.loginfo.look}">볼거리(${sessionScope.loginfo.look})</option>
 								</select>
-							</div>
+							</div> --%>
 					</div>
 					<div class="testimonial__item" data-hash="review-1">
 						<button type="button">취향 설정 변경하기</button>
@@ -307,46 +307,76 @@
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="section-title">
-					<h2>Top Featured Locations</h2>
-					<p>Explore restaurants, bars, and cafés by locality</p>
+					<h2>취향별 추천 코스</h2>
+					<p>현재 위치와 가장 가까운 순으로 추천드립니다.</p>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="row">
+				<div class="row"><!-- 1등 장소 보여주기 -->
+				<c:forEach var="bean" items="${first}">
+				<c:if test="${bean.storeseq eq firsttop }">	
 					<div class="col-lg-3 col-md-3">
 						<a href="#" class="feature__location__item set-bg"
 							data-setbg="img/feature-location/fl-2.jpg">
 							<div class="feature__location__item__text">
-								<h5>Chicago</h5>
+								<h5>${bean.name}</h5>
+								<h5>${bean.category}</h5>
+								<h5>${bean.address2}</h5>
 							</div>
 						</a>
 					</div>
+				</c:if>
+				</c:forEach>
+				<c:forEach var="bean" items="${second}">
+				<c:if test="${bean.storeseq eq secondtop}">	
 					<div class="col-lg-3 col-md-3">
 						<a href="#" class="feature__location__item set-bg"
 							data-setbg="img/feature-location/fl-3.jpg">
 							<div class="feature__location__item__text">
-								<h5>San Antonio</h5>
+								<h5>${bean.name}</h5>
+								<h5>${bean.category}</h5>
+								<h5>${bean.address2}</h5>
 							</div>
 						</a>
 					</div>
+				</c:if>
+				</c:forEach>	
+				</div> <!-- 1등 장소 끝 -->
+				<div class="row"> <!-- 2등 이후 가게 -->
+				<c:forEach var="bean" items="${first}">
+				<c:forEach var="bean2" items="${firstrank}">
+				<c:if test="${bean.storeseq eq bean2}">	
 					<div class="col-lg-3 col-md-3">
 						<a href="#" class="feature__location__item set-bg"
 							data-setbg="img/feature-location/fl-2.jpg">
 							<div class="feature__location__item__text">
-								<h5>Chicago</h5>
+								<h5>${bean.name}</h5>
+								<h5>${bean.category}</h5>
+								<h5>${bean.address2}</h5>
 							</div>
 						</a>
 					</div>
+				</c:if>
+				</c:forEach>
+				</c:forEach>
+				<c:forEach var="bean" items="${second}">
+				<c:forEach var="bean2" items="${secondrank}">
+				<c:if test="${bean.storeseq eq bean2}">	
 					<div class="col-lg-3 col-md-3">
 						<a href="#" class="feature__location__item set-bg"
 							data-setbg="img/feature-location/fl-3.jpg">
 							<div class="feature__location__item__text">
-								<h5>San Antonio</h5>
+								<h5>${bean.name}</h5>
+								<h5>${bean.category}</h5>
+								<h5>${bean.address2}</h5>
 							</div>
 						</a>
 					</div>
+				</c:if>
+				</c:forEach>
+				</c:forEach>
 				</div>
 			</div>
 		</div>

@@ -60,7 +60,6 @@ public class GetXYData{
             JSONObject subJobj = (JSONObject) jArray.get(0);
             value.put("x", subJobj.get("x"));
             value.put("y", subJobj.get("y"));
-            
 //            if(value.equals("") || value==null){
 //                subJobj = (JSONObject) jArray.get(1);
 //                subJobj = (JSONObject) subJobj.get("address");
