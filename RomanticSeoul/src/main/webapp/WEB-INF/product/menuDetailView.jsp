@@ -38,7 +38,15 @@ form.form-inline{
 </style>
 	<script type="text/javascript">
 		function writeForm(){
-			location.href='<%=contextPath%>/menuInsert.pr';
+			if(${mode == 'eat'}){
+			location.href='<%=contextPath%>/menuInsert.pr?eatid='${bean.eatid}.val();
+			}
+			if(${mode == 'drink'}){
+			location.href='<%=contextPath%>/menuInsert.pr?drinkid='${bean.drinkid}.val();
+			}
+			if(${mode == 'look'}){
+			location.href='<%=contextPath%>/menuInsert.pr?lookid='${bean.lookid}.val();
+			}
 		}
 		function search(){
 			if( $('#mode').val() == 'all' ){
@@ -55,36 +63,39 @@ form.form-inline{
 	<section class="ftco-section">
 		<div class="container">
 			<h2>Menu</h2>
+			<h2>${mode}</h2>
 			<table>
 				<thead>
 					<tr>
-						<th>image</th>
-						<th>mname</th>
-						<th>price</th>
-						<th>remark</th>
+						<th>IMAGE</th>
+						<th>NAME</th>
+						<th>PRICE</th>
+						<th>QTY</th>
+						<th>DRINKID</th>
+						<th>EATID</th>
+						<th>LOOKID</th>
+						<th>START</th>
+						<th>END</th>
+						<th>REMARK</th>
+						<th>DELETE</th>
+						<th>UPDATE</th>
 					</tr>
 				</thead>
-				<tr>
-					<td colspan="12" align="center">
-						<form class="form-inline" role="form" name="myform" action="<%=YesForm%>" method="get">
-							<c:if test="${whologin == 2}">
-								<button class="btn btn-default btn-info" type="button"
-									onclick="writeForm();">상품 등록</button>
-							</c:if>	
-								&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-								<p class="form-control-static">${requestScope.pagingStatus}</p>
-						</form>
-					</td>
-				</tr>				
-				<c:forEach var="bean" items="${requestScope.lists}">
+				<c:forEach var="bean" items="${lists}">
 				<tr>
 					<td>${bean.image}</td>
 					<td>${bean.mname}</td>
 					<td>${bean.price}</td>
+					<td>${bean.qty}</td>
+					<td>${bean.drinkid}</td>
+					<td>${bean.eatid}</td>
+					<td>${bean.lookid}</td> 
+					<td>${bean.starts}</td>
+					<td>${bean.ends}</td>
 					<td>${bean.remark}</td>
 					<td>
 						<c:if test="${whologin == 2}">
-							<a href="<%=contextPath%>/delete.pr?num=${bean.num}&${requestScope.parameters}">
+							<a href="<%=contextPath%>/delete.pr?menuseq=${bean.menuseq}&${requestScope.parameters}">
 								삭제
 							</a>
 						</c:if>
@@ -94,17 +105,36 @@ form.form-inline{
 					</td>
 					<td>
 						<c:if test="${whologin == 2}">
-							<a href="<%=contextPath%>/update.pr?num=${bean.num}&${requestScope.parameters}">
+							<a href="<%=contextPath%>/update.pr?menuseq=${bean.menuseq}&${requestScope.parameters}">
 								수정
 							</a>
 						</c:if>
 						<c:if test="${whologin != 2}">
 							수정
 						</c:if>	
-						
 					</td>
 					</tr>
-				</c:forEach>	
+				<%-- storeseq mode에 따라서 보내는 값 다르게 해주기 --%>
+				<c:choose> 
+					<c:when test="${mode == 'eat'}">
+						<c:set var="storeseq" value="${bean.eatid}" />
+					</c:when>
+					<c:when test="${mode == 'drink'}">
+						<c:set var="storeseq" value="${bean.drinkid}" />
+					</c:when>
+					<c:when test="${mode == 'look'}">
+						<c:set var="storeseq" value="${bean.lookid}" />
+					</c:when>
+				</c:choose>
+				</c:forEach>
+				<c:if test="${whologin == 2}">
+					<button class="btn btn-primary">
+					<a href="<%=contextPath%>/menuInsert.pr?storeseq=${storeseq}&mode=${mode}&${requestScope.parameters}">상품 등록</a>
+					</button>
+					<%-- <button class="btn btn-default btn-info" type="button"
+						onclick="<%=contextPath%>/menuInsert.pr?storeseq=${storeseq}">상품 등록</button> --%>
+				</c:if>	
+					<%-- <p class="form-control-static">${requestScope.pagingStatus}</p> --%>
 			</table>
 			</div>
 			<div class="block-27">
