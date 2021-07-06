@@ -243,5 +243,3 @@ public class MeCoListController extends SuperClass {
 	    return d;
 	}
 }
-
-
