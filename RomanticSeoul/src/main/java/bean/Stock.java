@@ -3,10 +3,25 @@ package bean;
 public class Stock {
 	private int qtyseq;
 	private int qty;
+	private int menuseq;
 	private int coseq;
 	private String remark;
 	private String starts;
 	private String ends;
+	
+	
+	/**
+	 * @return the menuseq
+	 */
+	public int getMenuseq() {
+		return menuseq;
+	}
+	/**
+	 * @param menuseq the menuseq to set
+	 */
+	public void setMenuseq(int menuseq) {
+		this.menuseq = menuseq;
+	}
 	/**
 	 * @return the qtyseq
 	 */
@@ -81,8 +96,8 @@ public class Stock {
 	}
 	@Override
 	public String toString() {
-		return "Stock [qtyseq=" + qtyseq + ", qty=" + qty + ", coseq=" + coseq + ", remark=" + remark + ", starts="
-				+ starts + ", ends=" + ends + "]";
+		return "Stock [qtyseq=" + qtyseq + ", qty=" + qty + ", menuseq=" + menuseq + ", coseq=" + coseq + ", remark="
+				+ remark + ", starts=" + starts + ", ends=" + ends + "]";
 	}
 	
 	
