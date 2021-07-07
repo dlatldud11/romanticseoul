@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Course;
@@ -16,6 +17,7 @@ import bean.Myplan;
 import bean.Store;
 import controller.common.SuperClass;
 import dao.MallDao;
+import utility.MyplanList;
 
 public class ZzimInsertController extends SuperClass {
 	private final String command = "/zziminsert.ma" ;
@@ -33,9 +35,11 @@ public class ZzimInsertController extends SuperClass {
 	
 	@GetMapping(command)
 	public ModelAndView doGet(
-			@ModelAttribute("store") Store store,
-			@ModelAttribute("menu") Menu menu,
-			@ModelAttribute("course") Course course,
+			@RequestParam(value="eatid", required = false) String eatid,
+			@RequestParam(value="lookid", required = false) String lookid,
+			@RequestParam(value="drinkid", required = false) String drinkid,
+			@RequestParam(value="coseq", required = false) int coseq,
+			@RequestParam(value="stock", required = false) int stock,
 			HttpSession session) {
 		System.out.println("zziminsert doget");
 		Member loginfo = (Member)session.getAttribute("loginfo")  ;
@@ -49,13 +53,20 @@ public class ZzimInsertController extends SuperClass {
 			
 		} else { // 로그인 함
 			System.out.println("로그인함");
-			Myplan myplan = (Myplan)session.getAttribute("myplan")  ;
-			if(store != null) { // 가게 정보가 있으면
-				if(myplan == null) {
-					myplan = new Myplan();
-				}
-				
+			MyplanList myplan = (MyplanList)session.getAttribute("myplan")  ;
+			if(myplan == null) {
+				myplan = new MyplanList();
 			}
+			if( !(eatid == null || eatid.isBlank())) { // eat가게 정보가 있으면
+				myplan.AddOrder(eatid, stock,"eat");
+			}else if( !(drinkid == null || drinkid.isBlank())) {
+				myplan.AddOrder(drinkid, stock,"drink");
+			}else if( !(lookid == null || drinkid.isBlank())) {
+				myplan.AddOrder(lookid, stock,"look");
+			}
+			System.out.println("찜목록 추가 완료 /"+myplan.toString());
+			session.setAttribute("myplan", myplan);
+			mav.setViewName(super.getpage);
 		}
 		return this.mav ;
 	}
