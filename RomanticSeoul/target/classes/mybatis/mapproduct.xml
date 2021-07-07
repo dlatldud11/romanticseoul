@@ -26,7 +26,19 @@
 			where price like #{price}
 		</if>
 	</select>
-	<select id="SelectDataList2" resultType="MyProduct">
+	<select id="SelectDataList2" resultType="MyCombo1">
+		select m.menuseq, m.mname, m.price, m.image, m.remark,m.eatid,m.drinkid,m.lookid, s.qty, s.starts, s.ends from menu m join stock s on (m.menuseq = s.menuseq)
+		<if test="mode == 'eat'">
+			where m.eatid like #{keyword}
+		</if>
+		<if test="mode == 'drink'">
+			where m.drinkid like #{keyword}
+		</if>
+		<if test="mode == 'look'">
+			where m.lookid like #{keyword}
+		</if>
+	</select>
+	<select id="SelectDataList3" resultType="MyProduct">
 		select m.menuseq, m.mname, m.price, m.image, m.remark,m.eatid,m.drinkid,m.lookid, s.qty, s.starts, s.ends from menu m join stock s on (m.menuseq = s.menuseq)
 		<if test="mode == 'eat'">
 			where m.eatid like #{keyword}

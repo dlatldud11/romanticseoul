@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import bean.Combo1;
 import bean.Menu;
 import controller.common.SuperClass;
 import dao.ProductDao;
@@ -60,7 +61,7 @@ public class MenuDetailViewController extends SuperClass{
 		if(!(parameters.getMode().equals(null) || parameters.getMode().equals("null")|| parameters.getMode().equals(""))) {
 			if(parameters.getMode().equals("eat")) {
 				//mav.addObject("bean",bean);
-				List<Menu> lists = this.dao.SelectDataList2(mode, storeseq);
+				List<Combo1> lists = this.dao.SelectDataList2(mode, storeseq);
 				System.out.println("storeseq 나왔는지 확인"+storeseq);
 //				System.out.println(lists.get(0).toString());
 				mav.addObject("lists",lists);
@@ -68,17 +69,18 @@ public class MenuDetailViewController extends SuperClass{
 				System.out.println("리스트 나왔는지 확인 :"+lists.size());
 			}else if(parameters.getMode().equals("look")) {
 				//mav.addObject("bean",bean);
-				List<Menu> lists = this.dao.SelectDataList2(mode, storeseq);
+				List<Combo1> lists = this.dao.SelectDataList2(mode, storeseq);
 				mav.addObject("lists",lists);
 				mav.addObject("mode",mode); // eat, look, drink 구별가능하게하기
 				System.out.println("b");
 			}else if(parameters.getMode().equals("drink")) {
 				//mav.addObject("bean",bean);
-				List<Menu> lists = this.dao.SelectDataList2(mode, storeseq);
+				List<Combo1> lists = this.dao.SelectDataList2(mode, storeseq);
 				mav.addObject("lists",lists);
 				mav.addObject("mode",mode); // eat, look, drink 구별가능하게하기
 				System.out.println("c");
 			}
+			mav.addObject("storeseq",storeseq); // 해당 가게의 기본키
 		}
 		System.out.println(this.getClass() + " : " + parameters.toString());
 		mav.setViewName(super.getpage);

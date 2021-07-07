@@ -72,15 +72,10 @@ form.form-inline{
 							 </div>
 							<div class="form-group">
 								<select class="form-control" name="mode" id="mode">
-									<option value="all" selected="selected">--- category ---
+									<option value="all" selected="selected">-- CATEGORY --
 									<option value="eat">eat
 									<option value="drink">drink
 									<option value="look">look
-								</select>
-							</div>
-							<div class="form-group">
-							 <select id="good">
-								<option>좋아하는 멤버를 선택해주세요</option>
 								</select>
 							</div>
 							<div class="form-group">
