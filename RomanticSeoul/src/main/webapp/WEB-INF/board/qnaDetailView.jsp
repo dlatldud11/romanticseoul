@@ -12,10 +12,11 @@ function gotoBack(){
 	}
 </script>
 </head>
+<div class="controller">
 <div class="panel-heading">
-	<h2 class="panel-title" align="left">게시물 상세 보기</h2>
+	<h2 class="panel-title" align="center" style="margin:20px 0;">게시물 상세 보기</h2>
 </div>
-<div class="row panel-body">
+<div class="row panel-body" style="padding: 0 200px;">
 	<div class="col-sm-4">
 		<table>
 			<tr>
@@ -107,6 +108,7 @@ function gotoBack(){
 			</div>
 		</div>
 	</div>
+</div>
 </div>
 <script>  
 var mod_check = 'N';
