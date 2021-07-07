@@ -25,9 +25,9 @@ public class MyplanList {
 		}
 		
 		// 장바구니 내역 정보를 수정합니다.
-		public void EditOrder(Store store, int stock) {
+		public void EditOrder(String storeseq, int stock,String mode) {
 			// pnum는 수정될 상품 번호, stock은 수정할 수량
-			this.AddOrder(store, stock);
+			this.AddOrder(storeseq, stock, mode);
 		}
 		
 		// 장바구니에 들어 있는 해당 상품을 삭제합니다.
@@ -37,11 +37,40 @@ public class MyplanList {
 		}
 		
 		// 장바구니에 상품을 추가합니다.
-		public void AddOrder(Store store, int stock) {
-			if (this.myplanlist.contains(store)) { // 동일 상품이 이미 있는 경우
-//				this.myplanlist.put(pnum, newstock);
-			} else {
-//				this.myplanlist.put(pnum, stock) ;
-			}
+		public void AddOrder(String storeseq, int stock, String mode) {
+			for(Myplan bean : myplanlist) {
+				switch(mode) {
+				case("eat"):
+					if(bean.getEatid().equals(storeseq)) {// eat이미 있으면
+						bean.setQty(bean.getQty()+stock); // 수량 더해주기
+					}else {
+						Myplan myplan = new Myplan();
+						myplan.setEatid(storeseq);
+						myplan.setQty(stock);
+						this.myplanlist.add(myplan);
+					}
+					break;
+				case("drink"):
+					if(bean.getDrinkid().equals(storeseq)) {// eat이미 있으면
+						bean.setQty(bean.getQty()+stock); // 수량 더해주기
+					}else {
+						Myplan myplan = new Myplan();
+						myplan.setDrinkid(storeseq);
+						myplan.setQty(stock);
+						this.myplanlist.add(myplan);
+					}
+					break;
+				case("look"):
+					if(bean.getLookid().equals(storeseq)) {// eat이미 있으면
+						bean.setQty(bean.getQty()+stock); // 수량 더해주기
+					}else {
+						Myplan myplan = new Myplan();
+						myplan.setLookid(storeseq);
+						myplan.setQty(stock);
+						this.myplanlist.add(myplan);
+					}
+					break;
+				}
+		}
 		}
 }
