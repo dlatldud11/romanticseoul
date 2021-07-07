@@ -55,8 +55,18 @@
 	insert into stock(qtyseq,qty,menuseq,coseq,starts,ends,remark) 
 	values(stock_seq.nextval,  #{qty}, menu_seq.currval,#{coseq, jdbcType=VARCHAR}, #{starts, jdbcType=VARCHAR},#{ends, jdbcType=VARCHAR},#{remark, jdbcType=VARCHAR})
 	</insert>
-	<select id="SelectDataByGuCate" resultType="MyCombo1">
-		<include refid="myselect"/>
+	<select id="SelectDataByGuCate" resultType="MyProduct">
+		select distinct
+		<if test="mode == 'eat'">
+			eatid
+		</if>
+		<if test="mode == 'drink'">
+			drinkid
+		</if>
+		<if test="mode == 'look'">
+			lookid
+		</if>
+		from menu
 		<if test="mode == 'eat'">
 			where eatid in ( select eatid from eat
 		</if>

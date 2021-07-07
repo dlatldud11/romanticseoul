@@ -17,7 +17,7 @@ public class CombineAPI {
 	}
 	
 	public List<Store> getMeCoLists(String s,String gu){
-		System.out.println("combineAPI 들어옴");
+//		System.out.println("combineAPI 들어옴");
 		List<Store> lists = new ArrayList<Store>();
 		String[] s1 = s.split("/");
 		
