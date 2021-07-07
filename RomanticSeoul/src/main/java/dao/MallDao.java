@@ -44,7 +44,7 @@ public class MallDao {
 		return this.abcd.selectList(namespace + "SelectDrink");
 	}
 
-	public List<Myplan> SelectMyplans(String id){
+	public List<Myplan> SelectMyplans(String id){ //장바구니 내역 보기
 		return this.abcd.selectList(namespace + "SelectMyplans", id);
 	}
 	public int InsertMyplans(Myplan bean){
