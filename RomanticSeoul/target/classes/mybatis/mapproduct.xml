@@ -51,7 +51,10 @@
 		values(menu_seq.nextval, #{mname}, #{price}, #{image, jdbcType=VARCHAR}, 
 		#{remark, jdbcType=VARCHAR}, #{drinkid, jdbcType=VARCHAR}, #{eatid, jdbcType=VARCHAR}, #{lookid, jdbcType=VARCHAR})
 	</insert>
-<<<<<<< HEAD
+	<insert id="InsertData2" parameterType="MyStock">
+	insert into stock(qtyseq,qty,menuseq,coseq,starts,ends,remark) 
+	values(stock_seq.nextval,  #{qty}, menu_seq.currval,#{coseq, jdbcType=VARCHAR}, #{starts, jdbcType=VARCHAR},#{ends, jdbcType=VARCHAR},#{remark, jdbcType=VARCHAR})
+	</insert>
 	<select id="SelectDataByGuCate" resultType="MyProduct">
 		select distinct
 		<if test="mode == 'eat'">
@@ -64,15 +67,6 @@
 			lookid
 		</if>
 		from menu
-		
-=======
-	<insert id="InsertData2" parameterType="MyStock">
-	insert into stock(qtyseq,qty,menuseq,coseq,starts,ends,remark) 
-	values(stock_seq.nextval,  #{qty}, menu_seq.currval,#{coseq, jdbcType=VARCHAR}, #{starts, jdbcType=VARCHAR},#{ends, jdbcType=VARCHAR},#{remark, jdbcType=VARCHAR})
-	</insert>
-	<select id="SelectDataByGuCate" resultType="MyCombo1">
-		<include refid="myselect"/>
->>>>>>> branch 'master' of https://github.com/dlatldud11/romanticseoul3.git
 		<if test="mode == 'eat'">
 			where eatid in ( select eatid from eat
 		</if>
