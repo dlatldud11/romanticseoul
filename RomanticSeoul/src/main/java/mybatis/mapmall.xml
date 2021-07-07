@@ -28,7 +28,7 @@
 	values (myplans_seq.nextval, #{id},#{qty},#{remark, jdbcType=VARCHAR},
 	#{drinkid, jdbcType=VARCHAR},#{eatid, jdbcType=VARCHAR},#{lookid, jdbcType=VARCHAR)
 	</insert>
-	<delete id="DeleteMyplans" parameterType="Integer">
-	delete from myplans where planseq = #{planseq}
+	<delete id="DeleteMyplans" parameterType="String">
+	delete from myplans where id = #{id}
 	</delete>
 </mapper>

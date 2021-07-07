@@ -54,7 +54,7 @@
 									</div>
 									<div class="listing__item__text">
 										<div class="listing__item__text__inside">
-											<h5><a href="<%=contextPath%>/coBoList.bo?storeseq=${bean.storeseq}&${requestScope.parameters}">
+											<h5><a href="<%=contextPath%>/guDetail.ma?storeseq=${bean.storeseq}&mode=eat&${requestScope.parameters}">
 											${bean.name}</a></h5>
 											<div class="listing__item__text__rating">
 												<div class="listing__item__rating__star">
@@ -94,7 +94,8 @@
 									</div>
 									<div class="listing__item__text">
 										<div class="listing__item__text__inside">
-											<h5>${bean.name}</h5>
+											<h5><a href="<%=contextPath%>/guDetail.ma?storeseq=${bean.storeseq}&mode=drink&${requestScope.parameters}">
+											${bean.name}</a></h5>
 											<div class="listing__item__text__rating">
 												<div class="listing__item__rating__star">
 													<span class="icon_star"></span> <span class="icon_star"></span>
@@ -136,7 +137,8 @@
 									</div>
 									<div class="listing__item__text">
 										<div class="listing__item__text__inside">
-											<h5>${bean.name}</h5>
+											<h5><a href="<%=contextPath%>/guDetail.ma?storeseq=${bean.storeseq}&mode=look&${requestScope.parameters}">
+											${bean.name}</a></h5>
 											<div class="listing__item__text__rating">
 												<div class="listing__item__rating__star">
 													<span class="icon_star"></span> <span class="icon_star"></span>

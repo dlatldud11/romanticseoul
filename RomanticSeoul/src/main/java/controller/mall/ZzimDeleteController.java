@@ -1,5 +1,7 @@
 package controller.mall;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +23,8 @@ import dao.MallDao;
 import utility.MyplanList;
 
 @Controller
-public class ZzimInsertController extends SuperClass {
-	private final String command = "/zziminsert.ma" ;
+public class ZzimDeleteController extends SuperClass {
+	private final String command = "/zzimdelete.ma" ;
 	private ModelAndView mav = null ;
 	private final String redirect = "redirect:/meLoginForm.me" ;
 	
@@ -30,7 +32,7 @@ public class ZzimInsertController extends SuperClass {
 	@Qualifier("malldao")
 	private MallDao mdao ; 	
 	
-	public ZzimInsertController() {
+	public ZzimDeleteController() {
 		super("zzimList", "zzimList");
 		this.mav = new ModelAndView();
 	}
@@ -42,7 +44,7 @@ public class ZzimInsertController extends SuperClass {
 			@RequestParam(value="coseq", required = false) Integer coseq,
 			@RequestParam(value="stock", required = false) Integer stock,
 			HttpSession session) {
-		System.out.println("zziminsert doget");
+		System.out.println("zzimdelete doget");
 		Member loginfo = (Member)session.getAttribute("loginfo")  ;
 		if(stock == null) { //수량 안정해져있으면
 			stock = 1;
@@ -62,6 +64,7 @@ public class ZzimInsertController extends SuperClass {
 				System.out.println("장바구니 새로만듬"+myplan.toString());
 			}
 			System.out.println("장바구니 현재 상태 :"+myplan.toString());
+			List<Myplan> myplanlist = myplan.GetAllmyplanlist();
 			if(!(mode == null || mode.isBlank())){ //mode 값이 넘어갔다면
 				switch(mode) {
 				case "eat":
