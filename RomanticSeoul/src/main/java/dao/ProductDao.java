@@ -48,7 +48,7 @@ public class ProductDao {
 		map.put("keyword", "%" + keyword + "%") ;	
 		return this.abcd.selectList(namespace + "SelectDataList", map, rowBounds);
 	}	
-	public List<Combo1> SelectDataList2(String mode, String keyword) {
+	public List<Menu> SelectDataList2(String mode, String keyword) {
 		// 페이징 처리와 필드 검색을 통한 상품 목록을 구해줍니다.
 		Map<String, String> map = new HashMap<String, String>() ;
 		map.put("mode", mode) ;

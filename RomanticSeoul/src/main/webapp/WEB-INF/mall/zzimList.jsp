@@ -1,3 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+
+<%@ page import="java.util.*"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!-- whologin 변수는 로그인 상태를 저장하고 있는 변수입니다. -->
+<c:set var="whologin" value="0" />
+<c:if test="${empty sessionScope.loginfo}">
+	<!-- 로그인 하지 않은 경우 -->
+	<c:set var="whologin" value="0" />
+</c:if>
+<c:if test="${not empty sessionScope.loginfo}">
+	<c:if test="${sessionScope.loginfo.id == 'admin'}">
+		<!-- 관리자로 로그인한 경우 -->
+		<c:set var="whologin" value="2" />
+	</c:if>
+	<c:if test="${sessionScope.loginfo.id != 'admin'}">
+		<!-- 일반 사용자로 로그인한 경우 -->
+		<c:set var="whologin" value="1" />
+	</c:if>
+</c:if>
+
+<%!
+	String YesForm = null ;
+	String NoForm = null ;
+%>
+<%
+String contextPath = request.getContextPath();
+String mappingName = "/main";
+%>
 <!DOCTYPE html>
 <html lang="zxx">
 
@@ -168,16 +202,32 @@
     <section class="listing nice-scroll">
         <div class="listing__text__top">
             <div class="listing__text__top__left">
-                <h5>Restaurants</h5>
+                <h5>가게 찜목록</h5>
                 <span>18 Results Found</span>
             </div>
             <div class="listing__text__top__right">Nearby <i class="fa fa-sort-amount-asc"></i></div>
         </div>
         <div class="listing__list">
+            <!-- 찜목록 가게 리스트 시작 -->
+            <c:forEach var="zzim" items="${myplanlists}">
+            <c:forEach var="store" items="${storelists}">
+            <c:if test="${zzim.eatid eq store.storeseq || zzim.drinkid eq store.storeseq || zzim.lookid eq store.storeseq }">
             <div class="listing__item">
                 <div class="listing__item__pic set-bg" data-setbg="img/listing/list-1.jpg">
                     <img src="img/listing/list_icon-1.png" alt="">
-                    <div class="listing__item__pic__tag">Popular</div>
+                    <div class="listing__item__pic__tag">
+                    	 <c:choose>
+                            <c:when test="${not empty zzim.eatid}">
+                            	먹을거리
+                            </c:when>
+                            <c:when test="${not empty zzim.drinkid}">
+                            	마실거리
+                            </c:when>
+                            <c:otherwise>
+								볼거리
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
                     <div class="listing__item__pic__btns">
                         <a href="#"><span class="icon_zoom-in_alt"></span></a>
                         <a href="#"><span class="icon_heart_alt"></span></a>
@@ -185,7 +235,7 @@
                 </div>
                 <div class="listing__item__text">
                     <div class="listing__item__text__inside">
-                        <h5>Chinese Sausage Restaurant</h5>
+                        <h5>${store.name}</h5>
                         <div class="listing__item__text__rating">
                             <div class="listing__item__rating__star">
                                 <span class="icon_star"></span>
@@ -194,24 +244,44 @@
                                 <span class="icon_star"></span>
                                 <span class="icon_star-half_alt"></span>
                             </div>
-                            <h6>$40 - $70</h6>
-                        </div>
+                            <div class="filter__select">
+								<select id="menu" name="menu" class="form-control">
+									<option value="all" selected="selected">-- Menu
+									<c:forEach var="menu" items="${menulists}">
+									<c:if test="${store.storeseq eq menu.eatid || store.storeseq eq menu.drinkid || store.storeseq eq menu.lookid }">
+									<option value="${menu.menuseq}">${menu.mname}&nbsp;&nbsp;&nbsp;${menu.price}
+									</c:if>
+									</c:forEach>
+								</select>
+					        </div>
                         <ul>
-                            <li><span class="icon_pin_alt"></span> 236 Littleton St. New Philadelphia, Ohio, United
-                                States</li>
-                            <li><span class="icon_phone"></span> (+12) 345-678-910</li>
+                            <li><span class="icon_pin_alt"></span>
+                            <c:choose>
+                            <c:when test="${not empty store.address2 }">
+                            	${store.address2}
+                            </c:when>
+                            <c:otherwise>
+                            	${store.address1}
+                            </c:otherwise>
+                            </c:choose>
+                            </li>
+                            <li><span class="icon_phone"></span> ${store.hp}</li>
                         </ul>
                     </div>
                     <div class="listing__item__text__info">
                         <div class="listing__item__text__info__left">
                             <img src="img/listing/list_small_icon-1.png" alt="">
-                            <span>Restaurant</span>
+                            <span>${store.category}</span>
                         </div>
-                        <div class="listing__item__text__info__right">Open Now</div>
+                        <div class="listing__item__text__info__right">${store.remark}</div>
                     </div>
                 </div>
             </div>
-            <div class="listing__item">
+            </c:if>
+            </c:forEach>
+            </c:forEach>
+            <!-- 찜목록 가게 리스트 끝 -->
+            <!-- <div class="listing__item">
                 <div class="listing__item__pic set-bg" data-setbg="img/listing/list-2.jpg">
                     <img src="img/listing/list_icon-2.png" alt="">
                     <div class="listing__item__pic__tag top_rate">Top Rate</div>
@@ -396,7 +466,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
     <!-- Listing Section End -->
 
