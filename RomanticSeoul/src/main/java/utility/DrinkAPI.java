@@ -300,7 +300,7 @@ public List<Store> getlistbyCategory(String cate, String gu) { // 구와 카테�
 					String a = getTagValue("SITEWHLADDR" ,eElement); //지번주소
 					String b = getTagValue("RDNWHLADDR" ,eElement); //도로명주소
 					String c = a+b;
-					if(c.contains(gu) && getTagValue("UPTAENM" ,eElement).equals(cate)) { //구가 같고 카테고리가 같으면
+					if(c.contains(gu) && getTagValue("UPTAENM" ,eElement).equals(cate) && !(getTagValue("DTLSTATENM" ,eElement).equals("폐업"))) { //구가 같고 카테고리가 같으면
 					System.out.println("drink gu와 일치");
 					bean.setStoreseq(getTagValue("MGTNO" ,eElement)); //기본키
 					bean.setCategory(getTagValue("UPTAENM" ,eElement)); //업태구분
