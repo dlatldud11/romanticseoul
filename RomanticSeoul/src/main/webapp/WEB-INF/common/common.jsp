@@ -111,7 +111,16 @@ String mappingName = "/main";
 							<a href="./meLogout.me" class="primary-btn"><i class="fa fa-plus"></i> 로그아웃</a> 
 							</c:when>
 						</c:choose>
-						<div class="dropdown">
+							<a href="./meInfo.me?id=${sessionScope.loginfo.id}" class="login-btn"><i class="fa fa-user"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="mobile-menu-wrap"></div>
+		</div>
+	</header>
+	<!-- Header Section End -->
+						<!-- <div class="dropdown">
 							<button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown"><i class="fa fa-user"></i>
 							<span class="caret"></span></button>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
@@ -119,7 +128,7 @@ String mappingName = "/main";
 														
 								<li role="presentation"><a href="#" role="menuitem" tabindex="-1">내 구매 내역</a></li>
 							</ul>
-						</div>
+						</div> -->
 						<%-- <div class="dropdown">
 						<button class="btn btn-primary dropdown-toggle" id="menu1" type="button" data-toggle="dropdown"><i class="fa fa-user"></i>
 							<span class="caret"></span></button>
@@ -132,13 +141,7 @@ String mappingName = "/main";
 							</c:if>
 							</ul>
 						</div> --%>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div id="mobile-menu-wrap"></div>
-		</div>
-	</header>
+						
 <script src="/lib/jquery-1.12.2.min.js"></script>
 <script src="/lib/bootstrap.min.js"></script>
 	</body>

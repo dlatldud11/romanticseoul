@@ -22,6 +22,12 @@
 	function gotoDelete(){
 		location.href='<%=contextPath%>/delete.me?id=${sessionScope.loginfo.id}';
 	}
+	function gotoBuyme(){
+		location.href='<%=contextPath%>/meBuy.me?id=${sessionScope.loginfo.id}';
+	}
+	function gotoMeBoList(){
+		location.href='<%=contextPath%>/meBoList.me?id=${sessionScope.loginfo.id}';
+	}
 	</script>
 </head>
 <body>
@@ -100,17 +106,20 @@
 			</div>
 			<hr>
 			<div class="col-sm-7" style="float:right;">
-				<button class="btn btn-success" onclick="gotoMeList;">
+				<button class="btn btn-success" onclick="gotoMeBoList();">
 					내 글 보기
 				</button>
 				<button class="btn btn-info" onclick="gotoUpdate();">
 					회원 수정
 				</button>
-				<button type="button" onclick="gotoDelete();"  class="btn btn-danger">
-					회원 삭제
-				</button>
 				<button class="btn btn-primary" onclick="gotoBack();">
 					돌아 가기
+				</button>
+				<button class="btn btn-warning" onclick="gotoBuyme();">
+					내 구매 확인
+				</button>
+				<button type="button" onclick="gotoDelete();"  class="btn btn-danger">
+					회원 삭제
 				</button>
 			</div>
 		</div>

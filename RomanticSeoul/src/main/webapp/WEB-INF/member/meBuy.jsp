@@ -62,39 +62,6 @@
 								<td class="thick-line text-right"><fmt:formatNumber
 										value="${totalAmount}" /> 원</td>
 							</tr>
-							<!-- 요금에 따른 운송비 구하기 -->
-							<c:set var="shipExpense" value="0" />
-							<c:choose>
-								<c:when test="${totalAmount >= 100000}">
-									<c:set var="shipExpense" value="0" />
-								</c:when>
-								<c:when test="${totalAmount >= 50000}">
-									<c:set var="shipExpense" value="2000" />
-								</c:when>
-								<c:otherwise>
-									<c:set var="shipExpense" value="4000" />
-								</c:otherwise>
-							</c:choose>
-							<tr>
-								<td class="no-line"></td>
-								<td class="no-line"></td>
-								<td class="no-line"></td>
-								<td class="no-line text-center"><strong>운송비</strong></td>
-								<td class="no-line text-right" >
-									<fmt:formatNumber value="${shipExpense}" pattern="###,###"/> 원</td>										
-							</tr>
-							<tr>
-								<td class="no-line"></td>
-								<td class="no-line"></td>
-								<td class="no-line"></td>
-								<td class="no-line text-center"><strong>최종 금액</strong></td>
-								<td class="no-line text-right">
-									<c:set var="finalAmount" value="${totalAmount + shipExpense}" />
-									<strong>
-										<fmt:formatNumber value="${finalAmount}" pattern="###,###"/> 원
-									</strong>
-								</td>
-							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -127,7 +94,6 @@
 								<td class="text-center gr"><strong>결제 상태</strong></td>
 								<td>결제 완료</td>
 							</tr>
-
 						</tbody>
 					</table>
 				</div>
@@ -154,10 +120,6 @@
 							<tr>
 								<td class="text-center gr"><strong>주소</strong></td>
 								<td>${sessionScope.loginfo.address1} ${sessionScope.loginfo.address2}</td>
-							</tr>
-							<tr>
-								<td class="text-center gr"><strong>적립 포인트 </strong></td>
-								<td><fmt:formatNumber value="${sessionScope.loginfo.mpoint}" pattern="###,###"/> 원</td>
 							</tr>
 							<tr>
 								<td class="text-center gr"><strong>배송 방법 </strong></td>
