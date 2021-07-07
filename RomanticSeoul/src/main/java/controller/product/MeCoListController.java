@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -31,7 +33,7 @@ import utility.GetXYData;
 public class MeCoListController extends SuperClass {
 	private final String command = "/meCoList.pr" ;
 	private ModelAndView mav = null ;
-	private final String redirect = "redirect:/수정02.me" ;
+	private final String redirect = "redirect:/main.co" ;
 	
 	
 	@Autowired
@@ -69,7 +71,8 @@ public class MeCoListController extends SuperClass {
 			@RequestParam(value = "address", required = true) String address,
 			@RequestParam(value = "first", required = false) String first,
 			@RequestParam(value = "second", required = false) String second,
-			@RequestParam(value = "third", required = false) String third) {
+			@RequestParam(value = "third", required = false) String third,
+			HttpSession session) {
 		String gu = null;
 		List<CheckBean> gulists = gulist();
 		List<Store> finalfirst = new ArrayList<Store>(); // 최종적으로 담길 리스트들
@@ -213,16 +216,15 @@ public class MeCoListController extends SuperClass {
 		}//for문 끝
 		System.out.println("순위권 시퀀스 담겼는지 확인 : "+finalfirstseq.size()+"/"+finalsecondseq.size());
 		// 순위권 시퀀스를 마브에 담아서 준다. 메뉴와 api 교집합 된 리스트를 마브에 담는다. 1등시퀀스만 따로 mav에 담는다. jsp에 뿌린다.
+		session.setAttribute("first",finalfirst); //교집합 된 부분
+		session.setAttribute("second",finalsecond);
 		
-		mav.addObject("first",finalfirst); //교집합 된 부분
-		mav.addObject("second",finalsecond);
+		session.setAttribute("firstrank",finalfirstseq); // 5위까지 담아놓은 것(시퀀스)
+		session.setAttribute("secondrank",finalsecondseq); // 5위까지 담아놓은 것(시퀀스)
 		
-		mav.addObject("firstrank",finalfirstseq); // 5위까지 담아놓은 것(시퀀스)
-		mav.addObject("secondrank",finalsecondseq); // 5위까지 담아놓은 것(시퀀스)
-		
-		mav.addObject("firsttop",finalfirstseq.get(0)); // 1위(시퀀스)
-		mav.addObject("secondtop",finalsecondseq.get(0)); // 1위(시퀀스)
-		mav.setViewName(super.postpage);
+		session.setAttribute("firsttop",finalfirstseq.get(0)); // 1위(시퀀스)
+		session.setAttribute("secondtop",finalsecondseq.get(0)); // 1위(시퀀스)
+		mav.setViewName(redirect);
 		return this.mav ;
 	}
 	
