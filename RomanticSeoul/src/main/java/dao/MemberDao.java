@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import bean.CheckBean;
 import bean.Member;
 //import shopping.ShoppingInfo 
+import bean.QnaBoard;
 
 @Component("mdao")
 public class MemberDao {

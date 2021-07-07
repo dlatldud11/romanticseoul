@@ -84,7 +84,7 @@ public class ZzimListController extends SuperClass{
 				store = this.lapi.getLookByPk(keyword);
 				storelists.add(store);
 			}
-			List<Menu> lists = this.pdao.SelectDataList2(mode,keyword);
+			List<Menu> lists = this.pdao.SelectDataList3(mode,keyword);
 			menulists.addAll(lists); // 각 가게별로 메뉴 가져와서 합치기
 		}
 		
