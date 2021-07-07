@@ -1,12 +1,6 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +9,7 @@ import org.springframework.stereotype.Component;
 import bean.Drink;
 import bean.Eat;
 import bean.Look;
-import bean.Member;
-//import bean.Order;
-//import bean.OrderDetail;
-//import shopping.ShoppingInfo;
+import bean.Myplan;
 
 @Component("malldao")
 public class MallDao {
@@ -53,7 +44,15 @@ public class MallDao {
 		return this.abcd.selectList(namespace + "SelectDrink");
 	}
 
-	
+	public List<Myplan> SelectMyplans(String id){ //장바구니 내역 보기
+		return this.abcd.selectList(namespace + "SelectMyplans", id);
+	}
+	public int InsertMyplans(Myplan bean){
+		return this.abcd.insert(namespace + "InsertMyplans", bean);
+	}
+	public int DeleteMyplans(int planseq){
+		return this.abcd.delete(namespace + "DeleteMyplans", planseq);
+	}
 //	public Order SelectDataByPk(int oid) {
 //		return this.abcd.selectOne(namespace + "SelectDataByPk", oid);
 //	}
