@@ -1,7 +1,6 @@
 package controller.member;
 
 import java.io.File;
-import java.lang.System.Logger;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -14,8 +13,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,11 +28,11 @@ import dao.TypeDao;
 public class MeUpdateController extends SuperClass{
 	private final String command = "/update.me" ; 
 	private ModelAndView mav = null ;
-	private String redirect = "redirect:/update.me" ;
+	private String redirect = "redirect:/meinfo.me" ;
 	
 	@Autowired
 	@Qualifier("mdao")
-	private MemberDao dao ;
+	private MemberDao mdao ;
 	
 	@Autowired
 	@Qualifier("tdao")
@@ -84,7 +81,7 @@ public class MeUpdateController extends SuperClass{
 	}
 	
 	public MeUpdateController() {
-		super("meupdate", "meupdate");
+		super("meupdate", "meInfo");
 		this.mav = new ModelAndView();
 	}
 	
@@ -93,7 +90,7 @@ public class MeUpdateController extends SuperClass{
 			@RequestParam(value = "id", required = true) String id){
 		
 		// 여기서 xxx는 현재 수정하고자 하는 이전에 기입했던 게시물 1건을 의미합니다.
-		Member bean = dao.SelectDataByPk(id);
+		Member bean = mdao.SelectDataByPk(id);
 		
 		this.mav.addObject("bean", bean);
 				
@@ -104,59 +101,21 @@ public class MeUpdateController extends SuperClass{
 	@PostMapping(command)
 	public ModelAndView doPost(
 			@ModelAttribute("member") @Valid Member xxx,
-			BindingResult asdf,
-			HttpServletRequest request) {
+			BindingResult asdf) {
 		
-		if ( asdf.hasErrors() ) {
-			System.out.println("유효성 검사에 문제 있슴");
-			System.out.println( asdf );
-			mav.setViewName(super.getpage) ;
+		if (asdf.hasErrors()) { // failure
+			System.out.println("유효성 검사에 문제가 있슴");
+			System.out.println(xxx.toString());
+			System.out.println(asdf.toString());
+			this.mav.addObject("bean", xxx) ;
+			this.mav.setViewName(super.getpage);
 			
-		} else {
-			System.out.println("유효성 검사에 문제 없슴");
-		if (xxx.getImage().equals("") || xxx.getImage().equals(null) || xxx.getImage().equals("null"))  { // 파일 업로드 안했을 때
-			
-			mav.setViewName(super.postpage) ;				
-			this.dao.UpdateData(xxx);
-		
-		} else {
-
-			MultipartFile multi = xxx.getFile() ;
-			String uploadPath = "/WEB-INF/upload" ;
-			
-			//realPath :  
-			String realPath = request.getRealPath(uploadPath) ;
-			System.out.println("realPath"+realPath);
-			System.out.println("멀티"+multi.toString());
-			try {
-				// 업로드 폴더에 파일을 업로드합니다.
-				File destination = utility.Utility.getUploadedFileInfo(multi, realPath)  ;
-				
-				multi.transferTo(destination); 
-				
-				// response.sendRedirect("list.al")와 등가의 개념
-				mav.setViewName(super.postpage) ;				
-				
-				System.out.println(this.getClass() + " 회원 추가하기 command 객체 정보");
-				System.out.println(xxx.toString());				
-				
-				// 원래 이미지에 날짜를 붙인 새 이미지 이름
-				xxx.setImage(destination.getName());
-				
-				// dao를 이용하여 데이터 베이스에 행을 추가합니다.
-				this.dao.UpdateData(xxx);
-				
-			} catch (IllegalStateException e) {				
-				e.printStackTrace();
-				mav.setViewName(super.getpage) ;
-				
-			} catch (Exception e) {				
-				e.printStackTrace();
-				mav.setViewName(super.getpage) ;
-			}
-		}// 파일 업로드 했을 때 끝
-			
+		} else { // success
+			System.out.println("유효성 검사에 문제가 없슴");
+			int cnt = -99999 ;
+			cnt = mdao.UpdateData(xxx) ;
+			this.mav.setViewName(redirect); 
 		}
-		return this.mav;
+		return this.mav ;
 	}
 }
