@@ -276,10 +276,12 @@ String mappingName = "/main";
                         <div class="listing__item__text__info__right">${store.remark}</div>
                     </div>
                 </div>
-            </div>
+                </div>
+                </div>
             </c:if>
             </c:forEach>
             </c:forEach>
+            </div>
             <!-- 찜목록 가게 리스트 끝 -->
             <!-- <div class="listing__item">
                 <div class="listing__item__pic set-bg" data-setbg="img/listing/list-2.jpg">

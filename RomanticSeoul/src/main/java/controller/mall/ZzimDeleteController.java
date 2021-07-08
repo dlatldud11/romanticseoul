@@ -1,5 +1,8 @@
 package controller.mall;
 
+import java.util.Iterator;
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +24,16 @@ import dao.MallDao;
 import utility.MyplanList;
 
 @Controller
-public class ZzimInsertController extends SuperClass {
-	private final String command = "/zziminsert.ma" ;
+public class ZzimDeleteController extends SuperClass {
+	private final String command = "/zzimdelete.ma" ;
 	private ModelAndView mav = null ;
-	private final String redirect = "redirect:/main.co" ;
+	private final String redirect = "redirect:/meLoginForm.me" ;
 	
 	@Autowired
 	@Qualifier("malldao")
 	private MallDao mdao ; 	
 	
-	public ZzimInsertController() {
+	public ZzimDeleteController() {
 		super("zzimList", "zzimList");
 		this.mav = new ModelAndView();
 	}
@@ -42,7 +45,7 @@ public class ZzimInsertController extends SuperClass {
 			@RequestParam(value="coseq", required = false) Integer coseq,
 			@RequestParam(value="stock", required = false) Integer stock,
 			HttpSession session) {
-		System.out.println("zziminsert doget");
+		System.out.println("zzimdelete doget");
 		Member loginfo = (Member)session.getAttribute("loginfo")  ;
 		if(stock == null) { //수량 안정해져있으면
 			stock = 1;
@@ -62,23 +65,14 @@ public class ZzimInsertController extends SuperClass {
 				System.out.println("장바구니 새로만듬"+myplan.toString());
 			}
 			System.out.println("장바구니 현재 상태 :"+myplan.toString());
-			if(!(mode == null || mode.isBlank())){ //mode 값이 넘어갔다면
-				switch(mode) {
-				case "eat":
-					myplan.AddOrder(storeseq, stock,mode,loginfo.getId());
-					break;
-				case "drink":
-					myplan.AddOrder(storeseq, stock,mode,loginfo.getId());
-					break;
-				case "look":
-					myplan.AddOrder(storeseq, stock,mode,loginfo.getId());
-					break;
-				}
+			if(!(storeseq == null || storeseq.isBlank()) && !(mode == null || mode.isBlank())){
+				// 필요한 파라미터가 잘 넘어왔으면
+				myplan.DeleteOrder(storeseq,mode);
 			}
 			
-			System.out.println("찜목록 추가 완료 /"+myplan.toString());
+			System.out.println("찜목록 삭제 완료 /"+myplan.toString());
 			session.setAttribute("myplan", myplan);
-			mav.setViewName(this.redirect);
+			mav.setViewName(super.getpage);
 		}
 		return this.mav ;
 	}
