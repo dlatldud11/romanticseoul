@@ -72,7 +72,7 @@ String mappingName = "/main";
             <div class="row">
                 <div class="col-lg-3 col-md-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="img/footer-logo.png" alt=""></a>
+                        <a href="<%=contextPath%>/main.co"><img src="img/footer-logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-9 col-md-9">
@@ -209,8 +209,8 @@ String mappingName = "/main";
         </div>
         <div class="listing__list">
             <!-- 찜목록 가게 리스트 시작 -->
-            <c:forEach var="zzim" items="${myplanlists}">
-            <c:forEach var="store" items="${storelists}">
+            <c:forEach var="zzim" items="${myplanlists}"> <!-- 찜목록 -->
+            <c:forEach var="store" items="${storelists}"> <!-- 가게들 -->
             <c:if test="${zzim.eatid eq store.storeseq || zzim.drinkid eq store.storeseq || zzim.lookid eq store.storeseq }">
             <div class="listing__item">
                 <div class="listing__item__pic set-bg" data-setbg="img/listing/list-1.jpg">
@@ -249,7 +249,7 @@ String mappingName = "/main";
 									<option value="all" selected="selected">-- Menu
 									<c:forEach var="menu" items="${menulists}">
 									<c:if test="${store.storeseq eq menu.eatid || store.storeseq eq menu.drinkid || store.storeseq eq menu.lookid }">
-									<option value="${menu.menuseq}">${menu.mname}&nbsp;&nbsp;&nbsp;${menu.price}
+									<option value="${menu.menuseq}">${menu.mname}&nbsp;&nbsp;&nbsp;${menu.price}원
 									</c:if>
 									</c:forEach>
 								</select>
@@ -273,7 +273,25 @@ String mappingName = "/main";
                             <img src="img/listing/list_small_icon-1.png" alt="">
                             <span>${store.category}</span>
                         </div>
-                        <div class="listing__item__text__info__right">${store.remark}</div>
+                        <div class="listing__item__text__info__right">
+                        <c:choose>
+                            <c:when test="${not empty zzim.eatid}"> <!-- eatid이면 -->
+		                        <a href="<%=contextPath%>/zzimdelete.ma?storeseq=${store.storeseq}&mode=eat">
+		                        삭제
+		                        </a>
+                            </c:when>
+                            <c:when test="${not empty zzim.drinkid}"> <!-- drinkid이면 -->
+		                        <a href="<%=contextPath%>/zzimdelete.ma?storeseq=${store.storeseq}&mode=drink">
+		                        삭제
+		                        </a>
+                            </c:when>
+                            <c:otherwise> <!-- lookid이면 -->
+		                        <a href="<%=contextPath%>/zzimdelete.ma?storeseq=${store.storeseq}&mode=look">
+		                        삭제
+		                        </a>
+                            </c:otherwise>
+                        </c:choose>
+                        </div>
                     </div>
                 </div>
                 </div>
