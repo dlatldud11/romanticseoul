@@ -47,7 +47,7 @@ public class MemberDao {
 	}	
 
 	public int UpdateData(Member bean) {
-		// 회원 정보를 수정합니다.
+		System.out.println("MemberUpdate"+bean.toString());
 		return this.abcd.update(namespace + "UpdateData", bean) ;
 	}
 
