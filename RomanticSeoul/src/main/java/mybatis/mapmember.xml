@@ -60,10 +60,9 @@
       play = #{play},
       walk = #{walk},
       look = #{look},
-      image = #{image},
-      remark = #{remark}
+      image = #{image,jdbcType=VARCHAR},
+      remark = #{remark, jdbcType=VARCHAR}
       where id = #{id}
-      
    </update> 
   <!-- 비밀번호 변경 -->
 	<update id="UpdatePw" parameterType="MyMember">

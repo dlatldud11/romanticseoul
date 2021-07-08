@@ -10,6 +10,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import bean.Menu;
 import bean.QnaBoard;
 import bean.Reply;
 
@@ -73,6 +74,8 @@ public class BoardDao {
 	public int ReplyInsertData(QnaBoard bean) {
 		return this.abcd.insert(namespace + "ReplyInsertData", bean);
 	}
+
+	
 	
 
 }

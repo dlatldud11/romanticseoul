@@ -1,7 +1,7 @@
 <%@ include file="../common/common.jsp"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- 스프링 관련 설정 코드 --%>
+<%-- 프링 관련 설정 코드 --%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
@@ -11,15 +11,15 @@ button{
 }
 </style>
 <script>
-<%-- function writeForm(){
-	location.href='<%=contextPath%>/menuList.bo';
-} --%>
+    function writeForm(){
+	location.href='<%=contextPath%>/menuDetailView.pr';
+	} 
 $(document).ready(function(){
 	$("#btnSave").click(function(){
 		var title = $("#title").val();
 		var title = $("#title").val();
 		if(title == ""){
-			alert("제목을 입력하세요.");
+			alert("제목을 입력하세요."));
 			document.form.title.focus();
 			return;
 		}
@@ -37,37 +37,41 @@ $(document).ready(function(){
         <div class="wrapper wrapper--w790">
             <div class="card card-5">
                 <div class="card-heading">
-                    <h2 class="title">Q&A</h2>
+                    <h2 class="title">Menu</h2>
                 </div>
                 <div class="card-body">
+                
                 <c:set var="apppath" value="<%=request.getContextPath()%>" />
-                    <form:form id="form" name="form" modelAttribute="menu" role="form" action="${apppath}/menuInsert.bo" method="post" enctype="multipart/form-data">
-                        <div class="form-row m-b-55">
-                            <div class="name">ID</div>
+                    <form:form id="form" name="form" role="form" action="${apppath}/menuInsert.pr" method="post" enctype="multipart/form-data">
+                        <div class="form-row">
+                            <div class="name">QTY</div>
                             <div class="value">
-                                <div class="row row-space">
-                                    <div class="col-12">
-                                        <div class="input-group-desc">
-                                            <input class="input--style-5" type="text" id="id" name="id" value="${sessionScope.loginfo.id}" disabled="disabled">
-                                            <input type="hidden" name="id" id="id" value="${sessionScope.loginfo.id}" />
-                                        </div>
-                                    </div>
+                                <div class="input-group">
+                                    <input class="input--style-5" type="number" name="qty" id="qty">
                                 </div>
                             </div>
                         </div>
                         <div class="form-row">
-                            <div class="name">TITLE</div>
+                            <div class="name">PRICE</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="title" id="title" placeholder="title">
+                                    <input class="input--style-5" type="text" name="price" id="price">
                                 </div>
                             </div>
                         </div>
-                        <div class="form-row">
-                            <div class="name">CONTENT</div>
+                         <div class="form-row">
+                            <div class="name">STARTS</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <textarea id="content" name="content" class="input--style-5" rows="4" cols="50" style="resize: none;" placeholder="content"></textarea>
+                                    <input class="input--style-5" type="text" name="starts" id="starts">
+                                </div>
+                            </div>
+                        </div>
+                       <div class="form-row">
+                            <div class="name">ENDS</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-5" type="text" name="ends" id="ends">
                                 </div>
                             </div>
                         </div>

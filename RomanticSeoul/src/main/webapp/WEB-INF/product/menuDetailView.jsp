@@ -95,7 +95,7 @@ form.form-inline{
 					<td>${bean.remark}</td>
 					<td>
 						<c:if test="${whologin == 2}">
-							<a href="<%=contextPath%>/delete.pr?menuseq=${bean.menuseq}&${requestScope.parameters}">
+							<a href="<%=contextPath%>/menuDelete.pr?menuseq=${bean.menuseq}&${requestScope.parameters}">
 								삭제
 							</a>
 						</c:if>
@@ -105,7 +105,7 @@ form.form-inline{
 					</td>
 					<td>
 						<c:if test="${whologin == 2}">
-							<a href="<%=contextPath%>/update.pr?menuseq=${bean.menuseq}&${requestScope.parameters}">
+							<a href="<%=contextPath%>/menuUpdate.pr?menuseq=${bean.menuseq}&${requestScope.parameters}">
 								수정
 							</a>
 						</c:if>
