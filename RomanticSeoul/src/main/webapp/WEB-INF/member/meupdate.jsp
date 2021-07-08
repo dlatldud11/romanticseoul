@@ -248,7 +248,7 @@ div#tiddiv,div#passworddiv,div#repassworddiv,div#imagediv,div#hpdiv,div#emaildiv
 					</label> 
 					<form:errors cssClass="err" path="eat" />
                </div>
-               <div class="form-row">
+               <%-- <div class="form-row">
                <label for="play" class="form-control-label col-sm-0">놀것&nbsp;</label> <label class="radio-inline"> 
 					<form:radiobuttons id="play" name="play" path="play" items="${playlist}"
 						itemLabel="mykey" itemValue="mykey"/>
@@ -263,7 +263,7 @@ div#tiddiv,div#passworddiv,div#repassworddiv,div#imagediv,div#hpdiv,div#emaildiv
 						&nbsp;&nbsp;
 					</label> 
 					<form:errors cssClass="err" path="walk" />
-               </div>
+               </div> --%>
                <div class="form-row">
                <label for="look" class="form-control-label col-sm-0">보기&nbsp;</label> <label class="radio-inline">
 					<form:radiobuttons id="look" name="look" path="look" items="${looklist}"

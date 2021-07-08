@@ -26,7 +26,7 @@
 	<insert id="InsertMyplans" parameterType="MyPlan">
 	insert into myplans (planseq, id, qty,drinkid,eatid,lookid)
 	values (myplans_seq.nextval, #{id},#{qty},
-	#{drinkid, jdbcType=VARCHAR},#{eatid, jdbcType=VARCHAR},#{lookid, jdbcType=VARCHAR)
+	#{drinkid, jdbcType=VARCHAR},#{eatid, jdbcType=VARCHAR},#{lookid, jdbcType=VARCHAR})
 	</insert>
 	<delete id="DeleteMyplans" parameterType="String">
 	delete from myplans where id = #{id}

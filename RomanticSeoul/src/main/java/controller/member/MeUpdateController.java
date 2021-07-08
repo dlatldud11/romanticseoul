@@ -2,6 +2,7 @@ package controller.member;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,7 +99,8 @@ public class MeUpdateController extends SuperClass{
 	@PostMapping(command)
 	public ModelAndView doPost(
 			@ModelAttribute("member") @Valid Member xxx,
-			BindingResult asdf) {
+			BindingResult asdf,
+			HttpSession session) {
 		
 		if (asdf.hasErrors()) { // failure
 			System.out.println("유효성 검사에 문제가 있슴");
@@ -111,6 +113,8 @@ public class MeUpdateController extends SuperClass{
 			System.out.println("유효성 검사에 문제가 없슴");      
 			int cnt = -99999 ;
 			cnt = mdao.UpdateData(xxx) ;
+			session.removeAttribute("loginfo");// 이전 정보 세션에 있는거 지워주기
+			session.setAttribute("loginfo", xxx); //새로 바꾼 정보 저장해주기
 			this.mav.setViewName(super.postpage); 
 		}
 		return this.mav ;

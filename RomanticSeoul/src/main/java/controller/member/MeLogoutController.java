@@ -57,7 +57,7 @@ public class MeLogoutController extends SuperClass{
 			System.out.println("로그 아웃 중이시군요.");
 			System.out.println("장바구니 품목 사이즈 : " + myplanlists.size());
 			
-//			this.dao.InsertMyplans(myplanlists,mem);
+			this.dao.InsertMyplans(myplanlists,mem);
 		}
 		
 		// 세션 영역을 완전히 삭제하도록 합니다.
