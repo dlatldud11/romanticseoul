@@ -4,7 +4,7 @@
 <mapper namespace="MapMember">
    <insert id="InsertData" parameterType="MyMember">
 		insert into members(id,password,name,nickname,email,gender,hp,address1,address2,zipcode,drink,
-		eat,play,walk,look,image) 
+		eat,look,image) 
 		values(#{id}, #{password}, #{name}, #{nickname},#{email},#{gender},#{hp},
 		#{address1},#{address2},#{zipcode},#{drink},#{eat},#{play},
 		#{walk},#{look},#{image,jdbcType=VARCHAR})

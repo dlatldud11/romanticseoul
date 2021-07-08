@@ -38,9 +38,30 @@ public class MyplanList {
 		}
 		
 		// 장바구니에 들어 있는 해당 상품을 삭제합니다.
-		public void DeleteOrder(Myplan bean) {
-			// pnum는 삭제될 상품 번호
-			this.myplanlist.remove(bean) ;
+		public void DeleteOrder(String storeseq, String mode) {
+			Iterator it = this.myplanlist.iterator();
+			while(it.hasNext()){
+			    Myplan bean = (Myplan)it.next();
+			    if(!(mode == null || mode.isBlank())){ //mode 값이 넘어갔다면
+			    	switch(mode) {
+			    	case "eat":
+			    		if(bean.getEatid().equals(storeseq)) { // 장바구니에 같은 아이디인 가게가 있으면
+			    			it.remove();
+			    		}
+			    		break;
+			    	case "drink":
+			    		if(bean.getDrinkid().equals(storeseq)) { // 장바구니에 같은 아이디인 가게가 있으면
+			    			it.remove();
+			    		}
+			    		break;
+			    	case "look":
+			    		if(bean.getLookid().equals(storeseq)) { // 장바구니에 같은 아이디인 가게가 있으면
+			    			it.remove();
+			    		}
+			    		break;
+			    	}
+			    }
+			}
 		}
 		
 		// 장바구니에 상품을 추가합니다.

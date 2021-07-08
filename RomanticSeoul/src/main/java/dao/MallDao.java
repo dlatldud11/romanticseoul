@@ -52,6 +52,7 @@ public class MallDao {
 		
 		this.abcd.delete(namespace + "DeleteMyplans", mem.getId());
 		for(Myplan myplan : myplans) {
+			System.out.println("로그아웃하면서 디비에 다시 넣기 /"+myplan.toString());
 			this.abcd.insert(namespace + "InsertMyplans", myplan);
 		}
 	}

@@ -1,5 +1,6 @@
 package controller.mall;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -64,22 +65,12 @@ public class ZzimDeleteController extends SuperClass {
 				System.out.println("장바구니 새로만듬"+myplan.toString());
 			}
 			System.out.println("장바구니 현재 상태 :"+myplan.toString());
-			List<Myplan> myplanlist = myplan.GetAllmyplanlist();
-			if(!(mode == null || mode.isBlank())){ //mode 값이 넘어갔다면
-				switch(mode) {
-				case "eat":
-					myplan.AddOrder(storeseq, stock,mode,loginfo.getId());
-					break;
-				case "drink":
-					myplan.AddOrder(storeseq, stock,mode,loginfo.getId());
-					break;
-				case "look":
-					myplan.AddOrder(storeseq, stock,mode,loginfo.getId());
-					break;
-				}
+			if(!(storeseq == null || storeseq.isBlank()) && !(mode == null || mode.isBlank())){
+				// 필요한 파라미터가 잘 넘어왔으면
+				myplan.DeleteOrder(storeseq,mode);
 			}
 			
-			System.out.println("찜목록 추가 완료 /"+myplan.toString());
+			System.out.println("찜목록 삭제 완료 /"+myplan.toString());
 			session.setAttribute("myplan", myplan);
 			mav.setViewName(super.getpage);
 		}

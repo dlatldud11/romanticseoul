@@ -24,7 +24,7 @@ import utility.MyplanList;
 public class ZzimInsertController extends SuperClass {
 	private final String command = "/zziminsert.ma" ;
 	private ModelAndView mav = null ;
-	private final String redirect = "redirect:/meLoginForm.me" ;
+	private final String redirect = "redirect:/main.co" ;
 	
 	@Autowired
 	@Qualifier("malldao")
@@ -78,7 +78,7 @@ public class ZzimInsertController extends SuperClass {
 			
 			System.out.println("찜목록 추가 완료 /"+myplan.toString());
 			session.setAttribute("myplan", myplan);
-			mav.setViewName(super.getpage);
+			mav.setViewName(this.redirect);
 		}
 		return this.mav ;
 	}
