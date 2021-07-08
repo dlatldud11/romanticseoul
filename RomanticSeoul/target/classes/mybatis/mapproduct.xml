@@ -5,6 +5,10 @@
 	<sql id="myselect">
 		SELECT * FROM menu
 	</sql>
+	<sql id="mycombo1select">
+		select m.menuseq, m.mname, m.price, m.image, m.remark,m.eatid,
+		m.drinkid,m.lookid, s.qty, s.starts, s.ends from menu m join stock s on (m.menuseq = s.menuseq)
+	</sql>
 	<select id="SelectTotalCount" resultType="int">
 		select count(*) as cnt from menu
 		<if test="mode == 'id'">
@@ -27,7 +31,7 @@
 		</if>
 	</select>
 	<select id="SelectDataList2" resultType="MyCombo1">
-		select m.menuseq, m.mname, m.price, m.image, m.remark,m.eatid,m.drinkid,m.lookid, s.qty, s.starts, s.ends from menu m join stock s on (m.menuseq = s.menuseq)
+		<include refid="mycombo1select"/>
 		<if test="mode == 'eat'">
 			where m.eatid like #{keyword}
 		</if>
@@ -39,7 +43,7 @@
 		</if>
 	</select>
 	<select id="SelectDataList3" resultType="MyProduct">
-		select m.menuseq, m.mname, m.price, m.image, m.remark,m.eatid,m.drinkid,m.lookid, s.qty, s.starts, s.ends from menu m join stock s on (m.menuseq = s.menuseq)
+		<include refid="mycombo1select"/>
 		<if test="mode == 'eat'">
 			where m.eatid like #{keyword}
 		</if>
@@ -51,8 +55,8 @@
 		</if>
 	</select>
 	<select id="SelectDataByPk" parameterType="Integer" resultType="MyCombo1">
-		<include refid="myselect" />
-		 where menu_seq = #{menu_seq}
+		<include refid="mycombo1select"/>
+		 where m.menuseq = #{menuseq}
 	</select>
 	<delete id="DeleteData" parameterType="int">
 		delete from menu where menu_seq = #{menu_seq} 
@@ -90,9 +94,23 @@
 		</if>
 		where remark = #{keyword})
 	</select>
-	<delete id="DeleteDataByMenuseq" parameterType="String">
-      delete from menu where menu_seq = #{menu_seq} 
+	<delete id="DeleteDataByMenuseq" parameterType="Integer">
+      delete from menu where menuseq = #{menuseq} 
    </delete>
+   <update id="UpdateData" parameterType="MyProduct">
+   update menu set
+    mname = #{mname}, price = #{price}, image = #{image, jdbcType=VARCHAR}, 
+    remark = #{remark, jdbcType=VARCHAR}, 
+    drinkid = #{drinkid, jdbcType=VARCHAR}, 
+    eatid = #{eatid, jdbcType=VARCHAR},
+    lookid = #{lookid, jdbcType=VARCHAR}
+   where menuseq = #{menuseq}
+   </update>
+   <update id="UpdateDataStock" parameterType="MyStock">
+   update stock set
+   qty = #{qty} ,starts = #{starts, jdbcType=VARCHAR},ends = #{ends, jdbcType=VARCHAR},remark = #{remark, jdbcType=VARCHAR}
+   where menuseq = #{menuseq} 
+   </update>
 	<!-- <select id="getTotalCount" resultType="int">
 		select count(*) from boards
 		<if test="what == 'albumname'">
