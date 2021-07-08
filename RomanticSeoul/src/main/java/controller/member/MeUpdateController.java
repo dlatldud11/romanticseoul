@@ -111,10 +111,10 @@ public class MeUpdateController extends SuperClass{
 			this.mav.setViewName(super.getpage);
 			
 		} else { // success
-			System.out.println("유효성 검사에 문제가 없슴");
+			System.out.println("유효성 검사에 문제가 없슴");      
 			int cnt = -99999 ;
 			cnt = mdao.UpdateData(xxx) ;
-			this.mav.setViewName(redirect); 
+			this.mav.setViewName(super.postpage); 
 		}
 		return this.mav ;
 	}

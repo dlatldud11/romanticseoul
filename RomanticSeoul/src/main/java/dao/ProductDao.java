@@ -92,4 +92,8 @@ public class ProductDao {
 		return this.abcd.selectList(namespace + "SelectDataByGuCate", map);
 	}
 
+	public int DeleteDataByMenuseq(int menuseq) {
+		return this.abcd.delete(namespace + "DeleteDataByMenuseq", menuseq);
+	}
+
 }
