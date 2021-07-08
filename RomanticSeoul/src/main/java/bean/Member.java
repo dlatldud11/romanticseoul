@@ -51,10 +51,8 @@ public class Member {
 	@NotNull(message="먹기 취향은 반드시 선택해 주셔야 합니다.")
     private String eat;
 	
-	@NotNull(message="놀기 취향은 반드시 선택해 주셔야 합니다.")
     private String play;
 	 
-	@NotNull(message="걷기 취향은 반드시 선택해 주셔야 합니다.")
     private String walk;
 	 
 	@NotNull(message="보기 취향은 반드시 선택해 주셔야 합니다.")

@@ -294,7 +294,7 @@
 							</div> --%>
 					</div>
 					<div class="testimonial__item" data-hash="review-1">
-						<button type="button">취향 설정 변경하기</button>
+						<button type="button" onclick="location.href='update.me?id=${loginfo.id}'">취향 설정 변경하기</button>
 						<button type="submit">코스 추천받기</button>
 					</div>
 			</form>
@@ -314,42 +314,17 @@
 				</div>
 			</div>
 		</div>
+		<c:set var="apppath" value="<%=request.getContextPath()%>" />
+         <form:form modelAttribute="member" id="myform" name="myform" method="post" action="${apppath}/buy.ma">
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="row"><!-- 1등 장소 보여주기 -->
-				<c:forEach var="bean" items="${first}">
-				<c:if test="${bean.storeseq eq firsttop }">	
-					<div class="col-lg-3 col-md-3">
-						<a href="#" class="feature__location__item set-bg"
-							data-setbg="img/feature-location/fl-2.jpg">
-							<div class="feature__location__item__text">
-								<h5>${bean.name}</h5>
-								<h5>${bean.category}</h5>
-								<h5>${bean.address2}</h5>
-							</div>
-						</a>
-					</div>
-				</c:if>
-				</c:forEach>
-				<c:forEach var="bean" items="${second}">
-				<c:if test="${bean.storeseq eq secondtop}">	
-					<div class="col-lg-3 col-md-3">
-						<a href="#" class="feature__location__item set-bg"
-							data-setbg="img/feature-location/fl-3.jpg">
-							<div class="feature__location__item__text">
-								<h5>${bean.name}</h5>
-								<h5>${bean.category}</h5>
-								<h5>${bean.address2}</h5>
-							</div>
-						</a>
-					</div>
-				</c:if>
-				</c:forEach>	
-				</div> <!-- 1등 장소 끝 -->
-				<div class="row"> <!-- 2등 이후 가게 -->
+				<div class="row"><!-- 첫번째 코스 보여주기 -->
+				<div>
+					<h6>첫번째 코스</h6>
+				</div>
 				<c:forEach var="bean" items="${first}">
 				<c:forEach var="bean2" items="${firstrank}">
-				<c:if test="${bean.storeseq eq bean2}">	
+				<c:if test="${bean.storeseq eq bean2}">
 					<div class="col-lg-3 col-md-3">
 						<a href="#" class="feature__location__item set-bg"
 							data-setbg="img/feature-location/fl-2.jpg">
@@ -360,15 +335,21 @@
 							</div>
 						</a>
 					</div>
+					<input type="radio" id="first" name="first" value="${bean2}">선택
 				</c:if>
 				</c:forEach>
 				</c:forEach>
+				</div> <!-- 1등 장소 끝 -->
+				<div class="row"> <!-- 두번째 코스 -->
+				<div>
+					<h6>두번째 코스</h6>
+				</div>
 				<c:forEach var="bean" items="${second}">
 				<c:forEach var="bean2" items="${secondrank}">
 				<c:if test="${bean.storeseq eq bean2}">	
 					<div class="col-lg-3 col-md-3">
 						<a href="#" class="feature__location__item set-bg"
-							data-setbg="img/feature-location/fl-3.jpg">
+							data-setbg="img/feature-location/fl-2.jpg">
 							<div class="feature__location__item__text">
 								<h5>${bean.name}</h5>
 								<h5>${bean.category}</h5>
@@ -376,12 +357,20 @@
 							</div>
 						</a>
 					</div>
+					<input type="radio" id="second" name="second" value="${bean2}">선택
 				</c:if>
 				</c:forEach>
 				</c:forEach>
-				</div>
+				</div> <!-- 두번째 장소 끝 -->
+			</div> <!-- col 끝 -->
+		</div> <!--row끝  -->
+		<div class="row">
+			<div class="col" align="center">
+			<button class="btn btn-primary" type="button">찜하기</button>
+			<button class="btn btn-primary" type="submit">예약하기</button>
 			</div>
 		</div>
+		</form:form>
 	</div>
 </section>
 <script type="text/javascript">
