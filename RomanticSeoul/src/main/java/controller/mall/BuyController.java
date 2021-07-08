@@ -19,9 +19,9 @@ public class BuyController extends SuperClass {
 	private ModelAndView mav = null ;
 	private final String redirect = "redirect:/수정02.mall" ;
 	
-	@Autowired
-	@Qualifier("cdao")
-	private CompositeDao dao ; 	
+//	@Autowired
+//	@Qualifier("cdao")
+//	private CompositeDao dao ; 	
 	
 	public BuyController() {
 		super(null, null);
