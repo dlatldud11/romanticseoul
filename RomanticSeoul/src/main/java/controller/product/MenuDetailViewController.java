@@ -3,6 +3,7 @@ package controller.product;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,34 +53,19 @@ public class MenuDetailViewController extends SuperClass{
 			@RequestParam(value = "pageSize", required = false) String pageSize,
 			@RequestParam(value = "mode", required = false) String mode,
 			@RequestParam(value = "keyword", required = false) String keyword,
-			HttpSession session){
+			HttpSession session,
+			HttpServletRequest request){
 		System.out.println("menuDetailViewController 들어옴");
 		
 		FlowParameters parameters 
 			= new FlowParameters(pageNumber, pageSize, mode, keyword);
 		
 		if(!(parameters.getMode().equals(null) || parameters.getMode().equals("null")|| parameters.getMode().equals(""))) {
-			if(parameters.getMode().equals("eat")) {
-				//mav.addObject("bean",bean);
 				List<Combo1> lists = this.dao.SelectDataList2(mode, storeseq);
 				System.out.println("storeseq 나왔는지 확인"+storeseq);
-//				System.out.println(lists.get(0).toString());
 				mav.addObject("lists",lists);
 				mav.addObject("mode",mode); // eat, look, drink 구별가능하게하기
 				System.out.println("리스트 나왔는지 확인 :"+lists.size());
-			}else if(parameters.getMode().equals("look")) {
-				//mav.addObject("bean",bean);
-				List<Combo1> lists = this.dao.SelectDataList2(mode, storeseq);
-				mav.addObject("lists",lists);
-				mav.addObject("mode",mode); // eat, look, drink 구별가능하게하기
-				System.out.println("b");
-			}else if(parameters.getMode().equals("drink")) {
-				//mav.addObject("bean",bean);
-				List<Combo1> lists = this.dao.SelectDataList2(mode, storeseq);
-				mav.addObject("lists",lists);
-				mav.addObject("mode",mode); // eat, look, drink 구별가능하게하기
-				System.out.println("c");
-			}
 			mav.addObject("storeseq",storeseq); // 해당 가게의 기본키
 		}
 		System.out.println(this.getClass() + " : " + parameters.toString());

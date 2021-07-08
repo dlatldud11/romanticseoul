@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import bean.CheckBean;
+import bean.Combo1;
 import bean.Member;
 //import shopping.ShoppingInfo 
 import bean.QnaBoard;
