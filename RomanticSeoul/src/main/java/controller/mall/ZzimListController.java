@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,6 +24,7 @@ import dao.ProductDao;
 import utility.DrinkAPI;
 import utility.EatAPI;
 import utility.LookAPI;
+import utility.MyplanList;
 
 @Controller
 public class ZzimListController extends SuperClass{
@@ -53,8 +55,14 @@ public class ZzimListController extends SuperClass{
 	@GetMapping(command)
 	public ModelAndView doGet(
 			@RequestParam(value = "id", required = true) String id,
-			HttpServletRequest request){
-		List<Myplan> myplanlists = this.mdao.SelectMyplans(id); //찜목록 가져오기
+			HttpServletRequest request,
+			HttpSession session){
+		MyplanList myplan = (MyplanList)session.getAttribute("myplan")  ;
+		if(myplan == null) {
+			myplan = new MyplanList();
+			System.out.println("장바구니 새로만듬"+myplan.toString());
+		}
+		List<Myplan> myplanlists = myplan.GetAllmyplanlist();// 장바구니 내역 모두 가져오기
 		List<Menu> menulists = new ArrayList<Menu>(); // 찜한 가게별 메뉴목록 가져오기
 		List<Store> storelists = new ArrayList<Store>(); // 찜목록에 있는 가게 정보 가져오기
 		
@@ -84,7 +92,7 @@ public class ZzimListController extends SuperClass{
 				store = this.lapi.getLookByPk(keyword);
 				storelists.add(store);
 			}
-			List<Menu> lists = this.pdao.SelectDataList2(mode,keyword);
+			List<Menu> lists = this.pdao.SelectDataList3(mode,keyword);
 			menulists.addAll(lists); // 각 가게별로 메뉴 가져와서 합치기
 		}
 		

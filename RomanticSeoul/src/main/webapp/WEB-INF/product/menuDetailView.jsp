@@ -115,22 +115,12 @@ form.form-inline{
 					</td>
 					</tr>
 				<%-- storeseq mode에 따라서 보내는 값 다르게 해주기 --%>
-				<c:choose> 
-					<c:when test="${mode == 'eat'}">
-						<c:set var="storeseq" value="${bean.eatid}" />
-					</c:when>
-					<c:when test="${mode == 'drink'}">
-						<c:set var="storeseq" value="${bean.drinkid}" />
-					</c:when>
-					<c:when test="${mode == 'look'}">
-						<c:set var="storeseq" value="${bean.lookid}" />
-					</c:when>
-				</c:choose>
 				</c:forEach>
+				
 				<c:if test="${whologin == 2}">
-					<button class="btn btn-primary">
 					<a href="<%=contextPath%>/menuInsert.pr?storeseq=${storeseq}&mode=${mode}&${requestScope.parameters}">상품 등록</a>
-					</button>
+					<!-- <button class="btn btn-primary">
+					</button> -->
 					<%-- <button class="btn btn-default btn-info" type="button"
 						onclick="<%=contextPath%>/menuInsert.pr?storeseq=${storeseq}">상품 등록</button> --%>
 				</c:if>	
