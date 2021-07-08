@@ -65,13 +65,17 @@ public class ProductDao {
 		return this.abcd.selectList(namespace + "SelectDataList3", map);
 	}	
 
-	public Menu SelectDataByPk(int num) {
+	public Combo1 SelectDataByPk(int num) {
 		return this.abcd.selectOne(namespace + "SelectDataByPk", num);
 	}
 	
 	public int UpdateData(Menu bean) {
 		System.out.println(bean.toString());
 		return this.abcd.update(namespace + "UpdateData", bean);
+	}	
+	public int UpdateDataStock(Stock bean) {
+		System.out.println(bean.toString());
+		return this.abcd.update(namespace + "UpdateDataStock", bean);
 	}	
 
 	public int DeleteData(int num, String remark) {
@@ -80,8 +84,6 @@ public class ProductDao {
 		map.put("num", num);
 		map.put("num", remark);
 		this.abcd.update(namespace + "UpdateRemark", map);
-		
-			
 		// 해당 상품을 삭제합니다.		
 		return this.abcd.delete(namespace + "DeleteData", num);
 	}
