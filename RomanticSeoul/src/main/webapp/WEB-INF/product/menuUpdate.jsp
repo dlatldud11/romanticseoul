@@ -42,12 +42,24 @@ $(document).ready(function(){
                 <div class="card-body">
                 
                 <c:set var="apppath" value="<%=request.getContextPath()%>" />
-                    <form:form id="form" name="form" role="form" action="${apppath}/menuInsert.pr" method="post" enctype="multipart/form-data">
+                    <form:form id="form" name="form" role="form" modelattribute="Combo1" action="${apppath}/menuUpdate.pr" method="post" enctype="multipart/form-data">
+                        <input type="hidden" id="menuseq" name="menuseq" value="${bean.menuseq}">
+                        <input type="hidden" id="eatid" name="eatid" value="${bean.eatid}">
+                        <input type="hidden" id="lookid" name="lookid" value="${bean.lookid}">
+                        <input type="hidden" id="drinkid" name="drinkid" value="${bean.drinkid}">
+                        <div class="form-row">
+                            <div class="name">MNAME</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" id="mname" name="mname" value="${bean.mname}" readonly>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-row">
                             <div class="name">QTY</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="number" name="qty" id="qty">
+                                    <input class="input--style-5" type="number" name="qty" id="qty"  value="${bean.qty}">
                                 </div>
                             </div>
                         </div>
@@ -55,7 +67,7 @@ $(document).ready(function(){
                             <div class="name">PRICE</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="price" id="price">
+                                    <input class="input--style-5" type="text" name="price" id="price" value="${bean.price}">
                                 </div>
                             </div>
                         </div>
@@ -63,7 +75,7 @@ $(document).ready(function(){
                             <div class="name">STARTS</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="starts" id="starts">
+                                    <input class="input--style-5" type="text" name="starts" id="starts" value="${bean.starts}">
                                 </div>
                             </div>
                         </div>
@@ -71,7 +83,7 @@ $(document).ready(function(){
                             <div class="name">ENDS</div>
                             <div class="value">
                                 <div class="input-group">
-                                    <input class="input--style-5" type="text" name="ends" id="ends">
+                                    <input class="input--style-5" type="text" name="ends" id="ends" value="${bean.ends}">
                                 </div>
                             </div>
                         </div>
@@ -79,12 +91,12 @@ $(document).ready(function(){
                         	<div class="name">IMAGE</div>
 	                        	<div class="value">
 			                        <div class="form-group">
-								   		<input type="file" class="form-control-file" name="file" id="file">
+								   		<input type="file" class="form-control-file" name="file" id="file" value="${bean.file}">
 									</div>
 		                        <div>
 	                        </div>
                         </div>
-                            <button id="btnSave" class="btn btn--radius-2 btn--red" type="submit" onclick="writeForm();">SUBMIT</button>
+                            <button id="btnSave" class="btn btn--radius-2 btn--red" type="submit">SUBMIT</button>
                         </div>
                     </form:form>
                 </div>
