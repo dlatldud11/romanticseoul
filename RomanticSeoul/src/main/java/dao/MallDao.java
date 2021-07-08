@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 import bean.Drink;
 import bean.Eat;
 import bean.Look;
+import bean.Member;
 import bean.Myplan;
 
 @Component("malldao")
@@ -47,11 +48,16 @@ public class MallDao {
 	public List<Myplan> SelectMyplans(String id){ //장바구니 내역 보기
 		return this.abcd.selectList(namespace + "SelectMyplans", id);
 	}
-	public int InsertMyplans(Myplan bean){
-		return this.abcd.insert(namespace + "InsertMyplans", bean);
+	public void InsertMyplans(List<Myplan> myplans, Member mem){
+		
+		this.abcd.delete(namespace + "DeleteMyplans", mem.getId());
+		for(Myplan myplan : myplans) {
+			System.out.println("로그아웃하면서 디비에 다시 넣기 /"+myplan.toString());
+			this.abcd.insert(namespace + "InsertMyplans", myplan);
+		}
 	}
-	public int DeleteMyplans(int planseq){
-		return this.abcd.delete(namespace + "DeleteMyplans", planseq);
+	public int DeleteMyplans(String id){
+		return this.abcd.delete(namespace + "DeleteMyplans", id);
 	}
 //	public Order SelectDataByPk(int oid) {
 //		return this.abcd.selectOne(namespace + "SelectDataByPk", oid);

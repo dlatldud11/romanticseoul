@@ -2,6 +2,8 @@ package controller.member;
 
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import bean.Member;
+import bean.Myplan;
 import controller.common.SuperClass;
+import dao.MallDao;
 //import dao.MallDao;
 import dao.MemberDao;
 //import shopping.MyCartList;
 //import shopping.ShoppingInfo;
+import utility.MyplanList;
 
 @Controller
 public class MeLoginController extends SuperClass{
@@ -28,6 +33,10 @@ public class MeLoginController extends SuperClass{
 	@Autowired
 	@Qualifier("mdao")
 	private MemberDao dao ;
+	
+	@Autowired
+	@Qualifier("malldao")
+	private MallDao mdao ;
 	
 	public MeLoginController() {
 		super("meLoginForm", null) ;
@@ -69,18 +78,25 @@ public class MeLoginController extends SuperClass{
 				session.setAttribute("loginfo", bean); 
 				System.out.println("로그인 성공");
 				// 장바구니 테이블에서 이전 나의 쇼핑 정보 가져 오기
-//				List<ShoppingInfo> lists = this.malldao.GetShoppingInfo(bean.getId()) ;
-//				
-//				if (lists.size() > 0) { // 이전 wish list가 있는 경우
-//					MyCartList mycart = new MyCartList();
-//					
-//					// 반복문을 사용하여, 카트에 목록을 저장합니다.
-//					for(ShoppingInfo shop : lists) {
-//						// 해당 상품 번호에 대한 구매 수량을 장바구니에 담아 둡니다.
-//						mycart.AddOrder(shop.getPnum(), shop.getQty()); 
-//					}
-//					session.setAttribute("mycart", mycart); 
-//				}
+				List<Myplan> lists = this.mdao.SelectMyplans(id); //찜목록 가져오기
+				if (lists.size() > 0) { // 이전 wish list가 있는 경우
+					MyplanList myplanlists = new MyplanList();
+					
+					// 반복문을 사용하여, 카트에 목록을 저장합니다.
+					for(Myplan myplan : lists) {
+						// 해당 상품 번호에 대한 구매 수량을 장바구니에 담아 둡니다.
+						if(!(myplan.getEatid() == null || myplan.getEatid().isBlank())) {
+							myplanlists.AddOrder(myplan.getEatid(), myplan.getQty(),"eat",id); 
+						}
+						if(!(myplan.getDrinkid() == null || myplan.getDrinkid().isBlank())) {
+							myplanlists.AddOrder(myplan.getDrinkid(), myplan.getQty(),"drink",id); 
+						}
+						if(!(myplan.getLookid() == null || myplan.getLookid().isBlank())) {
+							myplanlists.AddOrder(myplan.getLookid(), myplan.getQty(),"look",id); 
+						}
+					}
+					session.setAttribute("myplan", myplanlists); 
+				}
 				
 				this.mav.setViewName(redirect);
 			}

@@ -28,7 +28,7 @@ import dao.TypeDao;
 import utility.DrinkAPI;
 import utility.EatAPI;
 import utility.LookAPI;
-import zzim.MyCartList;
+import utility.MyplanList;
 
 @Controller
 public class MaTypeController extends SuperClass {
@@ -163,7 +163,7 @@ public class MaTypeController extends SuperClass {
 		
 		Member loginfo = (Member)session.getAttribute("loginfo")  ;
 		
-		MyCartList mycart = (MyCartList)session.getAttribute("mycart")  ;
+		MyplanList myplan = (MyplanList)session.getAttribute("myplan")  ;
 		
 		
 		return this.mav ;

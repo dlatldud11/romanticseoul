@@ -35,8 +35,9 @@
 			<div class="col-lg-4">
 				<div class="listing__hero__btns">
 					<a href="#" class="primary-btn share-btn"><i
-						class="fa fa-mail-reply"></i> Share</a> <a href="#"
-						class="primary-btn"><i class="fa fa-bookmark"></i> Bookmark</a>
+						class="fa fa-mail-reply"></i> Share</a> 
+						<a href="<%=contextPath%>/zziminsert.ma?storeseq=${storeseq}&mode=${mode}"
+						class="primary-btn"><i class="fa fa-bookmark"></i> 찜하기</a>
 				</div>
 			</div>
 		</div>

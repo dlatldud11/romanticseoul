@@ -24,11 +24,11 @@
 	select * from myplans where id = #{id}
 	</select>
 	<insert id="InsertMyplans" parameterType="MyPlan">
-	insert into myplans (planseq, id, qty, remark,drinkid,eatid,lookid)
-	values (myplans_seq.nextval, #{id},#{qty},#{remark, jdbcType=VARCHAR},
+	insert into myplans (planseq, id, qty,drinkid,eatid,lookid)
+	values (myplans_seq.nextval, #{id},#{qty},
 	#{drinkid, jdbcType=VARCHAR},#{eatid, jdbcType=VARCHAR},#{lookid, jdbcType=VARCHAR)
 	</insert>
-	<delete id="DeleteMyplans" parameterType="Integer">
-	delete from myplans where planseq = #{planseq}
+	<delete id="DeleteMyplans" parameterType="String">
+	delete from myplans where id = #{id}
 	</delete>
 </mapper>
