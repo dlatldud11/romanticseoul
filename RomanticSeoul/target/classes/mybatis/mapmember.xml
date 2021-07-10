@@ -57,8 +57,6 @@
       zipcode = #{zipcode},
       drink = #{drink},
       eat = #{eat},
-      play = #{play},
-      walk = #{walk},
       look = #{look},
       image = #{image,jdbcType=VARCHAR},
       remark = #{remark, jdbcType=VARCHAR}

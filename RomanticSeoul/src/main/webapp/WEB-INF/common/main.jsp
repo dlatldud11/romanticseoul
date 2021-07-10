@@ -315,49 +315,85 @@
 			</div>
 		</div>
 		<c:set var="apppath" value="<%=request.getContextPath()%>" />
-         <form:form modelAttribute="member" id="myform" name="myform" method="post" action="${apppath}/buy.ma">
+         <form:form modelAttribute="Combo2" id="myform" name="myform" method="get" action="${apppath}/buy.ma">
 		<div class="row">
 			<div class="col-lg-12">
-				<div class="row"><!-- 첫번째 코스 보여주기 -->
 				<div>
 					<h6>첫번째 코스</h6>
 				</div>
+				<div class="row"><!-- 첫번째 코스 보여주기 -->
 				<c:forEach var="bean" items="${first}">
 				<c:forEach var="bean2" items="${firstrank}">
 				<c:if test="${bean.storeseq eq bean2}">
 					<div class="col-lg-3 col-md-3">
-						<a href="#" class="feature__location__item set-bg"
+						<div class="feature__location__item set-bg"
 							data-setbg="img/feature-location/fl-2.jpg">
 							<div class="feature__location__item__text">
 								<h5>${bean.name}</h5>
 								<h5>${bean.category}</h5>
 								<h5>${bean.address2}</h5>
+								<div class="select__option">
+								<select id="firstmenu" name="firstmenu" class="form-control">
+									<option value=" " selected="selected">-- Menu
+									<c:forEach var="menu" items="${firstmenu}">
+									<c:choose>
+									<c:when test="${firstmode eq 'eat' && bean2 eq menu.eatid}">
+										<option value="${menu.menuseq}/${bean2}/${firstmode}">${menu.mname}&nbsp;--${menu.price}원
+									</c:when>
+									<c:when test="${firstmode eq 'look' && bean2 eq menu.lookid}">
+										<option value="${menu.menuseq}/${bean2}/${firstmode}">${menu.mname}&nbsp;--${menu.price}원
+									</c:when>
+									<c:when test="${firstmode eq 'drink' && bean2 eq menu.drinkid}">
+										<option value="${menu.menuseq}/${bean2}/${firstmode}">${menu.mname}&nbsp;--${menu.price}원
+									</c:when>
+									</c:choose>
+									</c:forEach>
+								</select>
+								</div>
 							</div>
-						</a>
+						</div>
 					</div>
-					<input type="radio" id="first" name="first" value="${bean2}">선택
+					<input type="hidden" id="firstmode" name="firstmode" value="${firstmode}">
+					<input type="hidden" id="first" name="first" value="${bean2}">
 				</c:if>
 				</c:forEach>
 				</c:forEach>
 				</div> <!-- 1등 장소 끝 -->
-				<div class="row"> <!-- 두번째 코스 -->
 				<div>
 					<h6>두번째 코스</h6>
 				</div>
+				<div class="row"> <!-- 두번째 코스 -->
 				<c:forEach var="bean" items="${second}">
 				<c:forEach var="bean2" items="${secondrank}">
 				<c:if test="${bean.storeseq eq bean2}">	
 					<div class="col-lg-3 col-md-3">
-						<a href="#" class="feature__location__item set-bg"
+						<div class="feature__location__item set-bg"
 							data-setbg="img/feature-location/fl-2.jpg">
 							<div class="feature__location__item__text">
 								<h5>${bean.name}</h5>
 								<h5>${bean.category}</h5>
 								<h5>${bean.address2}</h5>
+								<select id="secondmenu" name="secondmenu" class="form-control">
+									<option value=" " selected="selected">-- Menu
+									<c:forEach var="menu" items="${secondmenu}">
+									<c:choose>
+									<c:when test="${secondmode eq 'eat' && bean2 eq menu.eatid}">
+										<option value="${menu.menuseq}/${bean2}/${secondmode}">${menu.mname}&nbsp;--${menu.price}원
+									</c:when>
+									<c:when test="${secondmode eq 'look' && bean2 eq menu.lookid}">
+										<option value="${menu.menuseq}/${bean2}/${secondmode}">${menu.mname}&nbsp;--${menu.price}원
+									</c:when>
+									<c:when test="${secondmode eq 'drink' && bean2 eq menu.drinkid}">
+										<option value="${menu.menuseq}/${bean2}/${secondmode}">${menu.mname}&nbsp;--${menu.price}원
+									</c:when>
+									</c:choose>
+									</c:forEach>
+								</select>
 							</div>
-						</a>
+						</div>
 					</div>
-					<input type="radio" id="second" name="second" value="${bean2}">선택
+					<input type="hidden" id="secondmode" name="secondmode" value="${requestScope.secondmode}">
+					<input type="hidden" id="second" name="second" value="${bean2}">
 				</c:if>
 				</c:forEach>
 				</c:forEach>

@@ -32,4 +32,19 @@ public class CombineAPI {
 		}
 		return lists;
 	}
+	public Store getByPk(String mode, String pk) {
+		Store bean = new Store();
+		switch(mode) {
+		case "eat" :
+			bean = this.eapi.geteatByPk(pk);
+			break;
+		case "drink" :
+			bean = this.dapi.getDrinkByPk(pk);
+			break;
+		case "look" :
+			bean = this.lapi.getLookByPk(pk);
+			break;
+		}
+		return bean;
+	}
 }
