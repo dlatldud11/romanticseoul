@@ -32,7 +32,7 @@ public class CombineAPI {
 		}
 		return lists;
 	}
-	public Store getByPk(String mode, String pk) {
+	public Store getByPk(String mode, String pk) { // mode로 pk 분기처리해서 가져오기
 		Store bean = new Store();
 		switch(mode) {
 		case "eat" :

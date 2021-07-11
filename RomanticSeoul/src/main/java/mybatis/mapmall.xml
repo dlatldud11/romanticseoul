@@ -49,7 +49,7 @@
 	reservation a join menu b on (a.second = b.menuseq) 
     where id = #{id}  ) b on (a.resseq = b.resseq) 
        
-    order by resseq desc;
+    order by resseq desc
 	</select>
 	
 </mapper>

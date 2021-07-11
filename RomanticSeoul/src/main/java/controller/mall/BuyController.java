@@ -27,7 +27,7 @@ import utility.CombineAPI;
 public class BuyController extends SuperClass {
 	private final String command = "/buy.ma" ;
 	private ModelAndView mav = null ;
-	private final String redirect = "redirect:/main.co" ;
+	private final String redirect = "redirect:/meBuy.me" ;
 	
 //	@Autowired
 //	@Qualifier("cdao")
@@ -112,7 +112,8 @@ public class BuyController extends SuperClass {
 				this.mdao.UpdateStock(xxx.getFirst(),xxx.getQty());
 				this.mdao.UpdateStock(xxx.getSecond(),xxx.getQty()); // 수량 바꾸기
 				this.mdao.InsertReservation(xxx); // 예약쓰기
-				this.mav.setViewName(this.redirect);
+				Member login =  (Member)session.getAttribute("loginfo") ;
+				this.mav.setViewName(this.redirect+"?id="+login.getId());
 			}else {
 				System.out.println("재고가 없습니다.");
 				this.mav.setViewName(super.getpage);

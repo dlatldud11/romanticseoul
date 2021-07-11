@@ -10,12 +10,30 @@
 
 <head>
 <script type="text/javascript">
-	function change(){
-/* 	var valuekey = ('#qty').val()
-	$('#price').attr('value',valuekey)
- */	alert ('onchange실행'+('#qty').val());		
+$(document).ready(function(){
+	  var won = $('#spantotal').text();
+       console.log(won);  // 콘솔창에 10000000 찍힘
+       
+       won = numberWithCommas(won);
+       $('#spantotal').text(won);  // 콘솔창에 10,000,000 찍힘 */
+       
+    });
+  
+  //천단위 콤마 펑션
+  function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+
+</script>
+<script type="text/javascript">
+	function change(abc){
+	var newwon = $('#qty').val() * Number (abc);
+	var newwon2 = numberWithCommas(newwon);
+	$('#price').val(newwon);
+	$('#spantotal').text(newwon2);
 	}
 	
+
 </script>
 </head>
 <body>
@@ -56,9 +74,9 @@
 									<td>${firstMenu.mname}</td>									
 									<td class="text-center"><fmt:formatNumber
 											value="${firstMenu.price}" pattern="###,###"/> 원</td>
-									<td rowspan="2"><input type="date" id="fakeredate" name="fakeregate"
-									onkeyup=redate.value=this.value;>
-									<input type="hidden" id="redate" mane="redate">
+									<td rowspan="2"><input type="date" id="redate" name="redate">
+									<!-- onkeyup=redate.value=this.value; -->
+								<!-- 	<input type="hidden" id="redate" name="redate"> -->
 									</td>
 									<%-- <td class="text-center"><fmt:formatNumber
 											value="${shopinfo.qty}" pattern="###,###"/> 개</td>
@@ -85,16 +103,19 @@
 								<td class="thick-line"></td>
 								<td class="thick-line text-right">
 								수량
-								<input type="number" id="qty" name="qty" value="1" onclick="change();">
+								<input type="number" id="qty" name="qty" value="1" onclick="change('${total}');">
 								</td>
 								<td class="thick-line text-center"><strong>합계</strong></td>
 								<td class="thick-line text-right">
-								<input type="text" id="price" name="price" value="${total}" readonly>
-								원</td>
+								<span id="spantotal">${total}</span><span>원</span>
+								<input type="hidden" id="price" name="price" value="${total}" readonly>
+								</td>
 							</tr>
 							<tr class="text-center">
 							<td colspan="5">
-							<button type= submit>결제</button>
+							<button type= "button" onclick="location.href='/main.co'">취소</button>
+							<!-- <button type= "button">찜하기</button> -->
+							<button type= "submit">결제</button>
 							</td>
 							</tr>
 						</tbody>

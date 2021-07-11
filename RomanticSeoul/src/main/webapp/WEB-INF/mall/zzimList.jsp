@@ -36,6 +36,8 @@ String mappingName = "/main";
 <html lang="zxx">
 
 <head>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=44738bc99c4951d30c08aed463b1784c&libraries=services"></script>
+
     <meta charset="UTF-8">
     <meta name="description" content="Directing Template">
     <meta name="keywords" content="Directing, unica, creative, html">
@@ -58,6 +60,7 @@ String mappingName = "/main";
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    
 </head>
 
 <body class="ov-hid">
@@ -235,7 +238,7 @@ String mappingName = "/main";
                 </div>
                 <div class="listing__item__text">
                     <div class="listing__item__text__inside">
-                        <h5>${store.name}</h5>
+                        <h5 id="name">${store.name}</h5>
                         <div class="listing__item__text__rating">
                             <div class="listing__item__rating__star">
                                 <span class="icon_star"></span>
@@ -255,7 +258,7 @@ String mappingName = "/main";
 								</select>
 					        </div>
                         <ul>
-                            <li><span class="icon_pin_alt"></span>
+                            <li id="address" name="address" onclick="check();"><span class="icon_pin_alt"></span>
                             <c:choose>
                             <c:when test="${not empty store.address2 }">
                             	${store.address2}
@@ -491,9 +494,12 @@ String mappingName = "/main";
     <!-- Listing Section End -->
 
     <!-- Map Begin -->
-    <div class="listing__map">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423283.43556031643!2d-118.69192431097179!3d34.020730495817475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1586670019340!5m2!1sen!2sbd" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+    <div  id="map" style="height: 100%;
+	width: 45%;
+	margin-top: 105px;
+	float: left";>
+       <!--  <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423283.43556031643!2d-118.69192431097179!3d34.020730495817475!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1586670019340!5m2!1sen!2sbd" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe> -->
     </div>
     <!-- Map End -->
 
@@ -508,6 +514,75 @@ String mappingName = "/main";
     <script src="js/jquery.slicknav.js"></script>
     <script src="js/owl.carousel.min.js"></script>
     <script src="js/main.js"></script>
+    <script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+    mapOption = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };  
+
+// 지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+// 주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+var first = '${store.address2}:first'.text();
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch(first, function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});    
+</script>
+<script >
+    function check(){
+    	var geocoder = new kakao.maps.services.Geocoder();
+    	var first = $('#address').text();
+    	var name = $('#name').text();
+    	// 주소로 좌표를 검색합니다
+    	geocoder.addressSearch(first, function(result, status) {
+
+    	    // 정상적으로 검색이 완료됐으면 
+    	     if (status === kakao.maps.services.Status.OK) {
+
+    	        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+    	        // 결과값으로 받은 위치를 마커로 표시합니다
+    	        var marker = new kakao.maps.Marker({
+    	            map: map,
+    	            position: coords
+    	        });
+
+    	        // 인포윈도우로 장소에 대한 설명을 표시합니다
+    	        var infowindow = new kakao.maps.InfoWindow({
+    	            content: '<div style="width:150px;text-align:center;padding:6px 0;">'+name+'</div>'
+    	        });
+    	        infowindow.open(map, marker);
+
+    	        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+    	        map.setCenter(coords);
+    	    } 
+    });
+    }
+    </script>
 </body>
 
 </html>

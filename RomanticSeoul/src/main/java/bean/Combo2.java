@@ -6,7 +6,7 @@ public class Combo2 {
 	private int qty;
 	private String regdate; // 주문 일자
 	private String redate; // 예약 일자
-	private int first;
+	private int first; //메뉴 시퀀스
 	private String firstmname;
 	private int firstprice;
 	private int second;
