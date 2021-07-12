@@ -39,10 +39,14 @@ public class ZzimInsertController extends SuperClass {
 	public ModelAndView doGet(
 			@RequestParam(value="storeseq", required = false) String storeseq,
 			@RequestParam(value="mode", required = false) String mode,
-			@RequestParam(value="coseq", required = false) Integer coseq,
+			@RequestParam(value="coseq", required = false) String coseq,
 			@RequestParam(value="stock", required = false) Integer stock,
 			HttpSession session) {
 		System.out.println("zziminsert doget");
+		System.out.println("coseq:"+coseq);
+		String mode1 = "";
+		String storeseq1 = "";
+		
 		Member loginfo = (Member)session.getAttribute("loginfo")  ;
 		if(stock == null) { //수량 안정해져있으면
 			stock = 1;
@@ -62,7 +66,15 @@ public class ZzimInsertController extends SuperClass {
 				System.out.println("장바구니 새로만듬"+myplan.toString());
 			}
 			System.out.println("장바구니 현재 상태 :"+myplan.toString());
+			if(!(coseq == null || coseq.isBlank())){
+				String[] coseqs = coseq.split("/");
+				mode = coseqs[1];//첫번째 모드
+				storeseq = coseqs[0]; //첫번째 가게시퀀스
+				mode1 = coseqs[3]; // 두번째모드
+				storeseq1 = coseqs[2]; //두번째 가게시퀀스
+			}
 			if(!(mode == null || mode.isBlank())){ //mode 값이 넘어갔다면
+				System.out.println("mode값이 널값이 아니다. :"+mode);
 				switch(mode) {
 				case "eat":
 					myplan.AddOrder(storeseq, stock,mode,loginfo.getId());
@@ -72,6 +84,19 @@ public class ZzimInsertController extends SuperClass {
 					break;
 				case "look":
 					myplan.AddOrder(storeseq, stock,mode,loginfo.getId());
+					break;
+				}
+				}
+			if(!(mode1 == null || mode1.isBlank())){ //mode 값이 넘어갔다면
+				switch(mode1) {
+				case "eat":
+					myplan.AddOrder(storeseq1, stock,mode1,loginfo.getId());
+					break;
+				case "drink":
+					myplan.AddOrder(storeseq1, stock,mode1,loginfo.getId());
+					break;
+				case "look":
+					myplan.AddOrder(storeseq1, stock,mode1,loginfo.getId());
 					break;
 				}
 			}

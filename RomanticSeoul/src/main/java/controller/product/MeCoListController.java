@@ -97,7 +97,7 @@ public class MeCoListController extends SuperClass {
 			
 			System.out.println("값나뉜지확인"+firsts[0]+"/"+firsts[1]);
 			List<Menu> firstapilist = this.pdao.SelectDataByGuCate(firsts[0], gu);
-			List<Menu> secondapilist = this.pdao.SelectDataByGuCate(seconds[0], gu);
+			List<Menu> secondapilist = this.pdao.SelectDataByGuCate(seconds[0], gu); //api가 아니라 데이터베이스에서 가져옴
 			
 //			mav.addObject("firstlists",firstlists);
 //			mav.addObject("secondlists",secondlists);
@@ -137,7 +137,6 @@ public class MeCoListController extends SuperClass {
 			firstaddr.put("storeseq", bean.getStoreseq());
 			firstaddr.put("first", firsts[0]);
 			firstaddr.put("mode", "first"); //mode에 first라고 넣어두기
-			firstaddr.put("storeseq", bean.getStoreseq()); //mode에 first라고 넣어두기
 			
 			addrlist.add(firstaddr);
 		}
@@ -152,7 +151,6 @@ public class MeCoListController extends SuperClass {
 			secondaddr.put("storeseq", bean.getStoreseq());
 			secondaddr.put("second", seconds[0]);
 			secondaddr.put("mode", "second"); //mode에 first라고 넣어두기
-			secondaddr.put("storeseq", bean.getStoreseq()); //mode에 first라고 넣어두기
 			addrlist.add(secondaddr);
 		}
 		Map<String,Object> addr = gapi.addToCoord(address); // 입력한 주소 좌표값 찾기
@@ -180,11 +178,11 @@ public class MeCoListController extends SuperClass {
 		// 5순위까지만 남기고 자르기
 		List<Double> firstfive = firstlength;
 		List<Double> secondfive = secondlength;
-		if(firstlength.size() > 5) { // 리스트가 5순위보다 더 있으면 자르기 
-			firstfive = firstlength.subList(0,5);
+		if(firstlength.size() > 4) { // 리스트가 5순위보다 더 있으면 자르기 
+			firstfive = firstlength.subList(0,4);
 		}
-		if(secondlength.size() > 5) {
-			secondfive = secondlength.subList(0,5);
+		if(secondlength.size() > 4) {
+			secondfive = secondlength.subList(0,4);
 		}
 		System.out.println("서브리스트 완료"+firstfive.size()+"/"+secondfive.size());
 		System.out.println(firstfive.toString()+"/"+secondfive.toString());
@@ -215,6 +213,23 @@ public class MeCoListController extends SuperClass {
 			
 		}//for문 끝
 		System.out.println("순위권 시퀀스 담겼는지 확인 : "+finalfirstseq.size()+"/"+finalsecondseq.size());
+		
+//		String[] firsts = first.split("/"); //eat 과 카테고리 나눔
+//		String[] seconds = second.split("/"); 여기로 eat인지 look인지 알 수 있음
+		List<Menu> firstmenu = new ArrayList<Menu>(); // 첫번째 코스 메뉴리스트
+		List<Menu> secondmenu = new ArrayList<Menu>(); // 첫번째 코스 메뉴리스트
+		
+		for(String seq : finalfirstseq) {
+			List <Menu> bean = this.pdao.SelectDataList3(firsts[0], seq);
+			firstmenu.addAll(bean); // 리스트 합치기
+		}
+		
+		for(String seq : finalsecondseq) {
+			List <Menu> bean = this.pdao.SelectDataList3(seconds[0], seq);
+			secondmenu.addAll(bean); // 리스트 합치기
+		}
+		System.out.println("순위별 메뉴 리스트 나왔는지 확인 :"+firstmenu.size()+"/"+secondmenu.size());
+		
 		// 순위권 시퀀스를 마브에 담아서 준다. 메뉴와 api 교집합 된 리스트를 마브에 담는다. 1등시퀀스만 따로 mav에 담는다. jsp에 뿌린다.
 		session.setAttribute("first",finalfirst); //교집합 된 부분
 		session.setAttribute("second",finalsecond);
@@ -222,8 +237,14 @@ public class MeCoListController extends SuperClass {
 		session.setAttribute("firstrank",finalfirstseq); // 5위까지 담아놓은 것(시퀀스)
 		session.setAttribute("secondrank",finalsecondseq); // 5위까지 담아놓은 것(시퀀스)
 		
-		session.setAttribute("firsttop",finalfirstseq.get(0)); // 1위(시퀀스)
-		session.setAttribute("secondtop",finalsecondseq.get(0)); // 1위(시퀀스)
+		session.setAttribute("firstmenu",firstmenu); // 첫번째 코스 메뉴 담아놓음
+		session.setAttribute("secondmenu",secondmenu); // 두번째 코스 메뉴 담아놓음
+
+		session.setAttribute("firstmode",firsts[0]); // 첫번째 코스 mode 담아놓음
+		session.setAttribute("secondmode",seconds[0]); // 두번째 코스 mode 담아놓음
+		
+//		session.setAttribute("firsttop",finalfirstseq.get(0)); // 1위(시퀀스)
+//		session.setAttribute("secondtop",finalsecondseq.get(0)); // 1위(시퀀스)
 		mav.setViewName(redirect);
 		return this.mav ;
 	}

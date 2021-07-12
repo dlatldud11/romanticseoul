@@ -4,7 +4,9 @@ public class Reservation {
 	private int resseq;
 	private String id;
 	private int coseq;
-	private int menuseq;
+	private int first; //menuseq
+	private int second;
+	private int third;
 	private int price;
 	private String regdate;
 	private String redate;
@@ -13,12 +15,49 @@ public class Reservation {
 	
 	@Override
 	public String toString() {
-		return "Reservation [resseq=" + resseq + ", id=" + id + ", coseq=" + coseq + ", menuseq=" + menuseq + ", price="
-				+ price + ", regdate=" + regdate + ", redate=" + redate + ", remark=" + remark + "]";
+		return "Reservation [resseq=" + resseq + ", id=" + id + ", coseq=" + coseq + ", first=" + first + ", second="
+				+ second + ", third=" + third + ", price=" + price + ", regdate=" + regdate + ", redate=" + redate
+				+ ", remark=" + remark + "]";
 	}
 
 
-	
+
+	public int getFirst() {
+		return first;
+	}
+
+
+
+	public void setFirst(int first) {
+		this.first = first;
+	}
+
+
+
+	public int getSecond() {
+		return second;
+	}
+
+
+
+	public void setSecond(int second) {
+		this.second = second;
+	}
+
+
+
+	public int getThird() {
+		return third;
+	}
+
+
+
+	public void setThird(int third) {
+		this.third = third;
+	}
+
+
+
 	public int getResseq() {
 		return resseq;
 	}
@@ -52,20 +91,7 @@ public class Reservation {
 	public void setCoseq(int coseq) {
 		this.coseq = coseq;
 	}
-
-
 	
-	public int getMenuseq() {
-		return menuseq;
-	}
-
-
-	
-	public void setMenuseq(int menuseq) {
-		this.menuseq = menuseq;
-	}
-
-
 	
 	public int getPrice() {
 		return price;
