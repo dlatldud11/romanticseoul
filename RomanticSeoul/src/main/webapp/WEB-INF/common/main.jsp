@@ -174,8 +174,8 @@
 	</div>
 </section>
 <!-- Most Search Section End -->
-<!-- Hero Section Begin -->
-<section class="hero set-bg" data-setbg="img/hero/hero-bg.jpg">
+<!-- Hero Section Begin 검색창 기능-->
+<!-- <section class="hero set-bg" data-setbg="img/hero/hero-bg.jpg">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
@@ -207,10 +207,10 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 <!-- Hero Section End -->
-<!-- Categories Section Begin -->
-<section class="categories spad">
+<!-- Categories Section Begin 카테고리 소개 기능 -->
+<!-- <section class="categories spad">
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
@@ -249,7 +249,7 @@
 			</div>
 		</div>
 	</div>
-</section>
+</section> -->
 <!-- Categories Section End -->
 
 <!-- Testimonial Section Begin -->
@@ -402,7 +402,7 @@
 		</div> <!--row끝  -->
 		<div class="row">
 			<div class="col" align="center">
-			<button class="btn btn-primary" type="button">찜하기</button>
+			<%-- <button class="btn btn-primary" type="button" onclick="location.href='<%=contextPath%>/zziminsert.ma?coseq='encodeURI(${firstmenu}${secondmenu})">찜하기</button> --%>
 			<button class="btn btn-primary" type="submit">예약하기</button>
 			</div>
 		</div>

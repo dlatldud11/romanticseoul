@@ -66,6 +66,7 @@ public class BuyController extends SuperClass {
 				String[] beanlist = bean.split("/"); //메뉴시퀀스, 가게시퀀스, 모드
 				first = this.capi.getByPk(beanlist[2], beanlist[1]);
 				firstMenu = this.pdao.SelectDataByPk(Integer.parseInt(beanlist[0]));
+				mav.addObject("firstmode",beanlist[2]);
 				
 			}
 		}
@@ -74,6 +75,7 @@ public class BuyController extends SuperClass {
 				String[] beanlist = bean.split("/"); //메뉴시퀀스, 가게시퀀스, 모드
 				second = this.capi.getByPk(beanlist[2], beanlist[1]);
 				secondMenu = this.pdao.SelectDataByPk(Integer.parseInt(beanlist[0]));
+				mav.addObject("secondmode",beanlist[2]);
 				
 			}
 		}

@@ -96,8 +96,8 @@ public class DrinkAPI {
 	               if(nNode.getNodeType() == Node.ELEMENT_NODE) {
 	                  Element eElement = (Element) nNode;
 	                  Drink bean = new Drink();
-	                  System.out.println("--------------------------------------------");
-	                  System.out.println("기본키 : " + getTagValue("MGTNO" ,eElement));
+//	                  System.out.println("--------------------------------------------");
+//	                  System.out.println("기본키 : " + getTagValue("MGTNO" ,eElement));
 	                  String a = getTagValue("SITEWHLADDR" ,eElement); //지번주소
 	                  String b = getTagValue("RDNWHLADDR" ,eElement); //도로명주소
 	                  String c = a+b;
@@ -147,8 +147,8 @@ public class DrinkAPI {
 				   if(nNode.getNodeType() == Node.ELEMENT_NODE) {
 					   Element eElement = (Element) nNode;
 					   
-					   System.out.println("--------------------------------------------");
-					   System.out.println("기본키 : " + getTagValue("MGTNO" ,eElement));
+//					   System.out.println("--------------------------------------------");
+//					   System.out.println("기본키 PK : " + getTagValue("MGTNO" ,eElement));
 					   String a = getTagValue("SITEWHLADDR" ,eElement); //지번주소
 					   String b = getTagValue("RDNWHLADDR" ,eElement); //도로명주소
 					   if(getTagValue("MGTNO" ,eElement).equals(pk)) {

@@ -113,6 +113,7 @@ $(document).ready(function(){
 							</tr>
 							<tr class="text-center">
 							<td colspan="5">
+							<button type= "button" onclick="location.href='<%=contextPath%>/zziminsert.ma?coseq=${first.storeseq}/${firstmode}/${second.storeseq}/${secondmode}'">찜하기</button>
 							<button type= "button" onclick="location.href='/main.co'">취소</button>
 							<!-- <button type= "button">찜하기</button> -->
 							<button type= "submit">결제</button>

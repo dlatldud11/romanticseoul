@@ -13,7 +13,15 @@
 						<img src="img/listing/details/ld-icon.png" alt="">
 					</div>
 					<div class="listing__hero__text">
-						<c:forEach var="bean" items="${sessionScope.eatgulists}">
+					<c:choose>
+						<c:when test="${not empty drinkgulists}">
+						<c:set var="eatgulists" value="${drinkgulists}"/>
+						</c:when>
+						<c:when test="${not empty lookgulists}">
+						<c:set var="eatgulists" value="${drinkgulists}"/>
+						</c:when>
+					</c:choose>
+						<c:forEach var="bean" items="${eatgulists}">
 							<c:if test="${storeseq == bean.storeseq}">
 								<h2>${bean.name}</h2>
 								<div class="listing__hero__widget">
