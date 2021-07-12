@@ -31,4 +31,25 @@
 	<delete id="DeleteMyplans" parameterType="String">
 	delete from myplans where id = #{id}
 	</delete>
+	<insert id="InsertReservation" parameterType="MyCombo2">
+	insert into reservation (resseq, id, first,second,price,qty,regdate,redate)
+	values(res_seq.nextval,#{id},#{first},#{second},#{price},
+	#{qty},to_char(sysdate,'yyyy/MM/dd/HH24:MI'),
+	#{redate, jdbcType=VARCHAR})
+	</insert>
+	<update id="UpdateStock"> <!-- map으로 파라미터 보내기 -->
+	update stock set qty = qty - #{qty} where menuseq = #{menuseq}
+	</update>
+	<select id="SelectResById" parameterType="String" resultType="MyCombo2">
+	select a.mname as firstmname, a.price as firstprice, a.qty, a.total as price, a.regdate, a.redate, a.resseq,a.first,b.second,
+	b.mname as secondmname, b.price as secondprice
+	from (select b.mname, b.price as price, a.qty, a.price as total, a.regdate, a.redate, a.resseq, a.first from
+	reservation a join menu b on (a.first = b.menuseq) 
+    where id = #{id}  ) a join (select b.mname, b.price as price,a.second, a.qty, a.price as total, a.regdate, a.redate, a.resseq from
+	reservation a join menu b on (a.second = b.menuseq) 
+    where id = #{id}  ) b on (a.resseq = b.resseq) 
+       
+    order by resseq desc
+	</select>
+	
 </mapper>

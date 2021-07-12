@@ -1,16 +1,21 @@
 package dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import bean.Combo2;
 import bean.Drink;
 import bean.Eat;
 import bean.Look;
 import bean.Member;
 import bean.Myplan;
+import bean.Reservation;
+import bean.Stock;
 
 @Component("malldao")
 public class MallDao {
@@ -58,6 +63,20 @@ public class MallDao {
 	}
 	public int DeleteMyplans(String id){
 		return this.abcd.delete(namespace + "DeleteMyplans", id);
+	}
+	public int InsertReservation(Combo2 bean) {
+		System.out.println(bean.toString());
+		return this.abcd.insert(namespace + "InsertReservation" ,bean);
+	}
+	public int UpdateStock (int menuseq, int qty) {
+		Map<String,Integer> map = new HashMap<String,Integer>();
+		map.put("menuseq", menuseq);
+		map.put("qty", qty);
+		return this.abcd.update(namespace +"UpdateStock", map);
+	}
+	public List<Combo2> SelectResById(String id){
+		System.out.println(id);
+		return this.abcd.selectList(namespace + "SelectResById", id);
 	}
 //	public Order SelectDataByPk(int oid) {
 //		return this.abcd.selectOne(namespace + "SelectDataByPk", oid);

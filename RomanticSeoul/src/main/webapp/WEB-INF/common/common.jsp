@@ -7,6 +7,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!-- whologin 변수는 로그인 상태를 저장하고 있는 변수입니다. -->
 <c:set var="whologin" value="0" />
 <c:if test="${empty sessionScope.loginfo}">
@@ -94,7 +95,7 @@ String mappingName = "/main";
 							<ul>
 								<li class="active"><a href="./main.co">홈</a></li>
 								<li><a href="./boList.bo">자유게시판</a></li>
-								<li><a href="./coBoList.bo">코스후기</a></li>
+								<!-- <li><a href="./coBoList.bo">코스후기</a></li> -->
 								<li><a href="./zzimList.ma?id=${loginfo.id}">찜</a></li>
 								<li><a href="./qnaBoList.bo">문의하기</a></li>
 								<c:if test="${whologin == 2}">

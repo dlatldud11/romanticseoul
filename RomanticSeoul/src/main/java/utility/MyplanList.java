@@ -45,17 +45,17 @@ public class MyplanList {
 			    if(!(mode == null || mode.isBlank())){ //mode 값이 넘어갔다면
 			    	switch(mode) {
 			    	case "eat":
-			    		if(bean.getEatid().equals(storeseq)) { // 장바구니에 같은 아이디인 가게가 있으면
+			    		if(bean.getEatid() != null && bean.getEatid().equals(storeseq)) { // 장바구니에 같은 아이디인 가게가 있으면
 			    			it.remove();
 			    		}
 			    		break;
 			    	case "drink":
-			    		if(bean.getDrinkid().equals(storeseq)) { // 장바구니에 같은 아이디인 가게가 있으면
+			    		if(bean.getDrinkid() != null && bean.getDrinkid().equals(storeseq)) { // 장바구니에 같은 아이디인 가게가 있으면
 			    			it.remove();
 			    		}
 			    		break;
 			    	case "look":
-			    		if(bean.getLookid().equals(storeseq)) { // 장바구니에 같은 아이디인 가게가 있으면
+			    		if(bean.getLookid() != null && bean.getLookid().equals(storeseq)) { // 장바구니에 같은 아이디인 가게가 있으면
 			    			it.remove();
 			    		}
 			    		break;
@@ -68,6 +68,7 @@ public class MyplanList {
 		public void AddOrder(String storeseq, int stock, String mode,String id) {
 			System.out.println("AddOrder 실행함");
 			if(this.myplanlist.isEmpty()) { // 장바구니에 아무것도 없으면
+				System.out.println("장바구니에 아무것도 없다");
 				switch(mode) {
 				case("eat"):
 						Myplan myplan = new Myplan();
@@ -93,28 +94,33 @@ public class MyplanList {
 				}
 			}else { // 이미 장바구니가 있었을 때
 				List<Myplan> add = new ArrayList<Myplan>();
+				System.out.println("이미 장바구니가 있다.");
 				for(Myplan bean : myplanlist) { 
 					switch(mode) {
 					case("eat"):
 						if(bean.getEatid() != null && bean.getEatid().equals(storeseq)) {// eat이미 있으면
-							bean.setQty(bean.getQty()+stock); // 수량 더해주기
+							bean.setQty(bean.getQty()+stock); 
+							System.out.println("eat 장바구니 추가 이미 있다. 수량 추가");
 						}else {
 							Myplan myplan = new Myplan();
 							myplan.setEatid(storeseq);
 							myplan.setQty(stock);
 							myplan.setId(id);
 							add.add(myplan);
+							System.out.println("장바구니에 없다");
 						}
 					break;
 					case("drink"):
 						if(bean.getDrinkid() != null && bean.getDrinkid().equals(storeseq)) {// eat이미 있으면
 							bean.setQty(bean.getQty()+stock); // 수량 더해주기
+							System.out.println("drink 장바구니 추가 이미 있다. 수량 추가");
 						}else {
 							Myplan myplan = new Myplan();
 							myplan.setDrinkid(storeseq);
 							myplan.setQty(stock);
 							myplan.setId(id);
 							add.add(myplan);
+							System.out.println("drink 장바구니에 없다");
 						}
 					break;
 					case("look"):
